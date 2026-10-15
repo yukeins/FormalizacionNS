@@ -164,6 +164,92 @@ impl FrontierExtensionsAuditor {
     }
 }
 
+/// Module 8: Relativistic 4-Velocity & Metric Projection Auditor.
+pub struct RelativisticFourVelocityAuditor {
+    pub speed_of_light: f64,
+    pub three_velocity_sq: f64,
+}
+
+impl RelativisticFourVelocityAuditor {
+    pub fn new(c: f64, v_sq: f64) -> Self {
+        Self { speed_of_light: c, three_velocity_sq: v_sq }
+    }
+
+    /// Computes relativistic Lorentz factor gamma = (1 - v^2/c^2)^(-1/2).
+    pub fn lorentz_factor(&self) -> (bool, f64) {
+        let beta_sq = self.three_velocity_sq / (self.speed_of_light * self.speed_of_light);
+        if beta_sq < 1.0 {
+            let gamma = (1.0 - beta_sq).sqrt().recip();
+            (true, gamma)
+        } else {
+            (false, 0.0)
+        }
+    }
+
+    /// Verifies that 4-velocity norm satisfies u^mu u_mu = -c^2.
+    pub fn verify_four_velocity_norm(&self) -> bool {
+        let (subluminal, gamma) = self.lorentz_factor();
+        if !subluminal { return false; }
+        let c = self.speed_of_light;
+        let c_sq = c * c;
+        let norm_sq = - (gamma * c).powi(2) + gamma.powi(2) * self.three_velocity_sq;
+        // Relative error test
+        (norm_sq - (-c_sq)).abs() / c_sq < 1e-12
+    }
+}
+
+/// Module 9: Post-Newtonian Viscous Expansion Auditor (1PN Order O(1/c^2)).
+pub struct PostNewtonianViscousAuditor {
+    pub speed_of_light: f64,
+    pub classical_viscous_stress: f64,
+    pub pn_correction: f64,
+}
+
+impl PostNewtonianViscousAuditor {
+    pub fn new(c: f64, classical: f64, pn: f64) -> Self {
+        Self { speed_of_light: c, classical_viscous_stress: classical, pn_correction: pn }
+    }
+
+    pub fn total_relativistic_stress(&self) -> f64 {
+        let c_sq = self.speed_of_light * self.speed_of_light;
+        self.classical_viscous_stress + self.pn_correction / c_sq
+    }
+
+    pub fn verify_post_newtonian_scaling(&self, tol: f64) -> (bool, f64) {
+        let total = self.total_relativistic_stress();
+        let diff = (total - self.classical_viscous_stress).abs();
+        (diff < tol, diff)
+    }
+}
+
+/// Module 10: Israel-Stewart Hyperbolic Causality & Weyl-Cotton Bridge Auditor.
+pub struct RelativisticCausalityAuditor {
+    pub speed_of_light: f64,
+    pub shear_viscosity: f64,
+    pub relaxation_time: f64,
+    pub density: f64,
+}
+
+impl RelativisticCausalityAuditor {
+    pub fn new(c: f64, eta: f64, tau: f64, rho: f64) -> Self {
+        Self { speed_of_light: c, shear_viscosity: eta, relaxation_time: tau, density: rho }
+    }
+
+    /// Computes signal propagation speed v_signal = sqrt(eta / (tau * rho)) <= c.
+    pub fn compute_signal_speed(&self) -> (bool, f64) {
+        let v_sq = self.shear_viscosity / (self.relaxation_time * self.density);
+        let v = v_sq.sqrt();
+        let subluminal = v <= self.speed_of_light;
+        (subluminal, v)
+    }
+
+    /// Verifies magnetic Weyl tensor damping via Cotton enstrophy B_ij = (1/c^2) C_ij.
+    pub fn verify_weyl_cotton_damping(&self, cotton_enstrophy: f64) -> f64 {
+        cotton_enstrophy / (self.speed_of_light * self.speed_of_light)
+    }
+}
+
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -232,4 +318,32 @@ mod tests {
         assert!(rejuv_ok);
         assert!(r_val < 4.0);
     }
+
+    #[test]
+    fn test_relativistic_four_velocity() {
+        let auditor = RelativisticFourVelocityAuditor::new(3.0e8, 1.0e16); // v ~ 10^8 m/s
+        let (subluminal, gamma) = auditor.lorentz_factor();
+        assert!(subluminal);
+        assert!(gamma > 1.0);
+        assert!(auditor.verify_four_velocity_norm());
+    }
+
+    #[test]
+    fn test_post_newtonian_viscous_expansion() {
+        let auditor = PostNewtonianViscousAuditor::new(3.0e8, 5.0, 1.0e15);
+        let (ok, diff) = auditor.verify_post_newtonian_scaling(0.05);
+        assert!(ok);
+        assert!(diff < 1e-1);
+    }
+
+    #[test]
+    fn test_israel_stewart_causality() {
+        let auditor = RelativisticCausalityAuditor::new(3.0e8, 1.0e-3, 1.0e-12, 1000.0);
+        let (subluminal, speed) = auditor.compute_signal_speed();
+        assert!(subluminal);
+        assert!(speed < 3.0e8);
+        let weyl_damped = auditor.verify_weyl_cotton_damping(4.5);
+        assert!(weyl_damped < 1e-15);
+    }
 }
+

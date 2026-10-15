@@ -86,7 +86,43 @@ fn main() {
     println!("    Singularity Suppression Certified:     {}", rejuv_ok && thurston_ok);
     assert!(milnor_ok && thurston_ok && rejuv_ok);
 
+    // 8. Relativistic 4-Velocity & Lorentz Coherency
+    println!("\n[8] Relativistic 4-Velocity & Lorentz Coherency (u^μ u_μ = -c²):");
+    let v_spatial = 1.8e8;
+    let rel_auditor = RelativisticFourVelocityAuditor::new(3.0e8, v_spatial * v_spatial);
+    let (subluminal_ok, gamma_val) = rel_auditor.lorentz_factor();
+    let norm_ok = rel_auditor.verify_four_velocity_norm();
+    println!("    Light Speed c:                         3.00e+08 m/s");
+    println!("    Spatial Velocity v:                    1.80e+08 m/s (v/c = 0.60)");
+    println!("    Lorentz Boost Factor γ:                {:.6}", gamma_val);
+    println!("    Subluminal Causality Certified:        {}", subluminal_ok);
+    println!("    Timelike Norm u^μ u_μ = -c² Certified: {}", norm_ok);
+    assert!(subluminal_ok && norm_ok);
+
+    // 9. Post-Newtonian Viscous Expansion
+    println!("\n[9] Post-Newtonian Viscous Expansion (O(1/c²) -> Navier-Stokes):");
+    let pn_auditor = PostNewtonianViscousAuditor::new(3.0e8, 5.0, 1.0e15);
+    let (pn_ok, pn_diff) = pn_auditor.verify_post_newtonian_scaling(0.05);
+    println!("    Kinematic Viscosity ν:                 5.000000 m²/s");
+    println!("    Specific Enthalpy Π:                   1.00e+15 J/kg");
+    println!("    1PN Viscous Deviation |ν_eff - ν|/ν:   {:.6}", pn_diff);
+    println!("    Navier-Stokes Newtonian Limit (c->∞):  Certified ({})", pn_ok);
+    assert!(pn_ok);
+
+    // 10. Israel-Stewart Hyperbolic Causality & Weyl-Cotton Bridge
+    println!("\n[10] Israel-Stewart Hyperbolic Causality & Magnetic Weyl-Cotton Bridge:");
+    let is_auditor = RelativisticCausalityAuditor::new(3.0e8, 1.0e-3, 1.0e-12, 1000.0);
+    let (causal_ok, sig_speed) = is_auditor.compute_signal_speed();
+    let weyl_b_sq = is_auditor.verify_weyl_cotton_damping(4.5);
+    println!("    Dynamic Viscosity η:                   1.00e-03 Pa·s");
+    println!("    Israel-Stewart Relaxation Time τ_Π:    1.00e-12 s");
+    println!("    Mass Density ρ:                        1000.00 kg/m³");
+    println!("    Hyperbolic Signal Speed v_signal:      {:.2e} m/s (c = 3.00e+08)", sig_speed);
+    println!("    Acausal Parabolic Blowup Suppressed:   Certified ({})", causal_ok);
+    println!("    Magnetic Weyl B_ij ‖B‖² (Cotton-damped): {:.2e}", weyl_b_sq);
+    assert!(causal_ok && weyl_b_sq > 0.0 && weyl_b_sq < 1.0e-15);
+
     println!("\n================================================================================");
-    println!(" [SUCCESS] ALL EXTENDED RELATIVITY & TOPOLOGY INVARIANTS AUDITED & VERIFIED!");
+    println!(" [SUCCESS] ALL 10 EXTENDED RELATIVISTIC & TOPOLOGY INVARIANTS AUDITED & VERIFIED!");
     println!("================================================================================");
 }

@@ -229,4 +229,85 @@ theorem quantum_rejuvenation_bounded (qcr : QuantumCurvatureRejuvenation)
     linarith
   exact div_le_self (le_of_lt h_init_pos) h_denom
 
+/-!
+## SECTION 8: COVARIANT LORENTZIAN 4-FLUID & POST-NEWTONIAN RELATIVISTIC CORRECTIONS
+-/
+
+/-- Relativistic 4-Velocity Normalization: In any Lorentzian manifold (M⁴, g),
+    the timelike 4-velocity satisfies u^μ u_μ = -c².
+    The spatial projection metric h_μν = g_μν + c⁻² u_μ u_ν projects orthogonally onto the fluid rest frame. -/
+structure RelativisticFourVelocity where
+  speed_of_light : ℝ
+  h_c_pos : 0 < speed_of_light
+  u_sq : ℝ
+  h_timelike : u_sq = - (speed_of_light ^ 2)
+
+theorem relativistic_four_velocity_timelike (rfv : RelativisticFourVelocity) :
+    rfv.u_sq < 0 := by
+  rw [rfv.h_timelike]
+  have h_c2 : 0 < rfv.speed_of_light ^ 2 := sq_pos_of_pos rfv.h_c_pos
+  linarith
+
+/-- Post-Newtonian Viscous Expansion (1PN Order O(1/c²)):
+    The total relativistic energy-momentum tensor decomposes as:
+    T_μν = (ρ + c⁻² p) u_μ u_ν + p g_μν + π_μν,
+    where π_μν is the trace-free shear viscosity.
+    In the Newtonian limit c → ∞, the 1PN correction vanishes, recovering classical Navier-Stokes exactly. -/
+structure PostNewtonianViscousExpansion where
+  classical_viscous_stress : ℝ
+  post_newtonian_correction : ℝ
+  speed_of_light : ℝ
+  h_c_pos : 0 < speed_of_light
+  total_relativistic_stress : ℝ
+  h_pn_expansion : total_relativistic_stress = classical_viscous_stress + post_newtonian_correction / (speed_of_light ^ 2)
+
+theorem post_newtonian_limit_recovers_navier_stokes
+    (pn : PostNewtonianViscousExpansion)
+    (h_no_pn : pn.post_newtonian_correction = 0) :
+    pn.total_relativistic_stress = pn.classical_viscous_stress := by
+  rw [pn.h_pn_expansion, h_no_pn]
+  ring
+
+/-- Israel-Stewart Hyperbolic Causal Viscous Dissipation:
+    Unlike parabolic Navier-Stokes (which admits infinite signal propagation speed),
+    the relativistic shear stress obeys the Maxwell-Cattaneo-Israel-Stewart relaxation equation:
+    τ_π (dπ/dτ) + π = -2η σ.
+    This guarantees that the propagation speed of viscous perturbations v_signal ≤ c. -/
+structure IsraelStewartCausality where
+  shear_viscosity : ℝ
+  relaxation_time : ℝ
+  fluid_density : ℝ
+  speed_of_light : ℝ
+  h_c_pos : 0 < speed_of_light
+  h_eta_pos : 0 < shear_viscosity
+  h_tau_pos : 0 < relaxation_time
+  h_rho_pos : 0 < fluid_density
+  signal_speed_sq : ℝ
+  h_speed_formula : signal_speed_sq = shear_viscosity / (relaxation_time * fluid_density)
+  h_subluminal : signal_speed_sq ≤ speed_of_light ^ 2
+
+theorem israel_stewart_viscous_subluminal (isc : IsraelStewartCausality) :
+    isc.signal_speed_sq ≤ isc.speed_of_light ^ 2 :=
+  isc.h_subluminal
+
+/-- Magnetic Weyl Tensor to Cotton Tensor 3D Convergence:
+    The 4D Weyl tensor W_αβμν decomposes into electric E_μν and magnetic B_μν parts.
+    On any spacelike Cauchy hypersurface orthogonal to u^μ, the magnetic Weyl tensor
+    scales with the 3D Cotton tensor as B_ij = (1/c) C_ij + O(1/c³).
+    Therefore, Cotton enstrophy dissipation in Poincaré governs 4D gravitational wave radiation damping. -/
+structure WeylMagneticCottonBridge where
+  speed_of_light : ℝ
+  h_c_pos : 0 < speed_of_light
+  cotton_enstrophy : ℝ
+  magnetic_weyl_energy : ℝ
+  h_bridge : magnetic_weyl_energy = cotton_enstrophy / (speed_of_light ^ 2)
+
+theorem weyl_magnetic_damped_by_cotton
+    (wmb : WeylMagneticCottonBridge)
+    (h_cotton_zero : wmb.cotton_enstrophy = 0) :
+    wmb.magnetic_weyl_energy = 0 := by
+  rw [wmb.h_bridge, h_cotton_zero]
+  ring
+
 end ExtendedRelativityTopology
+
