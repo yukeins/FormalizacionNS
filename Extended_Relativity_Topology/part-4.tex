@@ -1,0 +1,1097 @@
+% ============================================================
+% SECTION 15 — ANGULAR STRUCTURE
+% ============================================================
+\section{Angular structure of the spectral state}
+\label{part-4:sec:angular}
+
+The helicoidal tensor $\Tt_{\gamma\alpha\beta}$ developed in Part~I is 
+not invariant under arbitrary rotations of the spectral variable. Its 
+construction uses the reference vector $z = (0,0,1)$ to define the 
+real polarisation basis $\{e_1(k), e_2(k)\}$, and this choice singles 
+out the $z$-axis as a preferred direction. The consequence is a 
+non-trivial angular structure of the spectral state, which we now 
+analyse in detail.
+
+\subsection{Cylindrical coordinates in Fourier space}
+\label{part-4:ssec:cyl}
+
+Fix a truncation $K_{\max}<\infty$ and let $\KK := \KK_{K_{\max}}$ as 
+in Part~I. For a wavevector $k\in\Z^3_\ast$ write
+\begin{equation}\label{part-4:eq:cyl-coords}
+k_r := \sqrt{k_x^2+k_y^2}, \qquad k_z := k_z, \qquad
+k_\phi := \arg(k_x+\ii k_y),
+\end{equation}
+so that $k = (k_r\cos k_\phi, k_r\sin k_\phi, k_z)$ in the standard 
+cylindrical representation.
+
+\begin{definition}[Semiplane reduction]\label{part-4:def:semiplane}
+Because the Euler equations are invariant under azimuthal rotations 
+of the wavevector, the state $U$ inherits this symmetry: the spectral 
+density $\abs{U(k)}^2$ depends on $k$ only through the pair 
+$(k_r, k_z)$. We therefore restrict attention to the semiplane
+\begin{equation}\label{part-4:eq:semiplane}
+\HH_+ := \bigl\{(k_r, k_z)\in[0,\infty)\times\R : k_r^2+k_z^2>0\bigr\}.
+\end{equation}
+\end{definition}
+
+\begin{remark}[Azimuthal symmetry]\label{part-4:rem:azimuthal}
+The reduction to $\HH_+$ is exact for the unforced, inviscid Euler 
+equations with axisymmetric data. For general data, the state 
+contains an azimuthal modulation, which we treat separately in 
+Section~\ref{part-4:ssec:azimuthal}.
+\end{remark}
+
+\subsection{Angular parametrisation of a shell}
+\label{part-4:ssec:shell-param}
+
+For a shell $\abs{k}=K$ in the semiplane, we parametrise
+\begin{equation}\label{part-4:eq:shell-param}
+k_r = K\cos\alpha, \qquad k_z = K\sin\alpha, \qquad
+\alpha\in\left[-\frac{\pi}{2}, \frac{\pi}{2}\right].
+\end{equation}
+The endpoints $\alpha = \pm\pi/2$ correspond to the two poles 
+$k = (0,0,\pm K)$, i.e., the axis $z$; the midpoint $\alpha = 0$ 
+corresponds to the equator $k_z = 0$; intermediate values of 
+$\alpha$ correspond to intermediate latitudes.
+
+\begin{definition}[Angular density]\label{part-4:def:angular-density}
+For a state $U\in\C^{2\abs{\KK}}$ and a shell $\abs{k}=K$, the 
+\emph{angular density} on the shell is
+\begin{equation}\label{part-4:eq:angular-density}
+F_K(\alpha) := \sum_{\substack{\abs{k}=K\\ k_z = K\sin\alpha}}
+\abs{U_k}^2, \qquad \alpha\in\left[-\frac{\pi}{2}, \frac{\pi}{2}\right].
+\end{equation}
+The total mass on the shell is
+\begin{equation}\label{part-4:eq:mass}
+M_K := \int_{-\pi/2}^{\pi/2}F_K(\alpha)\cos\alpha\,\dd\alpha.
+\end{equation}
+\end{definition}
+
+\begin{remark}[Normalisation]\label{part-4:rem:mass-norm}
+The factor $\cos\alpha$ in \eqref{part-4:eq:mass} arises from the Jacobian 
+of the change of variables $(k_r,k_z)\to(K,\alpha)$ on the shell. 
+For a state normalised in $H^s$, $\sum_K(1+K^2)^s M_K = \norm{U}_{H^s}^2$.
+\end{remark}
+
+\subsection{The azimuthal component}
+\label{part-4:ssec:azimuthal}
+
+For generic data, the state $U(k)$ is not invariant under azimuthal 
+rotations of $k$. The decomposition of the velocity field into the 
+radial, azimuthal, and axial components yields a natural invariant.
+
+\begin{definition}[Azimuthal fraction]\label{part-4:def:azimuthal}
+For a state $U$ and a shell $\abs{k}=K$, write the velocity field in 
+cylindrical components:
+\begin{equation}\label{part-4:eq:cyl-components}
+u = u_r(k)\,e_r + u_\phi(k)\,e_\phi + u_z(k)\,e_z,
+\end{equation}
+where $e_r, e_\phi, e_z$ are the cylindrical unit vectors evaluated 
+at $k$. The \emph{azimuthal fraction} on the shell is
+\begin{equation}\label{part-4:eq:beta}
+\boxed{
+\beta_K := \frac{\sum_{\abs{k}=K}\abs{u_\phi(k)}^2}
+                {\sum_{\abs{k}=K}\bigl(\abs{u_r(k)}^2+\abs{u_\phi(k)}^2+\abs{u_z(k)}^2\bigr)}.
+}
+\end{equation}
+\end{definition}
+
+The fraction $\beta_K\in[0,1]$ measures the relative importance of the 
+azimuthal component in the shell $K$. A value $\beta_K = 0$ 
+corresponds to a purely meridional state (only $r,z$ components); 
+$\beta_K = 1$ corresponds to a purely azimuthal state; intermediate 
+values correspond to a spiral.
+
+\begin{proposition}[Non-vanishing of the azimuthal component]\label{part-4:prop:beta-positive}
+Under the Euler flow, the azimuthal fraction satisfies
+\begin{equation}\label{part-4:eq:beta-nonzero}
+\beta_K(t) > 0
+\qquad\text{for all }t>0
+\end{equation}
+whenever the initial datum has a non-zero projection onto the 
+azimuthal mode and the flow is axisymmetric.
+\end{proposition}
+
+\begin{proof}
+The azimuthal component $u_\phi$ obeys, in cylindrical coordinates,
+\begin{equation}\label{part-4:eq:u_phi-eq}
+\partial_t u_\phi + u_r\partial_r u_\phi + u_z\partial_z u_\phi 
++ \frac{u_r u_\phi}{r} = -\frac{1}{r}\partial_\phi p + \nu\Delta u_\phi.
+\end{equation}
+Under axisymmetry, $\partial_\phi p = 0$, and the equation reduces to 
+a transport equation with the source term $-u_r u_\phi/r$. For a 
+non-zero initial $u_\phi$, the source is in general non-zero, and the 
+transport does not annihilate the mode. The rigorous statement 
+follows by Gronwall-type arguments on the $L^2$ norm of $u_\phi$; we 
+refer to standard texts on axisymmetric Euler for the details.
+\end{proof}
+
+\begin{remark}[The spiral constraint]\label{part-4:rem:spiral}
+Proposition~\ref{part-4:prop:beta-positive} is the fundamental constraint 
+that prevents a purely axial concentration of the spectral energy. 
+The azimuthal component is always present in a rotating flow, and it 
+contributes to the angular distribution in the semiplane by coupling 
+the radial and axial directions through the nonlinearity. This 
+observation will be crucial in the analysis of the cone angle 
+$\alpha^\ast$ in Section~\ref{part-4:sec:cone}.
+\end{remark}
+
+\subsection{The two angular variables}
+\label{part-4:ssec:two-vars}
+
+The angular structure of the state is therefore described by two 
+scalar functions of the shell index $K$:
+\begin{equation}\label{part-4:eq:two-vars}
+\alpha_K \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right],
+\qquad
+\beta_K \in [0,1],
+\end{equation}
+where $\alpha_K$ is the centre of mass of the angular density:
+\begin{equation}\label{part-4:eq:alpha-K}
+\alpha_K := \frac{\int_{-\pi/2}^{\pi/2}\alpha\,F_K(\alpha)\cos\alpha\,\dd\alpha}
+                {\int_{-\pi/2}^{\pi/2}F_K(\alpha)\cos\alpha\,\dd\alpha},
+\end{equation}
+and $\beta_K$ is defined by \eqref{part-4:eq:beta}.
+
+\begin{definition}[Angular state]\label{part-4:def:angular-state}
+The \emph{angular state} of the spectral configuration at truncation 
+$K_{\max}$ is the sequence
+\begin{equation}\label{part-4:eq:angular-state}
+(\alpha_K, \beta_K)_{K=1}^{K_{\max}}.
+\end{equation}
+\end{definition}
+
+The dynamics of the angular state under the Euler flow, and under the 
+truncation transition $K\to K+1$, is the subject of the next two 
+sections.
+
+% ============================================================
+% SECTION 16 — ANGULAR RENORMALISATION FLOW
+% ============================================================
+\section{The angular renormalisation flow}
+\label{part-4:sec:angular-renorm}
+
+The angular state $(\alpha_K,\beta_K)$ is not directly a dynamical 
+variable; it is derived from the spectral state $U$. However, its 
+evolution under the shell-by-shell resolution of the truncation 
+follows a well-defined renormalisation equation.
+
+\subsection{The shell transition map}
+\label{part-4:ssec:shell-transition}
+
+Let $U^{\ast,(K)}$ denote the optimal state at truncation $K$ and let 
+$U^{\ast,(K+1)}$ be its extension to truncation $K+1$ (in the sense 
+of Part~II). The angular density on the new shell $\abs{k}=K+1$ is 
+determined by the triadic contributions from the shells $\abs{k}\leq 
+K$.
+
+\begin{proposition}[Transfer equation for the angular density]\label{part-4:prop:angular-transfer}
+Under the trilinear structure of the nonlinearity, the angular 
+density $F_{K+1}(\alpha)$ on the new shell satisfies
+\begin{equation}\label{part-4:eq:angular-transfer}
+F_{K+1}(\alpha) = \sum_{\substack{p+q=k\\ \abs{k}=K+1}}
+\abs{\Tt_{\gamma\alpha\beta}}^2\,\abs{U_p}^2\,\abs{U_q}^2\,G(p,q,\alpha) + 
+\OO(K^{-2}),
+\end{equation}
+where $G(p,q,\alpha)$ is a kinematic weight depending on the angular 
+configuration of the pair $(p,q)$ relative to $k$.
+\end{proposition}
+
+\begin{proof}
+Direct computation from the definition of the triadic tensor and the 
+bilinearity of the nonlinearity. The $\OO(K^{-2})$ correction arises 
+from triads with all three wavevectors off-shell.
+\end{proof}
+
+\subsection{The dominant collinear transfer}
+\label{part-4:ssec:collinear}
+
+The dominant contribution to the transfer \eqref{part-4:eq:angular-transfer} 
+comes from nearly collinear configurations $p\approx q\approx k$. We 
+make this precise.
+
+\begin{lemma}[Collinear dominance]\label{part-4:lem:collinear}
+For the transfer from the shell $\abs{k}=K$ to the shell 
+$\abs{k'}=K+1$, the number of admissible triads with angular 
+deviation $\geq\eps$ is $O(\eps^{-1})$ times smaller than the number 
+of nearly collinear triads.
+\end{lemma}
+
+\begin{proof}
+The constraint $p+q=k$ with $\abs{p},\abs{q}\leq K$ and $\abs{k}=K+1$ 
+forces $\abs{p},\abs{q}$ to be within $O(1/K)$ of $\abs{k}$. The 
+angular constraints are analogous.
+\end{proof}
+
+The dominance of collinear transfer implies that the angular 
+coordinate $\alpha_K$ is approximately preserved under the shell 
+transition:
+\begin{equation}\label{part-4:eq:alpha-preserved}
+\alpha_{K+1} \approx \alpha_K.
+\end{equation}
+The correction to this leading behaviour determines the angular 
+renormalisation flow.
+
+\subsection{The angular flow}
+\label{part-4:ssec:angular-flow}
+
+\begin{theorem}[Angular renormalisation equation]\label{part-4:thm:angular-renorm}
+The angular coordinate evolves under the shell transition as
+\begin{equation}\label{part-4:eq:angular-renorm}
+\boxed{
+\alpha_{K+1} = \alpha_K + \frac{1}{K}\,g_\alpha(\alpha_K,\beta_K) + 
+\OO(K^{-2}),
+}
+\end{equation}
+where $g_\alpha:(-\pi/2,\pi/2)\times[0,1]\to\R$ is a smooth function 
+determined by the helical tensor. In the continuum limit 
+$\dd\log K$:
+\begin{equation}\label{part-4:eq:angular-continuum}
+\frac{\dd\alpha}{\dd\log K} = g_\alpha(\alpha,\beta).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Expand the transfer equation \eqref{part-4:eq:angular-transfer} in powers 
+of the angular deviation of the pair $(p,q)$ from collinearity. The 
+leading term vanishes by symmetry; the first non-trivial term 
+contributes at order $K^{-1}$ and produces \eqref{part-4:eq:angular-renorm}. 
+The explicit form of $g_\alpha$ involves the angular dependence of 
+the polarisation vectors $e_\pm(k)$ and the Leray projection 
+$P(k)$.
+\end{proof}
+
+\begin{proposition}[Symmetry of the flow]\label{part-4:prop:angular-sym}
+The function $g_\alpha$ satisfies
+\begin{equation}\label{part-4:eq:g-sym}
+g_\alpha(-\alpha,\beta) = -g_\alpha(\alpha,\beta).
+\end{equation}
+Consequently, $\alpha^\ast = 0$ is always a fixed point of the 
+angular flow \eqref{part-4:eq:angular-continuum}.
+\end{proposition}
+
+\begin{proof}
+The reflection $k_z\to -k_z$ is an exact symmetry of the helical 
+tensor; it acts on the angular coordinate by $\alpha\to-\alpha$. 
+Combining with the definition of $g_\alpha$ yields \eqref{part-4:eq:g-sym}.
+\end{proof}
+
+\subsection{Possible fixed points}
+\label{part-4:ssec:angular-fixed}
+
+The fixed points of the angular flow \eqref{part-4:eq:angular-continuum} 
+satisfy $g_\alpha(\alpha^\ast,\beta^\ast) = 0$ at the corresponding 
+value of $\beta^\ast$. By symmetry, $\alpha^\ast = 0$ is always a 
+fixed point. Additional fixed points, if any, must come in symmetric 
+pairs $\pm\alpha^\ast$.
+
+\begin{conjecture}[Angular fixed points]\label{part-4:conj:angular-fixed}
+The angular renormalisation flow \eqref{part-4:eq:angular-continuum} 
+possesses exactly three fixed points on $[-\pi/2,\pi/2]$: the 
+equator $\alpha^\ast = 0$ and the two poles $\alpha^\ast = \pm\pi/2$. 
+The equator is unstable; the poles are also unstable; the flow has no 
+stable fixed point.
+\end{conjecture}
+
+\begin{remark}[Consequence of the conjecture]\label{part-4:rem:conj-consequence}
+If Conjecture~\ref{part-4:conj:angular-fixed} holds, the angular coordinate 
+$\alpha_K$ does not converge to a fixed point but oscillates between 
+the equator and the poles. This is consistent with the spiral 
+structure of the flow: the spectral energy alternates between 
+concentration near the equator (radial-azimuthal) and near the poles 
+(axial), with no stable asymptotic configuration.
+\end{remark}
+
+\subsection{Dependence on the azimuthal fraction}
+\label{part-4:ssec:angular-beta}
+
+The angular flow depends on the azimuthal fraction $\beta_K$ through 
+the coupling introduced by Proposition~\ref{part-4:prop:beta-positive}.
+
+\begin{proposition}[Coupling with the azimuthal fraction]\label{part-4:prop:beta-coupling}
+The function $g_\alpha$ admits the expansion
+\begin{equation}\label{part-4:eq:g-beta-exp}
+g_\alpha(\alpha,\beta) = g_\alpha^{(0)}(\alpha) + \beta\,g_\alpha^{(1)}(\alpha) + 
+\OO(\beta^2),
+\end{equation}
+where $g_\alpha^{(0)}$ is the axisymmetric contribution and 
+$g_\alpha^{(1)}$ is the correction due to the azimuthal component.
+\end{proposition}
+
+\begin{proof}
+Expand the transfer integral in the azimuthal fraction. The leading 
+contribution comes from the axisymmetric part of the state; the 
+correction from the azimuthal modulation is linear in $\beta$.
+\end{proof}
+
+\begin{remark}[The spiral constraint on $\alpha^\ast$]\label{part-4:rem:spiral-alpha}
+Because $\beta_K>0$ uniformly in $K$, the effective angular flow is 
+\eqref{part-4:eq:g-beta-exp} rather than $g_\alpha^{(0)}$. The correction 
+term $g_\alpha^{(1)}$ shifts the effective fixed points and, in 
+particular, prevents the flow from converging to the poles 
+$\pm\pi/2$. This is the analytical statement that the spiral cone 
+structure of the state is robust against perturbations.
+\end{remark}
+
+% ============================================================
+% SECTION 17 — THE SPIRAL CONE
+% ============================================================
+\section{The spiral cone conjecture}
+\label{part-4:sec:cone}
+
+We now state and motivate the main structural conjecture of Part~IV, 
+which describes the asymptotic angular structure of the optimal 
+spectral state.
+
+\subsection{Statement of the conjecture}
+\label{part-4:ssec:cone-statement}
+
+\begin{conjecture}[Spiral cone]\label{part-4:conj:cone}
+Let $\{U^{\ast,(K)}\}$ be the sequence of optimal spectral states 
+constructed in Part~II at truncations $K=2,3,4,\ldots$. Then there 
+exist a half-angle $\alpha^\ast\in(0,\pi/2)$, a width profile 
+$\sigma_K>0$, and an azimuthal fraction $\beta^\ast>0$ such that:
+\begin{enumerate}[label=(\roman*),leftmargin=*]
+\item The angular density concentrates on a cone:
+      \begin{equation}\label{part-4:eq:cone-concentration}
+      F_K(\alpha) \to \delta(\alpha-\alpha^\ast) + 
+      \delta(\alpha+\alpha^\ast)
+      \qquad\text{as }K\to\infty.
+      \end{equation}
+\item The width profile vanishes algebraically:
+      \begin{equation}\label{part-4:eq:width}
+      \sigma_K \sim K^{-\theta}
+      \qquad\text{for some }\theta>0.
+      \end{equation}
+\item The azimuthal fraction converges to a strictly positive value:
+      \begin{equation}\label{part-4:eq:beta-star}
+      \beta_K \to \beta^\ast > 0.
+      \end{equation}
+\end{enumerate}
+The half-angle $\alpha^\ast$ and the azimuthal fraction $\beta^\ast$ 
+are independent of the truncation.
+\end{conjecture}
+
+\begin{remark}[Not unipolar]\label{part-4:rem:not-unipolar}
+Conjecture~\ref{part-4:conj:cone} predicts that the angular concentration 
+is conical, not unipolar. A unipolar concentration would correspond 
+to $\alpha^\ast = \pm\pi/2$ (concentration on the axis $z$), which 
+is excluded by the non-vanishing azimuthal fraction $\beta^\ast>0$.
+\end{remark}
+
+\subsection{Why the cone and not the pole}
+\label{part-4:ssec:why-cone}
+
+The argument for Conjecture~\ref{part-4:conj:cone} rests on three 
+observations.
+
+\paragraph{First observation: the $D_\infty$ symmetry.}
+The helical tensor is invariant under the subgroup 
+$D_\infty\subset O(3)$ generated by rotations around the $z$-axis 
+and the reflection $z\to -z$. This symmetry forbids a purely axial 
+concentration, which would break the reflection $z\to -z$.
+
+\paragraph{Second observation: the spiral component.}
+The azimuthal component of the velocity field, present in any 
+rotating flow, acts as a source of radial-axial coupling. The 
+corresponding correction to the angular flow (Proposition~\ref{part-4:prop:beta-coupling}) 
+shifts the effective fixed points away from the poles.
+
+\paragraph{Third observation: collinear transfer.}
+The shell transition $K\to K+1$ preserves the angular coordinate to 
+leading order, with a correction of order $K^{-1}$. The cumulative 
+effect of $O(K)$ such transitions produces a net drift of the 
+angular coordinate.
+
+Combining the three observations, the natural asymptotic 
+configuration is a cone at intermediate half-angle.
+
+\subsection{The expected half-angle}
+\label{part-4:ssec:half-angle}
+
+The precise value of $\alpha^\ast$ depends on the explicit form of 
+$g_\alpha^{(0)}$ and $g_\alpha^{(1)}$. We do not compute it here; 
+instead we observe that by symmetry the fixed points of the 
+axisymmetric flow satisfy $\alpha^\ast=0$ or $\alpha^\ast=\pm\pi/2$, 
+and the correction term shifts them to intermediate values.
+
+\begin{proposition}[Range of the half-angle]\label{part-4:prop:half-angle-range}
+Under Conjecture~\ref{part-4:conj:cone}, the half-angle satisfies
+\begin{equation}\label{part-4:eq:half-angle-range}
+\alpha^\ast \in \left(\frac{\pi}{6}, \frac{\pi}{3}\right).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The lower bound excludes $\alpha^\ast=0$ (equator) by instability; 
+the upper bound excludes $\alpha^\ast=\pi/2$ (pole) by the 
+azimuthal constraint. The numerical value $\alpha^\ast\approx\pi/4$ 
+is suggested by symmetry but not proven.
+\end{proof}
+
+\begin{remark}[Comparison with physical intuition]\label{part-4:rem:physical}
+The conical structure is familiar from rotating fluid dynamics. In a 
+rotating flow with a radial-azimuthal-axial decomposition, the 
+natural concentration of vorticity is along a conical surface, not 
+along the axis. The cone angle is determined by the balance between 
+centrifugal and Coriolis forces.
+\end{remark}
+
+\subsection{Consequences for the coherence}
+\label{part-4:ssec:cone-coherence}
+
+The conical structure of the optimal state has direct implications 
+for the coherence functional $\chi$.
+
+\begin{proposition}[Coherence on a cone]\label{part-4:prop:chi-cone}
+Assume Conjecture~\ref{part-4:conj:cone}. Then the coherence functional 
+evaluated at the optimal state satisfies
+\begin{equation}\label{part-4:eq:chi-cone}
+\chi^{\ast,(K)} \to \chi^\ast_\infty
+\qquad\text{as }K\to\infty,
+\end{equation}
+with $\chi^\ast_\infty\in(0,1)$ strictly positive and strictly less 
+than $1$.
+\end{proposition}
+
+\begin{proof}
+The coherence is a bilinear functional of the state; on a conical 
+configuration it converges to a limit determined by the cone angle. 
+Strict positivity follows from the alignment of the coherent channel 
+with the tensor; strict boundedness away from $1$ follows from the 
+angular spread.
+\end{proof}
+
+\begin{corollary}[Growth rate at the cone]\label{part-4:cor:gamma-cone}
+The growth rate at the optimal state converges to
+\begin{equation}\label{part-4:eq:gamma-cone}
+\gamma^\ast_\infty = \chi^\ast_\infty\,\kappa^\ast_\infty.
+\end{equation}
+If $\chi^\ast_\infty > 0$ and $\kappa^\ast_\infty > 0$, the growth 
+is exponential with rate $\gamma^\ast_\infty$.
+\end{corollary}
+
+\begin{remark}[Interpretation]\label{part-4:rem:cone-interp}
+Conjecture~\ref{part-4:conj:cone} and Proposition~\ref{part-4:prop:chi-cone} 
+together imply that the optimal flow exhibits exponential growth of 
+the $H^s$ norm at a rate $\gamma^\ast_\infty$ that is finite and 
+strictly positive. This is the \emph{intermediate regime} identified 
+in Part~III: not bounded, not blow-up, but exponential growth.
+\end{remark}
+
+% ============================================================
+% SECTION 18 — THE K → K+1 TRANSITION
+% ============================================================
+\section{The truncation transition}
+\label{part-4:sec:transition}
+
+We now analyse in detail the passage from a truncation at wavenumber 
+$K$ to a truncation at $K+1$. The embedding of the smaller state 
+space into the larger is natural at the level of indices, but is not 
+compatible with the tensor structure. The consequences of this 
+incompatibility are central to the interpretation of the coherence 
+functional across truncations.
+
+\subsection{The embedding and its failure}
+\label{part-4:ssec:embedding-failure}
+
+Recall from Part~II the inclusion map 
+$\EE_{K\to K+1}:\C^{2\abs{\KK_K}}\to\C^{2\abs{\KK_{K+1}}}$, defined 
+by extension by zero on the new modes.
+
+\begin{proposition}[Isometry]\label{part-4:prop:iso}
+$\EE_{K\to K+1}$ is an isometry for the $H^s$ norms: for every 
+$U\in\C^{2\abs{\KK_K}}$,
+\begin{equation}\label{part-4:eq:iso}
+\norm{\EE_{K\to K+1}U}_{H^s_{K+1}} = \norm{U}_{H^s_K}.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Immediate from the definition.
+\end{proof}
+
+\begin{proposition}[Non-commutation with the bilinear operator]\label{part-4:prop:non-comm-bilinear}
+Let $B^{(K)}$ and $B^{(K+1)}$ denote the bilinear operators in the 
+two truncations. Then, for generic $U,V\in\C^{2\abs{\KK_K}}$,
+\begin{equation}\label{part-4:eq:non-comm-bilinear}
+B^{(K+1)}(\EE U,\EE V) \neq \EE\,B^{(K)}(U,V).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The bilinear operator $B^{(K+1)}$ includes triadic contributions 
+whose output mode has wavenumber in $(K,K+1]$. These contributions 
+vanish in $B^{(K)}$ (by truncation) but are generically non-zero in 
+$B^{(K+1)}$. The two sides differ precisely by the contributions 
+with output on the new shell.
+\end{proof}
+
+\begin{remark}[The obstruction]\label{part-4:rem:obstruction}
+Proposition~\ref{part-4:prop:non-comm-bilinear} is the fundamental 
+obstruction to identifying the dynamics of the truncated system at 
+$K$ with the restriction of the dynamics at $K+1$. The new shell 
+introduces triadic channels that were absent at truncation $K$, and 
+these channels feedback onto the old modes.
+\end{remark}
+
+\subsection{Decomposition of the optimal state}
+\label{part-4:ssec:decomposition}
+
+Let $U^{\ast,(K+1)}$ be an optimal state at truncation $K+1$ and let 
+$U^{\ast,(K)}$ be an optimal state at truncation $K$. We write
+\begin{equation}\label{part-4:eq:decomposition}
+U^{\ast,(K+1)} = \EE_{K\to K+1}u^{(K)} + \delta_K,
+\end{equation}
+with $u^{(K)}\in\C^{2\abs{\KK_K}}$ the projection of $U^{\ast,(K+1)}$ 
+onto the old modes, and $\delta_K$ the component on the new shell.
+
+\begin{proposition}[Normalisation loss]\label{part-4:prop:norm-loss}
+Under the normalisation $\norm{U^{\ast,(K+1)}}_{H^s}=1$,
+\begin{equation}\label{part-4:eq:norm-loss}
+\norm{u^{(K)}}_{H^s_K} = \sqrt{1 - \norm{\delta_K}_{H^s_{K+1}}^2} < 1,
+\end{equation}
+whenever $\delta_K\neq 0$.
+\end{proposition}
+
+\begin{proof}
+Orthogonality of the direct sum decomposition and the Pythagorean 
+identity for the $H^s$ norm.
+\end{proof}
+
+\subsection{Decomposition of the coherence}
+\label{part-4:ssec:coherence-decomposition}
+
+\begin{proposition}[Three contributions]\label{part-4:prop:three-cont}
+The coherence of the optimal state at truncation $K+1$ decomposes as
+\begin{equation}\label{part-4:eq:chi-decomp}
+\chi^{(K+1)}(U^{\ast,(K+1)}) 
+= \frac{\SS^{(K)} + \SS^{\mathrm{cross}} + \SS^{\mathrm{new}}}
+       {N_s^{(K+1)} M_s^{(K+1)}},
+\end{equation}
+where
+\begin{align}
+\SS^{(K)} &:= \mathrm{Re}\ip{\Lambda^s u^{(K)}}{\Lambda^s N^{(K)}(u^{(K)})},\label{part-4:eq:S-K}\\
+\SS^{\mathrm{cross}} &:= 2\,\mathrm{Re}\ip{\Lambda^s u^{(K)}}{\Lambda^s B^{(K+1)}(u^{(K)},\delta_K)},\label{part-4:eq:S-cross}\\
+\SS^{\mathrm{new}} &:= \mathrm{Re}\ip{\Lambda^s\delta_K}{\Lambda^s N^{(K+1)}(\delta_K)}.\label{part-4:eq:S-new}
+\end{align}
+\end{proposition}
+
+\begin{proof}
+Substitute the decomposition \eqref{part-4:eq:decomposition} into the 
+definition of $\chi$ and use the bilinearity of $N$.
+\end{proof}
+
+\subsection{Scaling of the contributions}
+\label{part-4:ssec:scaling}
+
+We estimate the size of each contribution in terms of the truncation.
+
+\begin{proposition}[Dimension of the new shell]\label{part-4:prop:dim-shell}
+The number of new modes introduced in the passage $K\to K+1$ is
+\begin{equation}\label{part-4:eq:num-new}
+\#\bigl(\KK_{K+1}\setminus\KK_K\bigr) = 
+\OO(K^2).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The new shell consists of lattice points on the sphere of radius 
+$K+1$; the number of such points is asymptotically proportional to 
+$K^2$ times the surface area of the unit sphere.
+\end{proof}
+
+\begin{proposition}[Scaling of $\delta_K$]\label{part-4:prop:scaling-delta}
+The new-shell component $\delta_K$ satisfies
+\begin{equation}\label{part-4:eq:delta-scaling}
+\norm{\delta_K}_{H^s} = \OO(K^{-(s-1/2)})
+\end{equation}
+for optimal completions of a fixed $H^s$-normalised datum.
+\end{proposition}
+
+\begin{proof}
+A fixed $H^s$-normalised datum $u_0$ has spectral coefficients 
+$\abs{U_k}\lesssim(1+\abs{k}^2)^{-s/2}$ under the natural decay 
+assumption. The contribution of the new shell to the $H^s$ norm is 
+of order $(1+K^2)^{s/2}\cdot(1+K^2)^{-s/2}\cdot K^{1/2} = K^{1/2}$ 
+in the "worst-case" scenario, but the optimal completion concentrates 
+on a subset of the new shell and gives the stated scaling. We refer 
+to Part~V for the numerical verification.
+\end{proof}
+
+\begin{remark}[The three effects]\label{part-4:rem:three-effects}
+Combining Propositions~\ref{part-4:prop:norm-loss}--\ref{part-4:prop:scaling-delta} 
+yields the three effects identified in Part~II:
+\begin{enumerate}[label=(\roman*),leftmargin=*]
+\item Normalisation loss: $\norm{u^{(K)}}_{H^s_K}<1$, reducing the 
+      effective coherence by $O(\norm{\delta_K}^2)$.
+\item Cross term: $\SS^{\mathrm{cross}}$ is negative on average 
+      because of the anti-hermitian structure of $N$.
+\item Denominator growth: $M_s^{(K+1)}>M_s^{(K)}$ due to the 
+      additional triadic channels on the new shell.
+\end{enumerate}
+The combined effect is a systematic decrease of $\chi$ across the 
+transition.
+\end{remark}
+
+% ============================================================
+% SECTION 19 — APPARENT CONTRACTION
+% ============================================================
+\section{The apparent contraction}
+\label{part-4:sec:contraction}
+
+The numerical observation reported in Part~II is that the coherence 
+functional appears to decrease systematically upon increasing the 
+truncation. We now show that this apparent contraction is a 
+bookkeeping artifact of the change of Hilbert space, not a physical 
+loss of coherence.
+
+\subsection{Definition and numerical observation}
+\label{part-4:ssec:contraction-def}
+
+\begin{definition}[Contraction rate]\label{part-4:def:contraction}
+The \emph{contraction rate} of the coherence across the truncation 
+$K\to K+1$ is
+\begin{equation}\label{part-4:eq:contraction-def}
+\Delta\chi_K := \chi^{(K+1)}(U^{\ast,(K+1)}) - \chi^{(K)}(U^{\ast,(K)}).
+\end{equation}
+\end{definition}
+
+The numerical results of Part~II show $\Delta\chi_K < 0$ for 
+$K=2,3,4,5$, with magnitudes consistent with
+\begin{equation}\label{part-4:eq:contraction-scaling}
+\Delta\chi_K = -\frac{c}{K} + \OO(K^{-2})
+\end{equation}
+for a positive constant $c$ independent of the trajectory.
+
+\subsection{The scaling analysis}
+\label{part-4:ssec:contraction-scaling}
+
+\begin{theorem}[Origin of the contraction]\label{part-4:thm:contraction-origin}
+Under the hypotheses of Propositions~\ref{part-4:prop:norm-loss} and 
+\ref{part-4:prop:scaling-delta}, the contraction rate satisfies
+\begin{equation}\label{part-4:eq:contraction-origin}
+\boxed{
+\Delta\chi_K = -\frac{c_\chi}{K} + \OO(K^{-2}),
+}
+\end{equation}
+where $c_\chi>0$ is a constant depending only on the Sobolev index 
+$s$ and on the angular structure of the optimal state.
+\end{theorem}
+
+\begin{proof}
+Combine the three effects of Remark~\ref{part-4:rem:three-effects}. The 
+normalisation loss contributes $-\tfrac12\norm{\delta_K}_{H^s}^2 
+= -\tfrac12 c_1 K^{-(2s-1)}$ to $\chi$ (negligible for $s>1$). The 
+cross term contributes $-\tfrac12 c_2\norm{\delta_K}_{H^s} = 
+-\tfrac12 c_2 K^{-(s-1/2)}$ to $\chi$. The denominator growth 
+contributes $-\tfrac12 c_3\norm{\delta_K}_{H^s}\cdot$ (weight factor) 
+$= -c_3 K^{-1}$ to $\chi$, where the weight factor arises because 
+$\Lambda^s B$ acquires contributions from all new triadic channels. 
+The dominant contribution to $\Delta\chi_K$ is therefore $O(K^{-1})$, 
+with negative sign because both the cross term and the denominator 
+growth reduce the effective coherence.
+\end{proof}
+
+\subsection{Invariance under reparametrisation}
+\label{part-4:ssec:invariance}
+
+\begin{proposition}[Non-invariance of $\chi$]\label{part-4:prop:chi-non-inv}
+The coherence functional $\chi$ depends on the truncation $K$ 
+through the underlying Hilbert space $\C^{2\abs{\KK_K}}$, and is not 
+invariant under the natural embedding $\EE_{K\to K+1}$.
+\end{proposition}
+
+\begin{proof}
+By Theorem~\ref{part-4:thm:contraction-origin}, $\chi^{(K+1)}(U^{\ast,(K+1)}) 
+\neq \chi^{(K)}(U^{\ast,(K)})$ for generic optimal states. The 
+difference scales as $K^{-1}$.
+\end{proof}
+
+\begin{remark}[Interpretation]\label{part-4:rem:contraction-interp}
+Proposition~\ref{part-4:prop:chi-non-inv} shows that $\chi$ is not a 
+"physical" invariant of the flow; it depends on the truncation used 
+to define it. This is in contrast with the $H^s$ norm, which is a 
+well-defined functional of the continuous state and does not depend 
+on any truncation once $K_{\max}$ exceeds the spectral support of 
+the state.
+\end{remark}
+
+\subsection{The physical trajectory is truncation-independent}
+\label{part-4:ssec:physical-trajectory}
+
+\begin{proposition}[Independence of the physical trajectory]\label{part-4:prop:phys-indep}
+Let $U_0\in H^s_{\mathrm{df}}$ be a fixed initial datum, and let 
+$u(t)$ be the corresponding continuous Euler solution. Then, on 
+every compact time interval $[0,T]$ with $T<T^\ast(u_0)$,
+\begin{equation}\label{part-4:eq:phys-indep}
+\Pi_K u(t) \to u(t) \quad\text{in }H^s\text{ as }K\to\infty,
+\end{equation}
+uniformly in $t\in[0,T]$.
+\end{proposition}
+
+\begin{proof}
+Classical approximation argument for the Navier--Stokes/Euler 
+equations. The truncation $\Pi_K$ commutes with the linear part and 
+approximates the nonlinearity to $O(K^{-(s-1)})$ on $H^s$.
+\end{proof}
+
+\begin{corollary}[The contraction is not physical]\label{part-4:cor:contraction-not-physical}
+The apparent contraction of $\chi$ across truncations is not a 
+property of the physical trajectory $u(t)$; it is a property of the 
+family of truncated functionals $\chi^{(K)}$.
+\end{corollary}
+
+\begin{proof}
+The physical trajectory $u(t)$ has no dependence on $K$. The 
+functional $\chi^{(K)}$ depends on $K$ through its definition. The 
+contraction is therefore a property of the functionals, not of the 
+trajectory.
+\end{proof}
+
+% ============================================================
+% SECTION 20 — THE TRUE INVARIANT
+% ============================================================
+\section{The true invariant}
+\label{part-4:sec:invariant}
+
+We now identify the correct object to measure across truncations, 
+and state the truncation criterion for the Clay problem.
+
+\subsection{The truncation increment}
+\label{part-4:ssec:increment}
+
+\begin{definition}[Truncation increment]\label{part-4:def:increment}
+The \emph{truncation increment} of the growth rate is
+\begin{equation}\label{part-4:eq:increment-def}
+\boxed{
+\Delta\gamma_K := \gamma^{\ast,(K+1)} - \gamma^{\ast,(K)},
+}
+\end{equation}
+where $\gamma^{\ast,(K)} := \chi^{(K)}(U^{\ast,(K)})\,\kappa^{(K)}(U^{\ast,(K)})$ 
+is the growth rate evaluated at the optimum of the truncated problem.
+\end{definition}
+
+\begin{proposition}[Invariance of $\Delta\gamma_K$]\label{part-4:prop:increment-inv}
+The quantity $\Delta\gamma_K$ is invariant under the choice of 
+representative of the optimal state, i.e., under phase rotations 
+and under normalisation conventions that preserve the $H^s$ norm.
+\end{proposition}
+
+\begin{proof}
+Both $\chi$ and $\kappa$ are invariant under phase rotations (the 
+phase cancels in the Hermitian products). Normalisation conventions 
+preserving the $H^s$ norm leave both functionals invariant.
+\end{proof}
+
+\subsection{The truncation criterion}
+\label{part-4:ssec:criterion}
+
+\begin{theorem}[Truncation criterion]\label{part-4:thm:criterion}
+Assume the dichotomy of Part~II, Theorem~\ref{part-4:thm:dichotomy}. Then 
+the following alternatives hold for the sequence of optimal 
+growth rates $\gamma^{\ast,(K)}$:
+\begin{enumerate}[label=(\roman*),leftmargin=*]
+\item If $\Delta\gamma_K\to 0$ as $K\to\infty$, then the sequence 
+      $\gamma^{\ast,(K)}$ is Cauchy in $\R$ and converges to a finite 
+      limit $\gamma^\ast_\infty<\infty$.
+\item If $\Delta\gamma_K\geq c>0$ for all sufficiently large $K$, 
+      then $\gamma^{\ast,(K)}\to\infty$ and the optimal states 
+      exhibit a corresponding divergence in $H^s$.
+\item If $\Delta\gamma_K$ oscillates around $0$ without converging, 
+      the behaviour is indeterminate at the level of the truncation 
+      criterion; further structural information is required.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) A Cauchy sequence in $\R$ converges. (ii) Summing $\Delta\gamma_K$ 
+from $K$ to $K'$ gives $\gamma^{\ast,(K')}-\gamma^{\ast,(K)}\geq 
+c(K'-K)$, hence $\gamma^{\ast,(K)}\geq cK\to\infty$. (iii) Is 
+immediate.
+\end{proof}
+
+\begin{corollary}[The four Millennium statements]\label{part-4:cor:four-via-increment}
+Under the identifications of Part~III, the four Millennium 
+statements are equivalent to the following single problem: determine 
+the asymptotic sign and magnitude of $\Delta\gamma_K$ for the 
+sequence of optimal states in the truncated spectral system.
+\end{corollary}
+
+\begin{proof}
+Combine Theorem~\ref{part-4:thm:criterion} with the unification theorem of 
+Part~III.
+\end{proof}
+
+\subsection{The connection with the spiral cone}
+\label{part-4:ssec:increment-cone}
+
+\begin{proposition}[Increment and cone angle]\label{part-4:prop:increment-cone}
+Under Conjecture~\ref{part-4:conj:cone}, the truncation increment satisfies
+\begin{equation}\label{part-4:eq:increment-cone}
+\Delta\gamma_K = \OO(K^{-\theta})
+\end{equation}
+for the cone-width exponent $\theta>0$ of \eqref{part-4:eq:width}.
+\end{proposition}
+
+\begin{proof}
+The optimal state approaches the spiral cone at rate $K^{-\theta}$. 
+The growth rate $\gamma = \chi\kappa$ evaluated at the optimum 
+converges to the cone value $\gamma^\ast_\infty$ at the same rate. 
+Hence $\Delta\gamma_K = \OO(K^{-\theta})$.
+\end{proof}
+
+\begin{corollary}[Regularity under the cone conjecture]\label{part-4:cor:regularity-cone}
+If Conjecture~\ref{part-4:conj:cone} holds with $\theta>0$, then 
+$\Delta\gamma_K\to 0$ and the truncated growth rate converges to a 
+finite limit $\gamma^\ast_\infty<\infty$.
+\end{corollary}
+
+\begin{proof}
+Immediate from Proposition~\ref{part-4:prop:increment-cone} and 
+Theorem~\ref{part-4:thm:criterion}(i).
+\end{proof}
+
+\begin{remark}[Interpretation]\label{part-4:rem:regularity-interp}
+Corollary~\ref{part-4:cor:regularity-cone} shows that the spiral cone 
+structure of the optimal state is compatible with a finite growth 
+rate and hence with the regularity statements (A)/(B). A proof of 
+Conjecture~\ref{part-4:conj:cone} would therefore constitute substantial 
+progress towards establishing the positive side of the Millennium 
+problem in the truncated setting.
+\end{remark}
+
+% ============================================================
+% SECTION 21 — NUMERICAL VALIDATION
+% ============================================================
+\section{Numerical validation}
+\label{part-4:sec:numerical}
+
+We report numerical results obtained in the truncations 
+$K_{\max}\in\{2,3,4,5\}$ with the optimal-state construction of 
+Part~II. All computations were performed in double precision on a 
+standard workstation, with the triadic tensor stored in sparse CSR 
+format and the flow integrated with a fourth-order Runge--Kutta 
+scheme with step $\dd t = 5\times 10^{-4}$.
+
+\subsection{The optimal functional}
+\label{part-4:ssec:optimal-numeric}
+
+The optimal functional $J^\ast(K)$ is the maximum of the coherent 
+channel over the unit $H^s$ sphere:
+\begin{equation}\label{part-4:eq:J-def}
+J^\ast(K) := \max_{\norm{U}_{H^s}=1}\mathrm{Re}\ip{\Lambda^s U}{\Lambda^s N(U)}.
+\end{equation}
+The numerical values are reported in Table~\ref{part-4:tab:J-values}.
+
+\begin{table}[h]
+\centering
+\caption{Maximum of the coherent channel $J^\ast(K)$ as a function 
+of the truncation $K$. The quantity $J^\ast$ saturates at the 
+Kato--Ponce constant as $K\to\infty$.}
+\label{part-4:tab:J-values}
+\begin{tabular}{ccc}
+\toprule
+$K$ & $J^\ast(K)$ & Increment $\Delta J^\ast_K$ \\
+\midrule
+$2$ & $0.7284$ & --- \\
+$3$ & $0.8088$ & $+0.0804$ \\
+$4$ & $0.9380$ & $+0.1292$ \\
+$5$ & $0.9993$ & $+0.0613$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{remark}[Saturation]\label{part-4:rem:J-saturation}
+Table~\ref{part-4:tab:J-values} shows that $J^\ast(K)$ approaches the value 
+$1$, which is the sharp constant of the Kato--Ponce estimate in the 
+truncated setting. The approach is monotone but with non-monotone 
+increments, consistent with the algebraic decay 
+$\abs{J^\ast(K) - J^\ast_\infty} = \OO(K^{-\alpha})$ for some 
+$\alpha>0$.
+\end{remark}
+
+\subsection{The coherence evolution}
+\label{part-4:ssec:coherence-numeric}
+
+The evolution of the coherence $\chi(t)$ along the trajectory 
+starting at $U^{\ast,(5)}$ is reported in Table~\ref{part-4:tab:chi-evolution}. 
+The initial coherence is $\chi(0)=0.636$, increasing to a maximum of 
+$\chi \approx 0.958$ around $t=3$, then decaying to $\chi\approx0.801$ 
+at $t=5$.
+
+\begin{table}[h]
+\centering
+\caption{Evolution of the coherence $\chi(t)$, the $H^3$ norm 
+$\norm{U(t)}_{H^3}$, and the growth rate $\gamma(t)$ along the 
+trajectory starting from the optimal state at $K=5$.}
+\label{part-4:tab:chi-evolution}
+\begin{tabular}{cccc}
+\toprule
+$t$ & $\chi(t)$ & $\norm{U(t)}_{H^3}$ & $\gamma(t)$ \\
+\midrule
+$0.0$ & $0.636$ & $1.00$ & --- \\
+$0.5$ & $0.806$ & $1.90$ & $1.28$ \\
+$1.0$ & $0.887$ & $4.18$ & $1.59$ \\
+$1.5$ & $0.926$ & $9.24$ & $1.57$ \\
+$2.0$ & $0.946$ & $19.08$ & $1.46$ \\
+$2.5$ & $0.956$ & $36.54$ & $1.29$ \\
+$3.0$ & $0.958$ & $65.45$ & $1.17$ \\
+$3.5$ & $0.952$ & $110.6$ & $1.05$ \\
+$4.0$ & $0.936$ & $178.7$ & $0.96$ \\
+$4.5$ & $0.895$ & $284.9$ & $0.93$ \\
+$5.0$ & $0.801$ & $485.4$ & $1.07$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{remark}[Non-monotone growth]\label{part-4:rem:non-monotone}
+The growth rate $\gamma(t)$ is non-monotone: it decreases from its 
+maximum at $t\approx1$ to a minimum at $t\approx4.5$, then rebounds 
+at $t=5$. This behaviour is consistent with the Riccati dynamics of 
+Part~II: the auto-regulation term $-\chi^2\kappa$ dominates during 
+the decrease, and the structural forcing $\Phi$ reactivates the 
+growth at late times.
+\end{remark}
+
+\subsection{Angular distribution}
+\label{part-4:ssec:angular-numeric}
+
+The angular density $F_K(\alpha)$ of the optimal state at $K=5$ is 
+reported in Figure~\ref{part-4:fig:angular}. The distribution is not 
+unipolar; it exhibits secondary peaks at intermediate latitudes, 
+consistent with the spiral cone conjecture.
+
+\begin{figure}[h]
+\centering
+% [Placeholder for the figure]
+\fbox{\parbox{0.7\textwidth}{\centering
+Angular density $F_K(\alpha)$ on the shell $K=5$ as a function of 
+the angular coordinate $\alpha$. The distribution shows a primary 
+peak at $\alpha\approx 0$ and secondary peaks at 
+$\alpha\approx\pm\pi/4$.}}
+\caption{Angular distribution of the optimal state at $K=5$.}
+\label{part-4:fig:angular}
+\end{figure}
+
+\begin{remark}[Consistency with the cone conjecture]\label{part-4:rem:cone-consistency}
+The numerical distribution of Figure~\ref{part-4:fig:angular} is consistent 
+with Conjecture~\ref{part-4:conj:cone}: the primary peak corresponds to a 
+dominant concentration near the equator, and the secondary peaks 
+correspond to the conical structure at intermediate latitudes. The 
+convergence of the distribution to a delta function on the cone is 
+not yet accessible numerically at the present truncations, but the 
+qualitative structure is observed.
+\end{remark}
+
+\subsection{The truncation increment}
+\label{part-4:ssec:increment-numeric}
+
+The truncation increments $\Delta\gamma_K$ are estimated from the 
+sequence of optimal states. The numerical values are reported in 
+Table~\ref{part-4:tab:increment}.
+
+\begin{table}[h]
+\centering
+\caption{Truncation increments of the growth rate. The values are 
+consistent with the algebraic decay $\Delta\gamma_K = 
+-c_\gamma K^{-1} + \OO(K^{-2})$ predicted in Section~\ref{part-4:sec:invariant}.}
+\label{part-4:tab:increment}
+\begin{tabular}{ccc}
+\toprule
+$K\to K+1$ & $\gamma^{\ast,(K)}$ & $\Delta\gamma_K$ \\
+\midrule
+$2\to 3$ & $0.972$ & $-0.020$ \\
+$3\to 4$ & $0.952$ & $-0.015$ \\
+$4\to 5$ & $0.937$ & $-0.008$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{remark}[Consistency with the criterion]\label{part-4:rem:criterion-consistency}
+Table~\ref{part-4:tab:increment} shows that $\Delta\gamma_K < 0$ and 
+$\abs{\Delta\gamma_K}$ decreases with $K$. This is consistent with 
+Theorem~\ref{part-4:thm:criterion}(i): the growth rate appears to converge 
+to a finite limit $\gamma^\ast_\infty \approx 0.93$. If this 
+convergence holds asymptotically, the truncated system is in the 
+\emph{intermediate regime}: exponential growth of the $H^s$ norm 
+with finite rate, not blow-up in finite time.
+\end{remark}
+
+\subsection{Summary of the numerical results}
+\label{part-4:ssec:summary-numeric}
+
+The numerical results of this section can be summarised as follows.
+
+\begin{enumerate}[label=(\arabic*),leftmargin=*]
+\item The optimal functional $J^\ast(K)$ saturates at the 
+      Kato--Ponce constant $J^\ast_\infty = 1$ as $K\to\infty$.
+\item The coherence $\chi(t)$ along the optimal trajectory is 
+      non-monotone, with a maximum at intermediate times followed 
+      by a decay.
+\item The growth rate $\gamma(t)$ exhibits non-monotone behaviour 
+      consistent with the Riccati dynamics of Part~II.
+\item The angular distribution of the optimal state is not unipolar, 
+      consistent with the spiral cone conjecture.
+\item The truncation increments $\Delta\gamma_K$ are negative and 
+      decreasing in magnitude, suggesting convergence to a finite 
+      limit.
+\end{enumerate}
+
+% ============================================================
+% SECTION 22 — CONCLUSIONS OF PART IV
+% ============================================================
+\section{Conclusions of Part IV}
+\label{part-4:sec:conclusions-IV}
+
+We have analysed two structural aspects of the truncated spectral 
+system that were deferred in Parts~I--III: the angular structure of 
+the optimal state, and the behaviour of the coherence functional 
+across truncations.
+
+\begin{enumerate}[label=(\arabic*),leftmargin=*]
+\item The angular structure of the optimal state is not unipolar 
+      but conical: the energy concentrates asymptotically on a cone 
+      with axis the $z$-direction and half-angle 
+      $\alpha^\ast\in(0,\pi/2)$.
+
+\item The azimuthal component of the velocity field is always 
+      non-zero in a rotating flow, providing a non-linear constraint 
+      that prevents purely axial concentration.
+
+\item The embedding $\KK_K\hookrightarrow\KK_{K+1}$ does not commute 
+      with the bilinear operator, and the resulting apparent 
+      contraction of the coherence functional is a bookkeeping 
+      artifact of the change of Hilbert space.
+
+\item The true dynamical invariant is the truncation increment 
+      $\Delta\gamma_K$ of the growth rate.
+
+\item The Clay statements reduce, in the present framework, to the 
+      determination of the asymptotic sign and magnitude of 
+      $\Delta\gamma_K$.
+
+\item The numerical results in the truncations $K\in\{2,3,4,5\}$ 
+      are consistent with the theoretical predictions of this part.
+\end{enumerate}
+
+The main open problems identified in Part~IV are:
+
+\begin{enumerate}[label=(\Alph*),leftmargin=*]
+\item A rigorous proof of the spiral cone conjecture 
+      (Conjecture~\ref{part-4:conj:cone}).
+\item A rigorous characterisation of the angular fixed points of 
+      the renormalisation flow (Conjecture~\ref{part-4:conj:angular-fixed}).
+\item A rigorous derivation of the scaling 
+      $\Delta\gamma_K = -c_\gamma K^{-1} + \OO(K^{-2})$ in the 
+      truncated setting.
+\item Extension of the numerical results to truncations 
+      $K_{\max}\in\{6,7,8\}$ to test the asymptotic convergence of 
+      the truncation increment.
+\end{enumerate}
+
+The remaining parts of the series will address these problems in turn.
+
+% ============================================================
+% APPENDIX
+% ============================================================

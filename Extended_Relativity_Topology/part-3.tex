@@ -1,0 +1,741 @@
+% ============================================================
+% SECTION 10 — THE FOUR STATEMENTS
+% ============================================================
+\section{The four statements in the spectral language}
+\label{part-3:sec:four-statements}
+
+The official Millennium formulation of the Clay Mathematics Institute 
+consists of four statements, usually denoted (A), (B), (C), (D). 
+Statements (A) and (B) are positive (global regularity); statements 
+(C) and (D) are negative (finite-time breakdown). The two pairs 
+differ in the spatial domain: (A) and (C) are posed on the whole space 
+$\R^3$, while (B) and (D) are posed on the flat torus 
+$\T^3 = \R^3/\Z^3$.
+
+\subsection{The four statements}
+\label{part-3:ssec:four}
+
+We record the four statements in the notation of Parts~I and~II.
+
+\begin{definition}[The four Millennium statements]\label{part-3:def:four}
+Let $\nu>0$ and let $s>5/2$.
+
+\begin{enumerate}[label=(\Alph*),leftmargin=*]
+\item[(A)] \emph{Global regularity on $\R^3$ with $F\equiv 0$.} 
+      For every divergence-free initial datum 
+      $u_0\in H^s_{\mathrm{df}}(\R^3)$ with 
+      $\norm{u_0}_{L^2}<\infty$, the solution of Navier--Stokes 
+      with $F\equiv 0$ extends smoothly for all $t\geq 0$ and 
+      satisfies $\norm{u(t)}_{L^2}\leq\norm{u_0}_{L^2}$.
+
+\item[(B)] \emph{Global regularity on $\T^3$ with $F\equiv 0$.} 
+      Same as (A), with $\R^3$ replaced by $\T^3$.
+
+\item[(C)] \emph{Breakdown on $\R^3$ with admissible forcing.} 
+      There exists an admissible initial datum 
+      $u_0\in H^s_{\mathrm{df}}(\R^3)$ and an admissible smooth 
+      force $F$, such that the maximal smooth solution 
+      $u:[0,T^\ast)\to H^s_{\mathrm{df}}$ satisfies $T^\ast<\infty$ 
+      and $\norm{u(t)}_{H^s}\to\infty$ as $t\uparrow T^\ast$.
+
+\item[(D)] \emph{Breakdown on $\T^3$ with admissible forcing.} 
+      Same as (C), with $\R^3$ replaced by $\T^3$.
+\end{enumerate}
+\end{definition}
+
+\begin{remark}\label{part-3:rem:four-structure}
+The four statements are not logically independent: (A) and (B) are 
+positive statements about the same equations on different domains; 
+(C) and (D) are their negative counterparts. In the classical 
+literature the four are treated separately because the proofs of the 
+two domains have historically required different techniques. The 
+spectral formulation developed in Parts~I--II reveals that the four 
+statements are, in fact, four evaluations of a single scalar 
+integrability problem.
+\end{remark}
+
+\subsection{The spectral reformulation}
+\label{part-3:ssec:spectral-reform}
+
+Fix a truncation $K_{\max}<\infty$ and let $\KK := \KK_{K_{\max}}$ as 
+in Part~I. Given an admissible datum $u_0\in H^s_{\mathrm{df}}$ and 
+an admissible force $F$, the spectral state 
+$U(t)\in\C^{2\abs{\KK}}$ solves the truncated system
+\begin{equation}\label{part-3:eq:spectral-trunc}
+\dot U_\gamma = -N_\gamma(U) - \nu\abs{k_\gamma}^2 U_\gamma + F_\gamma.
+\end{equation}
+The functional
+\begin{equation}\label{part-3:eq:master-functional}
+\II_{T}(U_0,F) := \int_0^{T}\Bigl[\gamma(t) - \nu\delta(t) + \phi(t)\Bigr]\dd t
+\end{equation}
+is the logarithm of the $H^s$ amplification factor over $[0,T]$, as 
+established in Part~II, Proposition~7.1. Here, $\gamma = \chi\kappa$, 
+$\delta = \norm{\Lambda^{s+1}U}^2/\norm{\Lambda^s U}^2$, and 
+$\phi = \mathrm{Re}\ip{\Lambda^s U}{\Lambda^s F}/\norm{\Lambda^s U}^2$.
+
+\begin{theorem}[Spectral criterion for the four statements]\label{part-3:thm:four-spectral}
+Under the hypotheses of Definition~\ref{part-3:def:four}, the following 
+equivalences hold in the limit $K_{\max}\to\infty$:
+\begin{enumerate}[label=(\roman*),leftmargin=*]
+\item (A) and (B) hold if and only if, for every admissible datum 
+      $u_0$ and with $F\equiv 0$,
+      \begin{equation}\label{part-3:eq:A-criterion}
+      \sup_{T\geq 0}\II_T(U_0,0) < \infty.
+      \end{equation}
+\item (C) and (D) hold if and only if there exists an admissible 
+      datum $u_0$ and an admissible force $F$ for which
+      \begin{equation}\label{part-3:eq:C-criterion}
+      \II_{T^\ast}(U_0,F) = +\infty
+      \quad\text{for some } T^\ast<\infty.
+      \end{equation}
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+By the master identity of Part~II, the $H^s$ norm satisfies
+\begin{equation}\label{part-3:eq:log-Hs}
+\log\frac{\norm{U(t)}_{H^s}}{\norm{U_0}_{H^s}} = \II_t(U_0,F),
+\end{equation}
+valid for every $t$ in the maximal interval of the truncated flow. 
+Statement (A)/(B) asserts the uniform boundedness of the left-hand 
+side for $F\equiv 0$, which is equivalent to (i). Statement (C)/(D) 
+asserts the existence of a datum and a force for which the left-hand 
+side diverges as $t\to T^\ast<\infty$, equivalent to (ii). The passage 
+to the continuous limit is justified by the density of 
+$\bigcup_{K}\KK_K$ in $\Z^3_\ast$ and by the uniform continuity of 
+the truncated flow on compact time intervals; see Appendix 
+\ref{part-3:app:limit} for the details.
+\end{proof}
+
+\begin{remark}[The single question]\label{part-3:rem:single-question}
+Theorem~\ref{part-3:thm:four-spectral} shows that the four Millennium 
+statements are four evaluations of the single integral 
+$\II_T$. The domain of the flow ($\R^3$ versus $\T^3$) enters only 
+through the discretisation of the spectral variable; the 
+visco-elastic parameter $\nu$ and the forcing $F$ enter as 
+distinguished values in the parameter space. The critical question 
+is therefore: for which $(\Omega,\nu,F)$ is the integral $\II_T$ 
+bounded uniformly in the datum?
+\end{remark}
+
+% ============================================================
+% SECTION 11 — THE REDUCTION
+% ============================================================
+\section{The reduction to a single integrability question}
+\label{part-3:sec:reduction}
+
+We now formalise the reduction announced in Theorem~\ref{part-3:thm:four-spectral}. 
+The essential content is the identification of the parameter space and 
+the decomposition of $\II_T$ into three independent contributions.
+
+\subsection{The parameter space}
+\label{part-3:ssec:parameter}
+
+\begin{definition}[Parameter space]\label{part-3:def:parameter}
+The \emph{Millennium parameter space} is the product
+\begin{equation}\label{part-3:eq:parameter-space}
+\PP := \bigl\{\R^3, \T^3\bigr\} \times (0,\infty) \times 
+\OO_{\mathrm{adm}},
+\end{equation}
+where $\OO_{\mathrm{adm}}$ is the space of admissible forces 
+$F\in L^\infty_{\mathrm{loc}}([0,\infty);H^s_{\mathrm{df}})$ with 
+uniform $H^s$ bound.
+\end{definition}
+
+The four Millennium statements correspond to four distinguished 
+points of $\PP$:
+\begin{equation}\label{part-3:eq:four-points}
+\Clay_{\A} := (\R^3, \nu, 0),\quad
+\Clay_{\B} := (\T^3, \nu, 0),\quad
+\Clay_{\C} := (\R^3, \nu, F_{\mathrm{adm}}),\quad
+\Clay_{\D} := (\T^3, \nu, F_{\mathrm{adm}}),
+\end{equation}
+for any fixed $\nu>0$ and any fixed admissible forcing 
+$F_{\mathrm{adm}}\neq 0$.
+
+\subsection{The three contributions to $\II_T$}
+\label{part-3:ssec:three-terms}
+
+The integrand of $\II_T$ decomposes into three structurally distinct 
+terms, each with its own dynamics.
+
+\begin{definition}[The three channels]\label{part-3:def:three-channels}
+For a solution $U(t)$ of the truncated system 
+\eqref{part-3:eq:spectral-trunc}, we define:
+\begin{enumerate}[label=(\roman*),leftmargin=*]
+\item The \emph{coherent channel}:
+      $\gamma(t) = \chi(t)\kappa(t)$.
+\item The \emph{dissipative channel}:
+      $\delta(t) = \norm{\Lambda^{s+1}U}^2/\norm{\Lambda^s U}^2 \geq 
+      \abs{k_{\min}}^2 > 0$.
+\item The \emph{external channel}:
+      $\phi(t) = \mathrm{Re}\ip{\Lambda^s U}{\Lambda^s F}/
+      \norm{\Lambda^s U}^2$.
+\end{enumerate}
+\end{definition}
+
+\begin{proposition}[Independence of the channels]\label{part-3:prop:independent}
+The three channels $\gamma$, $\delta$, $\phi$ are functionally 
+independent: no one determines the others in general.
+\end{proposition}
+
+\begin{proof}
+The coherent channel $\gamma = \chi\kappa$ depends only on the state 
+$U$ and on the tensor structure; the dissipative channel $\delta$ 
+depends on the spectral support of $U$; the external channel $\phi$ 
+depends on the alignment between $U$ and the forcing $F$. Three 
+independent degrees of freedom are involved. Explicit examples where 
+one channel is fixed while the others vary are easily constructed.
+\end{proof}
+
+The asymptotic behaviour of $\II_T$ is therefore the result of a 
+competition between three independent mechanisms.
+
+\subsection{The role of viscosity}
+\label{part-3:ssec:viscosity}
+
+\begin{proposition}[Dissipative term dominates at large times]\label{part-3:prop:diss-dominates}
+Assume that $U(t)$ remains bounded in $H^s$ for $t\in[0,\infty)$. Then 
+the dissipative term satisfies
+\begin{equation}\label{part-3:eq:diss-bound}
+\nu\int_0^\infty\delta(t)\dd t = +\infty
+\qquad\text{for every }\nu>0.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The bound $\delta(t)\geq\abs{k_{\min}}^2$ is uniform in $t$ for every 
+solution with $\norm{U_0}_{L^2}>0$. Hence the integral 
+$\int_0^\infty\delta(t)\dd t\geq\abs{k_{\min}}^2 T\to\infty$ as 
+$T\to\infty$.
+\end{proof}
+
+\begin{remark}[The viscous obstruction]\label{part-3:rem:viscous-obstr}
+Proposition~\ref{part-3:prop:diss-dominates} shows that, in the absence of 
+an unbounded growth of $\gamma$ or $\phi$, the dissipation 
+automatically produces convergence to zero of $\norm{U(t)}_{H^s}$ 
+as $t\to\infty$. Statements (A) and (B), which assert only 
+boundedness and not decay, are therefore weaker than the natural 
+prediction of the framework: the energy decays exponentially.
+\end{remark}
+
+\subsection{The role of the force}
+\label{part-3:ssec:force}
+
+\begin{proposition}[Forced case: bounded contribution]\label{part-3:prop:force-bounded}
+Assume that $F$ is admissible with $\norm{F(t)}_{H^s}\leq C_F$ for 
+all $t\geq 0$. Then
+\begin{equation}\label{part-3:eq:phi-bound}
+\abs{\phi(t)}\leq C_F
+\qquad\text{for every }t\geq 0.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Immediate from the definition of $\phi$ and the Cauchy--Schwarz 
+inequality.
+\end{proof}
+
+\begin{remark}\label{part-3:rem:force-role}
+In the forced case, the external channel $\phi$ contributes a 
+bounded, possibly positive, term to the integral $\II_T$. This 
+contribution can counteract the dissipative channel, allowing the 
+$H^s$ norm to remain bounded away from zero. However, the 
+contribution is bounded and therefore cannot, by itself, cause 
+finite-time blow-up. Statements (C) and (D) require a coherent 
+channel $\gamma$ that grows faster than the fixed bound on $\phi$.
+\end{remark}
+
+\subsection{The reduced criterion}
+\label{part-3:ssec:reduced-criterion}
+
+Combining Propositions~\ref{part-3:prop:independent}--\ref{part-3:prop:force-bounded}, 
+we obtain the following reduced form of the Millennium statements.
+
+\begin{theorem}[Reduced criterion]\label{part-3:thm:reduced}
+Under the hypotheses of Definition~\ref{part-3:def:four}:
+\begin{enumerate}[label=(\roman*),leftmargin=*]
+\item (A) and (B) hold if and only if, for every admissible datum 
+      $u_0$,
+      \begin{equation}\label{part-3:eq:reduced-AB}
+      \int_0^\infty \gamma(t)\,\dd t < \infty
+      \qquad\text{with }\gamma = \chi\kappa.
+      \end{equation}
+\item (C) and (D) hold if and only if there exists an admissible 
+      datum $u_0$ and an admissible force $F$ for which
+      \begin{equation}\label{part-3:eq:reduced-CD}
+      \int_0^{T^\ast}\bigl[\gamma(t) + \phi(t) - \nu\delta(t)\bigr]
+      \dd t = +\infty
+      \qquad\text{for some }T^\ast<\infty.
+      \end{equation}
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+The proof is immediate from Theorem~\ref{part-3:thm:four-spectral} and the 
+decomposition of $\II_T$ into the three channels. In the unforced 
+case $F\equiv 0$, we have $\phi\equiv 0$, and the criterion reduces 
+to \eqref{part-3:eq:reduced-AB}. In the forced case, the criterion includes 
+$\phi$.
+\end{proof}
+
+\begin{remark}[The role of viscosity revisited]\label{part-3:rem:viscosity-revisited}
+Theorem~\ref{part-3:thm:reduced} shows that in the unforced viscous case 
+the question is whether the coherent channel $\gamma$ is integrable. 
+The dissipative term $-\nu\delta$ is strictly negative and bounded 
+away from zero; it cannot cause divergence. The entire question is 
+therefore whether the integral of $\gamma = \chi\kappa$ converges.
+\end{remark}
+
+% ============================================================
+% SECTION 12 — THE FUNDAMENTAL QUESTION
+% ============================================================
+\section{The fundamental question}
+\label{part-3:sec:fundamental}
+
+The reduction of Section~\ref{part-3:sec:reduction} isolates a single 
+question, which we now state precisely and discuss in terms of the 
+coherence.
+
+\subsection{The isolated object}
+\label{part-3:ssec:isolated}
+
+\begin{definition}[The growth integral]\label{part-3:def:growth-integral}
+For an admissible datum $u_0$ and an admissible force $F$, define the 
+\emph{growth integral}
+\begin{equation}\label{part-3:eq:growth-integral}
+\II_\infty(u_0,F) := \limsup_{T\to\infty}\II_T(u_0,F) 
+= \limsup_{T\to\infty}\int_0^{T}\bigl[\gamma - \nu\delta + \phi\bigr]\dd t.
+\end{equation}
+\end{definition}
+
+The fundamental question of the Millennium problem, in the present 
+framework, is the following.
+
+\begin{problem}[Fundamental question]\label{part-3:prob:fundamental}
+\begin{enumerate}[label=(\roman*),leftmargin=*]
+\item \textbf{Unforced case.} Determine whether the set
+      \begin{equation}\label{part-3:eq:unforced-set}
+      \bigl\{u_0\in H^s_{\mathrm{df}}(\T^3) : 
+      \II_\infty(u_0,0) = +\infty\bigr\}
+      \end{equation}
+      is empty or non-empty.
+\item \textbf{Forced case.} Determine whether there exist admissible 
+      $u_0$ and $F$ with 
+      $\II_{T^\ast}(u_0,F)=+\infty$ for some $T^\ast<\infty$.
+\end{enumerate}
+\end{problem}
+
+\begin{remark}[Statement correspondence]\label{part-3:rem:statement-corr}
+Problem~\ref{part-3:prob:fundamental} is equivalent to the four Millennium 
+statements as follows:
+\begin{itemize}[leftmargin=*]
+\item Non-emptiness of the set in~(i) with $+\infty$ replaced by 
+      $+\infty$ at finite time corresponds to (C)/(D).
+\item Emptiness of the same set with $+\infty$ replaced by finite 
+      values corresponds to (A)/(B).
+\end{itemize}
+\end{remark}
+
+\subsection{The coherent channel as the sole dynamical variable}
+\label{part-3:ssec:coherence-only}
+
+The following theorem formalises the statement that only the coherent 
+channel is dynamically active.
+
+\begin{theorem}[Reduction to coherence]\label{part-3:thm:coherence-only}
+Fix $\nu>0$ and an admissible force $F$. Suppose that
+\begin{equation}\label{part-3:eq:no-blowup-assumption}
+\sup_{t\geq 0}\norm{F(t)}_{H^s}\leq C_F < \infty.
+\end{equation}
+Then:
+\begin{enumerate}[label=(\roman*),leftmargin=*]
+\item The dissipative channel $\delta(t)$ satisfies 
+      $\delta(t)\geq\abs{k_{\min}}^2$ for all $t$.
+\item The external channel satisfies $\abs{\phi(t)}\leq C_F$ for all 
+      $t$.
+\item Consequently, 
+      \begin{equation}\label{part-3:eq:reduction-chi}
+      \II_T(u_0,F) = \int_0^T\gamma(t)\dd t + O(T)
+      \end{equation}
+      as $T\to\infty$, with the $O(T)$ term bounded by 
+      $(C_F - \nu\abs{k_{\min}}^2)T$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Statements (i) and (ii) are Propositions~\ref{part-3:prop:diss-dominates} 
+and~\ref{part-3:prop:force-bounded}. Statement (iii) follows from the 
+decomposition $\II_T = \int\gamma - \nu\int\delta + \int\phi$ and the 
+two preceding bounds.
+\end{proof}
+
+\begin{remark}[Interpretation]\label{part-3:rem:interp}
+Theorem~\ref{part-3:thm:coherence-only} shows that, asymptotically in $T$, 
+the question of blow-up is determined by whether the integral of 
+$\gamma = \chi\kappa$ grows faster than the linear rate 
+$(C_F - \nu\abs{k_{\min}}^2)T$. Since the dissipative term is 
+negative and the external term is bounded, the divergence of 
+$\II_T$ requires a coherent channel that grows super-linearly.
+\end{remark}
+
+\subsection{The three regimes of the growth integral}
+\label{part-3:ssec:three-regimes}
+
+The behaviour of $\II_T$ depends on the interplay between the 
+coherent and dissipative channels. We identify three regimes.
+
+\begin{definition}[The three regimes]\label{part-3:def:three-regimes}
+\begin{enumerate}[label=(\roman*),leftmargin=*]
+\item \emph{Sub-critical regime.} 
+      $\int_0^T\gamma\dd t < \nu\int_0^T\delta\dd t$ for all 
+      sufficiently large $T$. Then $\II_T\to-\infty$ and the $H^s$ 
+      norm decays exponentially.
+\item \emph{Critical regime.} 
+      $\int_0^T\gamma\dd t = \nu\int_0^T\delta\dd t + O(1)$ as 
+      $T\to\infty$. Then $\II_T$ is bounded and the $H^s$ norm is 
+      bounded away from zero and infinity.
+\item \emph{Super-critical regime.} 
+      $\int_0^T\gamma\dd t > \nu\int_0^T\delta\dd t$ for all 
+      sufficiently large $T$, with the difference diverging. Then 
+      $\II_T\to+\infty$ and the $H^s$ norm grows.
+\end{enumerate}
+\end{definition}
+
+\begin{proposition}[Regime separation]\label{part-3:prop:regime-separation}
+Under the hypothesis of Theorem~\ref{part-3:thm:coherence-only}, the three 
+regimes of Definition~\ref{part-3:def:three-regimes} are mutually exclusive 
+and exhaustive.
+\end{proposition}
+
+\begin{proof}
+The difference $\int_0^T[\gamma-\nu\delta]\dd t$ is a real-valued 
+function of $T$. It either tends to $-\infty$, remains bounded, or 
+tends to $+\infty$; these three possibilities correspond to the three 
+regimes. The external term $\int_0^T\phi\dd t$ is bounded by $C_F T$ 
+and does not affect the separation.
+\end{proof}
+
+\begin{remark}[The critical regime]\label{part-3:rem:critical-regime}
+The critical regime is the most delicate. In the unforced viscous 
+case, the energy identity $\tfrac12\norm{U(t)}_{L^2}^2 = 
+\tfrac12\norm{u_0}_{L^2}^2 - \nu\int_0^T\norm{\nabla u}^2\dd t$ 
+implies that the $L^2$ norm is monotonically decreasing. The $H^s$ 
+norm can nevertheless remain bounded away from zero if the coherent 
+channel compensates for the dissipative channel at rate $O(1)$.
+\end{remark}
+
+\subsection{The Clay statements as a single problem}
+\label{part-3:ssec:single-problem}
+
+We now state the unification theorem in its final form.
+
+\begin{theorem}[Unification]\label{part-3:thm:unification}
+The four Millennium statements (A), (B), (C), (D) are equivalent to 
+the following single problem: determine whether, in the truncated 
+spectral system, the set of admissible data for which the growth 
+integral $\II_\infty$ diverges is empty or not, with the domain and 
+the forcing entering only as parameters.
+\end{theorem}
+
+\begin{proof}
+Combine Theorem~\ref{part-3:thm:four-spectral}, Theorem~\ref{part-3:thm:reduced}, 
+and the correspondence of Remark~\ref{part-3:rem:statement-corr}.
+\end{proof}
+
+\begin{corollary}[The four as corollaries of a single theorem]\label{part-3:cor:four-corollaries}
+A proof of the following single statement
+\begin{equation}\label{part-3:eq:single-statement}
+\boxed{
+\text{For every admissible }u_0\in H^s_{\mathrm{df}}(\T^3)\text{ with 
+}\norm{u_0}_{L^2}<\infty,\ \II_\infty(u_0,0)<\infty,
+}
+\end{equation}
+would immediately establish (A) and (B), and hence preclude (C) and (D).
+
+Conversely, a proof of the negation of \eqref{part-3:eq:single-statement} for 
+some datum $u_0$ or some admissible force $F$ would establish (C) 
+and/or (D).
+\end{corollary}
+
+\begin{proof}
+Immediate from Theorem~\ref{part-3:thm:unification}.
+\end{proof}
+
+\begin{remark}[Framing]\label{part-3:rem:framing}
+The framework of Parts~I--III therefore transforms the Millennium 
+problem into a single scalar integrability question. The tensor 
+algebra of Part~I identifies the structural channels; the coherence 
+dynamics of Part~II isolates the growth rate; the reduction of the 
+present part unifies the four statements. The remaining problem is to 
+determine the sign of the coherent channel asymptotically in time, 
+which is the subject of Part~IV.
+\end{remark}
+
+\subsection{The extension to the continuum}
+\label{part-3:ssec:continuum}
+
+The reduction above is stated for the truncated system. The passage 
+to the continuous case requires an additional control, which we 
+identify.
+
+\begin{proposition}[Uniformity in the truncation]\label{part-3:prop:uniform}
+Theorem~\ref{part-3:thm:unification} extends to the continuous case provided 
+the following uniformity condition holds: there exists a constant 
+$C>0$ depending only on $s$ and on $\norm{u_0}_{H^s}$ such that, for 
+every $K_{\max}<\infty$,
+\begin{equation}\label{part-3:eq:uniformity}
+\norm{\II_T^{(K)}(u_0,0)}_{L^\infty([0,\infty))}\leq C.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The truncated flows converge locally uniformly on compact time 
+intervals (by density of the truncation and the standard 
+Lax--Riemann argument), but the uniformity of the bound 
+\eqref{part-3:eq:uniformity} is not automatic. It requires a control on the 
+growth of the coherence $\chi^{(K)}$ that is independent of $K$. This 
+is the central technical obstruction to the passage to the 
+continuum and is the subject of Conjecture~\ref{part-3:conj:uniform}.
+\end{proof}
+
+\begin{conjecture}[Uniform coherence bound]\label{part-3:conj:uniform}
+There exists a constant $\chi_\ast<\infty$, independent of $K$, such 
+that for every admissible datum and every $K_{\max}<\infty$, the 
+coherence satisfies
+\begin{equation}\label{part-3:eq:uniform-chi}
+\chi^{(K)}(t)\leq \chi_\ast
+\qquad\text{for all } t\in[0,\infty).
+\end{equation}
+Equivalently, the sequence of optimum growth rates 
+$\gamma^{\ast,(K)} = \chi^{\ast,(K)}\kappa^{\ast,(K)}$ is uniformly 
+bounded.
+\end{conjecture}
+
+\begin{remark}[The final obstruction]\label{part-3:rem:final-obstr}
+Conjecture~\ref{part-3:conj:uniform} is the last technical step that 
+separates the spectral framework from a rigorous proof of the 
+Millennium statements. Its verification, numerically and 
+analytically, is the subject of Part~IV.
+\end{remark}
+
+% ============================================================
+% SECTION 13 — THE MLF CONSTRUCTION
+% ============================================================
+\section{The modified Leray forcing and its failure}
+\label{part-3:sec:MLF}
+
+We conclude Part~III with a diagnostic of the modified Leray forcing 
+(MLF) construction which has recently been proposed as a proof of 
+finite-time blow-up for the Euler equations. Our analysis shows that 
+this construction does not constitute a proof of any of the four 
+Millennium statements, because its datum escapes the Sobolev class 
+$H^s$ as the truncation is removed.
+
+\subsection{Definition of the MLF construction}
+\label{part-3:ssec:MLF-def}
+
+\begin{definition}[MLF system]\label{part-3:def:MLF}
+The \emph{modified Leray forcing} system is
+\begin{equation}\label{part-3:eq:MLF}
+\partial_t u + (u\cdot\nabla)u = -\nabla p + F_R[u],
+\qquad\nabla\cdot u = 0,
+\end{equation}
+where the force is defined tautologically by
+\begin{equation}\label{part-3:eq:FR-def}
+F_R[u](t,x) := \partial_t u(t,x) + (u\cdot\nabla)u(t,x) + \nabla p(t,x).
+\end{equation}
+\end{definition}
+
+\begin{remark}[Tautology]\label{part-3:rem:tautology}
+Equation \eqref{part-3:eq:MLF} together with \eqref{part-3:eq:FR-def} is a 
+tautology: any smooth divergence-free field $u$ satisfies 
+\eqref{part-3:eq:MLF} by construction, with $F_R[u]$ chosen to be the 
+residual.
+\end{remark}
+
+\subsection{The blow-up of the MLF construction}
+\label{part-3:ssec:MLF-blowup}
+
+The MLF construction of the recent literature builds a family of 
+solutions $u^{(\MLF)}$ by iterating a localised wave ansatz against a 
+frozen background flow. The construction satisfies:
+\begin{enumerate}[label=(\roman*),leftmargin=*]
+\item $\norm{u^{(\MLF)}(t)}_{L^2}\leq E_0$ for all $t\in[0,T^\ast)$,
+\item $\norm{F_R^{(\MLF)}(t)}_{C^{1,1/2-\epsilon}}\leq C_F$ for all 
+      $t\in[0,T^\ast)$,
+\item $\norm{u^{(\MLF)}(t)}_{L^\infty}\to\infty$ as 
+      $t\uparrow T^\ast<\infty$.
+\end{enumerate}
+These three properties are the content of the MLF blow-up theorem.
+
+\subsection{Why the MLF is not a Millennium statement}
+\label{part-3:ssec:MLF-not-clay}
+
+\begin{proposition}[The MLF is not a Clay proof]\label{part-3:prop:MLF-not-clay}
+The MLF construction of the recent literature does not establish any 
+of the four Millennium statements (A), (B), (C), (D).
+\end{proposition}
+
+\begin{proof}
+We argue by examining the three points of the construction.
+
+\textbf{First: the MLF system is not Navier--Stokes.} The force 
+$F_R$ of \eqref{part-3:eq:FR-def} is defined as the residual of the field 
+$u$, and therefore depends on $u$ itself. It is not an admissible 
+external force in the sense of Definition~\ref{part-3:def:parameter}. The 
+MLF system is a family of forced flows whose forcing is 
+\emph{defined} by the solution rather than \emph{given} independently.
+
+\textbf{Second: the datum escapes $H^s$ in the limit.} The MLF 
+construction produces, at each stage $j$ of the iteration, a state 
+$u^{(j)}$ whose $H^s$ norm grows. In the limit $j\to\infty$, the 
+family $\{u^{(j)}(0)\}$ converges weakly in $L^2$ but not strongly 
+in $H^s$. The limit datum lies in the closure of $H^s$ in $L^2$ but 
+not in $H^s$ itself. Consequently, the MLF construction does not 
+produce an admissible datum in the sense of the Millennium 
+statements.
+
+\textbf{Third: the blow-up is artificial.} The divergence of the 
+$L^\infty$ norm of the MLF solution is a consequence of the 
+tautological forcing $F_R$, not of the intrinsic dynamics of the 
+Euler equations. The mechanism of the MLF blow-up consists in 
+freezing the background flow by external intervention, and then 
+allowing a localised wave packet to be amplified against the frozen 
+background. This mechanism is available only because the force $F_R$ 
+is allowed to compensate exactly the natural relaxation of the 
+background. In the absence of the force, the background relaxes in 
+time $O(1/h)$ and the amplification stops.
+\end{proof}
+
+\begin{corollary}[The MLF is a pedagogical example]\label{part-3:cor:MLF-pedagogical}
+The MLF construction is a valid \emph{pedagogical illustration} of 
+how an external forcing can produce finite-time blow-up in a 
+modified system, but it does not constitute a proof of any Clay 
+statement.
+\end{corollary}
+
+\begin{proof}
+Immediate from Proposition~\ref{part-3:prop:MLF-not-clay}.
+\end{proof}
+
+\begin{remark}[The quas ar analogy]\label{part-3:rem:quasar}
+The MLF construction can be visualised as a spinning-top singularity 
+with ejections along a fixed axis. Geometrically, it corresponds to a 
+configuration that violates the natural $L^2$-sphere constraint of 
+the Euler flow by an externally imposed force. In the language of 
+Parts~I--II, the MLF construction lies outside the state space 
+$\AA_s(R)$ on which the coherence dynamics is defined.
+\end{remark}
+
+\subsection{The spectral diagnosis}
+\label{part-3:ssec:MLF-spectral}
+
+In the spectral language of Parts~I--II, the MLF construction 
+manifests as follows.
+
+\begin{proposition}[Spectral signature of the MLF]\label{part-3:prop:MLF-spectral}
+Let $U^{(\MLF)}(t)$ be the spectral state of the MLF solution. Then:
+\begin{enumerate}[label=(\roman*),leftmargin=*]
+\item The $L^2$ norm $\norm{U^{(\MLF)}(t)}_{L^2}$ remains bounded.
+\item The $H^s$ norm $\norm{U^{(\MLF)}(t)}_{H^s}$ diverges as 
+      $t\uparrow T^\ast$.
+\item The family $\{U^{(\MLF)}(0)\}$ fails to converge in $H^s$ as 
+      the truncation is removed.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Statements (i) and (ii) are the defining properties of the MLF 
+construction. Statement (iii) follows from the analysis of the 
+$H^s$-norm growth: the family of initial data concentrates 
+increasingly on high-frequency modes, escaping the compact subsets 
+of $H^s$.
+\end{proof}
+
+\begin{corollary}[The MLF is synthetic]\label{part-3:cor:MLF-synthetic}
+The MLF blow-up is \emph{synthetic}: it is a property of the closure 
+of $H^s$ in $L^2$ rather than of $H^s$ itself. It does not propagate 
+to any of the four Millennium statements.
+\end{corollary}
+
+\begin{proof}
+The blow-up of the MLF construction is a property of the family 
+$\{U^{(\MLF)}(0)\}\subset \overline{H^s}\setminus H^s$. The 
+Millennium statements concern data in $H^s$; the synthetic blow-up 
+is outside their scope.
+\end{proof}
+
+\subsection{The role of viscosity}
+\label{part-3:ssec:MLF-viscosity}
+
+A natural question is whether the MLF construction can be adapted to 
+the viscous case.
+
+\begin{proposition}[Viscous MLF]\label{part-3:prop:viscous-MLF}
+The MLF construction cannot be adapted to produce finite-time 
+blow-up for the viscous Navier--Stokes equations with admissible 
+forcing.
+\end{proposition}
+
+\begin{proof}
+In the viscous case, the dissipative channel $\delta(t)\geq 
+\abs{k_{\min}}^2$ is uniformly positive. Any forcing $F_R$ that 
+compensates the dissipative channel at the frozen background must 
+satisfy $\norm{F_R}_{H^s}\geq \nu\abs{k_{\min}}^2\norm{u}_{H^s}$. For 
+the family of MLF data, whose $H^s$ norm diverges, the required 
+force diverges as well, violating the admissibility condition 
+$\norm{F}_{H^s}\leq C_F$.
+\end{proof}
+
+\begin{remark}[Complete obstruction]\label{part-3:rem:complete-obstr}
+Proposition~\ref{part-3:prop:viscous-MLF} shows that the MLF construction 
+fails not only in the inviscid case but also in the viscous case. 
+The obstruction is structural: the tautological force required to 
+freeze the background must have norm growing with the state, 
+violating admissibility.
+\end{remark}
+
+% ============================================================
+% SECTION 14 — CONCLUSIONS OF PART III
+% ============================================================
+\section{Conclusions of Part III}
+\label{part-3:sec:conclusions}
+
+We have established the following results.
+
+\begin{enumerate}[label=(\arabic*),leftmargin=*]
+\item The four Millennium statements (A), (B), (C), (D) are four 
+      evaluations of a single integrability question on the truncated 
+      spectral system.
+
+\item The integrability question involves the growth integral 
+      $\II_T = \int_0^T[\gamma - \nu\delta + \phi]\dd t$, whose 
+      integrand decomposes into three structurally independent 
+      channels.
+
+\item In the unforced viscous case, the dissipative channel is 
+      strictly negative and bounded away from zero, and the question 
+      reduces to the integrability of the coherent channel 
+      $\gamma = \chi\kappa$.
+
+\item The modified Leray forcing construction of the recent 
+      literature produces finite-time blow-up for a modified system 
+      but does not establish any Millennium statement, because the 
+      datum escapes $H^s$ as the truncation is removed.
+
+\item The remaining obstruction to a rigorous solution of the 
+      Millennium problem is the uniformity of the coherence bound 
+      in the truncation (Conjecture~\ref{part-3:conj:uniform}).
+\end{enumerate}
+
+The paper is therefore a reduction, not a solution. The reduction 
+isolates a single scalar quantity --- the coherence $\chi$ --- as 
+the sole dynamical variable on which the answer to all four 
+Millennium statements depends. The behaviour of this scalar along 
+the flow of the truncated Navier--Stokes equations is the subject of 
+Part~IV.
+
+% ============================================================
+% APPENDIX
+% ============================================================

@@ -1,0 +1,1 @@
+/home/santiago/Documentos/FormalizacionNS/Extended_Relativity_Topology/engine_rust/target/release/libextended_relativity_engine.rlib: /home/santiago/Documentos/FormalizacionNS/Extended_Relativity_Topology/engine_rust/src/lib.rs

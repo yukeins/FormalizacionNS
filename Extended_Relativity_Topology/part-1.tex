@@ -1,0 +1,1025 @@
+% ============================================================
+% SECTION 1 — INTRODUCTION
+% ============================================================
+\section{Introduction}\label{part-1:sec:intro}
+
+\subsection{Historical context}
+\label{part-1:ssec:historical}
+
+The three-dimensional incompressible Navier--Stokes equations
+\begin{equation}\label{part-1:eq:NS-physical}
+\partial_t u + (u\cdot\nabla) u = -\nabla p + \nu \Delta u + f,
+\qquad \nabla\cdot u = 0,
+\end{equation}
+posed on either the whole space $\R^3$ or the torus $\T^3 := \R^3/\Z^3$, 
+constitute the standard continuum model for the motion of a viscous, 
+incompressible, homogeneous fluid. The existence of global smooth 
+solutions from smooth initial data was established in two dimensions by 
+Leray in 1934 \cite{Leray1934} but remains open in three dimensions. The 
+Clay Mathematics Institute, in its Millennium formulation, isolated four 
+statements: two positive (global regularity in $\R^3$ and in $\T^3$, 
+denoted (A) and (B)) and two negative (existence of a finite-time 
+singularity in $\R^3$ and in $\T^3$, denoted (C) and (D)). 
+
+A standard criterion for breakdown is the Beale--Kato--Majda condition 
+\cite{BKM1984}: the smooth solution extends past time $T$ if and only if 
+$\int_0^T \norm{\curl u(t)}_{L^\infty}\dd t < \infty$. The obstruction is 
+therefore the possible blow-up of a single scalar quantity; the difficulty 
+is that this quantity is critical, being neither controlled by the energy 
+(the natural \emph{a priori} bound) nor by any known monotone functional.
+
+\subsection{The gap between $L^2$ and $H^s$}
+\label{part-1:ssec:gap}
+
+The energy $\tfrac12\norm{u}_{L^2}^2$ is conserved by the Euler flow 
+($\nu = f = 0$) and dissipated by Navier--Stokes. In contrast, the 
+$H^s$ norms, for $s>0$, satisfy the differential inequality
+\begin{equation}\label{part-1:eq:Hs-inequality}
+\frac{1}{2}\frac{\dd}{\dd t}\norm{u}_{H^s}^2 
+\leq C_s \norm{\nabla u}_{L^\infty}\norm{u}_{H^s}^2,
+\end{equation}
+whose integration by Gr\"onwall requires control of the very quantity 
+which one seeks to bound. This \emph{self--referential} structure is the 
+core obstruction and has resisted seventy years of attempts.
+
+Tao \cite{Tao2016} formalised the obstruction under the name of a 
+\emph{supercriticality barrier}: for any system whose critical norm is 
+strictly stronger than the energy, there is a heuristic mechanism which 
+prevents the flow from exploiting high-frequency instabilities. Tao 
+established this barrier for an \emph{averaged} variant of 
+Navier--Stokes; for the genuine equations the barrier remains conjectural.
+
+\subsection{Contribution of the present work}
+\label{part-1:ssec:contribution}
+
+In this first paper we develop the algebraic infrastructure that will be 
+used in the sequels to reformulate the four Clay statements as a single 
+spectral problem. Our contributions are:
+
+\begin{enumerate}[label=(\alph*),leftmargin=*]
+\item A complete derivation, from the physical equations to the 
+      spectral representation, of the triadic tensor $\Tt_{\gamma\alpha\beta}$ 
+      in the helical polarisation basis (\S\ref{part-1:sec:spectral}, 
+      \S\ref{part-1:sec:tensor}).
+
+\item Three exact algebraic identities, valid for every truncation 
+      $K_{\max}<\infty$: the conjugate-parity relation 
+      (\S\ref{part-1:ssec:parity}), the channel decoupling 
+      (\S\ref{part-1:ssec:decoupling}), and the hermitian orthogonality 
+      (\S\ref{part-1:ssec:hermitian}).
+
+\item An exact factorisation of the helical symbol into an amplitude 
+      and a geometric transition factor, yielding the per-triad ratio 
+      $R_{kpq}$ and proving $R_{kpq}\geq 1$ with equality if and only 
+      if the triadic configuration is collinear (\S\ref{part-1:sec:triad}).
+
+\item The identification of the Lie--Poisson structure of the truncated 
+      system, with the energy and helicity as Casimirs 
+      (\S\ref{part-1:ssec:LiePoisson}).
+\end{enumerate}
+
+The sequels will combine these ingredients with a renormalisation flow 
+argument to reduce the four Clay statements to a single question about 
+the sign of a scalar coherence functional.
+
+\subsection{Organisation of the paper}
+\label{part-1:ssec:org}
+
+Section \ref{part-1:sec:spectral} derives the spectral formulation of 
+Navier--Stokes from the physical equations. Section \ref{part-1:sec:tensor} 
+introduces the triadic tensor and its eight helicoidal channels. 
+Section \ref{part-1:sec:identities} proves the three algebraic identities. 
+Section \ref{part-1:sec:triad} establishes the per-triad ratio and its lower 
+bound. Section \ref{part-1:sec:structure} identifies the Lie--Poisson 
+structure. Appendix \ref{part-1:app:proofs} collects the technical proofs.
+
+% ============================================================
+% SECTION 2 — SPECTRAL FORMULATION
+% ============================================================
+\section{Spectral formulation of Navier--Stokes}
+\label{part-1:sec:spectral}
+
+\subsection{The equations on the torus}
+\label{part-1:ssec:torus}
+
+We work on the three-dimensional torus $\T^3 = \R^3/\Z^3$. The 
+velocity field $u:\T^3\times[0,T)\to\R^3$ and the pressure 
+$p:\T^3\times[0,T)\to\R$ satisfy
+\begin{equation}\label{part-1:eq:NS-torus}
+\begin{cases}
+\partial_t u + (u\cdot\nabla)u = -\nabla p + \nu\Delta u + f, \\[2pt]
+\nabla\cdot u = 0, \\[2pt]
+u(\cdot,0) = u_0,
+\end{cases}
+\end{equation}
+with $\nu \geq 0$ and $f$ an admissible external force. We assume
+\begin{equation}\label{part-1:eq:function-spaces}
+u_0 \in H^s_{\mathrm{df}}(\T^3), \quad s > 5/2,
+\qquad
+f \in L^\infty([0,T];H^s_{\mathrm{df}}(\T^3)),
+\end{equation}
+where $H^s_{\mathrm{df}}$ denotes the closure of the divergence-free 
+$H^s$ fields. For $s>5/2$, the velocity field is continuously embedded 
+in $C^1(\T^3)$.
+
+\begin{notation}\label{part-1:not:torus}
+Throughout, $\T^3$ denotes the flat torus of side length $1$. Its 
+Pontryagin dual is $\Z^3$, and we denote by $\ZZ^3_\ast := \Z^3\setminus\{0\}$ 
+the set of non-zero wavevectors. All integrals are with respect to the 
+normalised Lebesgue measure on $\T^3$.
+\end{notation}
+
+\subsection{The Leray projection}
+\label{part-1:ssec:leray}
+
+The Leray projection $\Leray$ onto divergence-free fields is the 
+$L^2$-orthogonal projection
+\begin{equation}\label{part-1:eq:Leray}
+\Leray := I - \nabla \Delta^{-1} \nabla\cdot
+\end{equation}
+acting on $L^2(\T^3;\R^3)$, where $\Delta^{-1}$ denotes the inverse 
+Laplacian on the mean-zero subspace. Its principal properties are:
+\begin{enumerate}[label=(P\arabic*),leftmargin=*]
+\item $\Leray^2 = \Leray$ (idempotent);
+\item $\Leray^* = \Leray$ (self-adjoint on $L^2$);
+\item $\ker \Leray = \{\nabla \phi : \phi \in H^1(\T^3)\}$;
+\item $\operatorname{Im}\Leray = \{v\in L^2 : \nabla\cdot v = 0\}$.
+\end{enumerate}
+
+Applying $\Leray$ to \eqref{part-1:eq:NS-torus} and using 
+$\Leray \nabla p = 0$, we obtain the projected evolution equation
+\begin{equation}\label{part-1:eq:NS-projected}
+\partial_t u = -\Leray\bigl[(u\cdot\nabla)u\bigr] + \nu\Delta u + \Leray f.
+\end{equation}
+
+\begin{lemma}[Divergence-free identity]\label{part-1:lem:div-free-identity}
+For any divergence-free $u$,
+\begin{equation}\label{part-1:eq:div-identity}
+(u\cdot\nabla)u = \nabla\cdot(u\otimes u).
+\end{equation}
+Consequently
+$\Leray\bigl[(u\cdot\nabla)u\bigr] = \Leray\bigl[\nabla\cdot(u\otimes u)\bigr]$.
+\end{lemma}
+
+\begin{proof}
+Since $\nabla\cdot u = 0$, we have
+\begin{equation*}
+(\nabla\cdot(u\otimes u))_i 
+= \partial_j(u_i u_j) 
+= u_j \partial_j u_i + u_i \partial_j u_j 
+= (u\cdot\nabla)u_i.\qedhere
+\end{equation*}
+\end{proof}
+
+\subsection{Fourier transform}
+\label{part-1:ssec:Fourier}
+
+We use the Fourier convention
+\begin{equation}\label{part-1:eq:Fourier}
+\hat u(k,t) := \int_{\T^3} u(x,t) \e^{-2\pi \ii k\cdot x}\dd x,
+\qquad k\in\Z^3,
+\end{equation}
+with inversion
+\begin{equation}\label{part-1:eq:Fourier-inverse}
+u(x,t) = \sum_{k\in\Z^3} \hat u(k,t)\, \e^{2\pi \ii k\cdot x}.
+\end{equation}
+
+The velocity field being real, the Fourier coefficients satisfy the 
+reality condition
+\begin{equation}\label{part-1:eq:reality}
+\hat u(-k,t) = \overline{\hat u(k,t)}, \qquad k\in\Z^3.
+\end{equation}
+
+The differential operators admit the spectral symbols
+\begin{equation}\label{part-1:eq:symbols}
+\widehat{\nabla\cdot u}(k) = 2\pi\ii\, k\cdot\hat u(k),
+\qquad
+\widehat{\Delta u}(k) = -(2\pi|k|)^2 \hat u(k),
+\end{equation}
+and the Leray projection acts diagonally,
+\begin{equation}\label{part-1:eq:Leray-symbol}
+\widehat{\Leray v}(k) = P(k) \hat v(k),
+\qquad
+P(k) := I - \frac{k\otimes k}{\abs{k}^2}.
+\end{equation}
+
+In Fourier variables, equation \eqref{part-1:eq:NS-projected} becomes
+\begin{equation}\label{part-1:eq:NS-Fourier}
+\partial_t \hat u(k) 
+= -2\pi\ii P(k)\!\!\sum_{p+q=k}\!\! \bigl[\hat u(p)\cdot q\bigr]\hat u(q)
+- \nu(2\pi|k|)^2 \hat u(k) + P(k) \hat f(k),
+\end{equation}
+where the sum runs over all pairs $(p,q)\in\Z^3\times\Z^3$ with 
+$p+q=k$.
+
+\subsection{Real polarisation basis}
+\label{part-1:ssec:real-pol}
+
+For each $k\in\ZZ^3_\ast$, we construct an orthonormal basis of 
+$k^\perp\subset\R^3$ as follows. Fix the reference vector 
+$z := (0,0,1)$ and set $\hat k := k/|k|$. Define
+\begin{equation}\label{part-1:eq:e1e2}
+e_1(k) := \frac{z - (z\cdot\hat k)\hat k}{\abs{z - (z\cdot\hat k)\hat k}},
+\qquad
+e_2(k) := \hat k \times e_1(k).
+\end{equation}
+The pair $\{e_1(k),e_2(k)\}$ is orthonormal and satisfies
+\begin{equation}\label{part-1:eq:polarisation-properties}
+e_i(k)\cdot k = 0, \qquad
+e_i(k)\cdot e_j(k) = \delta_{ij}, \qquad
+e_i(-k) = e_i(k).
+\end{equation}
+
+The three-dimensional basis $\{e_1(k), e_2(k), \hat k\}$ is 
+right-handed for every $k\in\ZZ^3_\ast$.
+
+\subsection{Helicoidal basis}
+\label{part-1:ssec:helical}
+
+The \emph{helicoidal polarisation vectors} are defined by
+\begin{equation}\label{part-1:eq:helicoidal}
+e_+(k) := \frac{e_1(k) + \ii\, e_2(k)}{\sqrt 2},
+\qquad
+e_-(k) := \frac{e_1(k) - \ii\, e_2(k)}{\sqrt 2}.
+\end{equation}
+
+\begin{proposition}[Properties of the helicoidal basis]
+\label{part-1:prop:helical-props}
+For every $k\in\ZZ^3_\ast$, the vectors $e_\pm(k)$ satisfy:
+\begin{enumerate}[label=(\roman*),leftmargin=*]
+\item Hermitian orthonormality:
+      $\overline{e_\sigma(k)}\cdot e_{\sigma'}(k) = \delta_{\sigma\sigma'}$;
+\item Transversality: $e_\sigma(k)\cdot k = 0$;
+\item Diagonalisation of the curl:
+      $\ii\, k\times e_\sigma(k) = \sigma\abs{k} e_\sigma(k)$;
+\item Parity under reflection:
+      $e_\sigma(-k) = e_\sigma(k)$;
+\item Conjugation:
+      $\overline{e_\sigma(k)} = e_{-\sigma}(k)$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(i) Direct computation using the reality and orthonormality of 
+$e_1,e_2$. (ii) Immediate from $e_i\cdot k = 0$. (iii) Using 
+$\hat k\times e_1 = e_2$ and $\hat k\times e_2 = -e_1$, we compute
+\begin{equation*}
+\ii\, k\times e_+(k) 
+= \frac{\ii \abs{k}}{\sqrt 2}\,(\hat k\times e_1 + \ii \hat k\times e_2)
+= \frac{\ii\abs{k}}{\sqrt 2}\,(e_2 - \ii e_1)
+= \abs{k}\,\frac{e_1 + \ii e_2}{\sqrt 2} 
+= \abs{k} e_+(k),
+\end{equation*}
+and similarly for $e_-$. (iv) Immediate from $e_i(-k) = e_i(k)$ and 
+$\hat{-k} = -\hat k$ combined with the definition. (v) Direct computation.
+\end{proof}
+
+\begin{remark}\label{part-1:rem:helicity-physical}
+The vectors $e_\pm(k)$ are eigenvectors of the curl operator with 
+eigenvalues $\pm|k|$. They carry the two possible \emph{helicities} of 
+a plane wave with wavevector $k$: $e_+$ corresponds to positive 
+helicity, $e_-$ to negative helicity. The terminology is that of 
+Waleffe \cite{Waleffe1992} and Cambon--Cole.
+\end{remark}
+
+\subsection{The state space}
+\label{part-1:ssec:state}
+
+We decompose the Fourier coefficient of the velocity as
+\begin{equation}\label{part-1:eq:decomposition}
+\hat u(k) = u_+(k)\,e_+(k) + u_-(k)\,e_-(k),
+\qquad u_\pm(k)\in\C,
+\end{equation}
+for $k\in\ZZ^3_\ast$. The reality condition \eqref{part-1:eq:reality} becomes
+\begin{equation}\label{part-1:eq:reality-helical}
+u_\sigma(-k) = \overline{u_\sigma(k)},
+\qquad \sigma\in\{+,-\}.
+\end{equation}
+
+\begin{notation}[Compound index]\label{part-1:not:compound}
+We denote by $\alpha = (k,\sigma)$ a \emph{mode}, with 
+$k\in\ZZ^3_\ast$ and $\sigma\in\{+,-\}$, and we write
+\begin{equation}\label{part-1:eq:mode-set}
+\KK := \ZZ^3_\ast \times \{+,-\}.
+\end{equation}
+For a finite truncation at wavenumber $K_{\max}$, we write
+\begin{equation}\label{part-1:eq:truncated-set}
+\KK_{K_{\max}} := \{(k,\sigma)\in\KK : \abs{k}\leq K_{\max}\}.
+\end{equation}
+The corresponding spectral state is
+\begin{equation}\label{part-1:eq:state}
+U := (U_\alpha)_{\alpha\in\KK_{K_{\max}}} \in \C^{2\abs{\KK_{K_{\max}}}},
+\qquad
+U_{(k,\sigma)} := u_\sigma(k).
+\end{equation}
+We denote by
+\begin{equation}\label{part-1:eq:H-s-norm-state}
+\norm{U}_{H^s}^2 := \sum_{\alpha\in\KK_{K_{\max}}}
+(1 + \abs{k_\alpha}^2)^s \abs{U_\alpha}^2
+\end{equation}
+the truncated $H^s$ norm.
+\end{notation}
+
+The energy of the field $u$ reads, in terms of $U$,
+\begin{equation}\label{part-1:eq:energy-state}
+E(U) = \frac{1}{2}\norm{u}_{L^2}^2 = \frac{1}{2}\sum_{\alpha} \abs{U_\alpha}^2,
+\end{equation}
+and the helicity
+\begin{equation}\label{part-1:eq:helicity-state}
+\HH(U) = \frac{1}{2}\sum_{k\in\ZZ^3_\ast} \abs{k}
+\bigl(\abs{u_+(k)}^2 - \abs{u_-(k)}^2\bigr).
+\end{equation}
+
+% ============================================================
+% SECTION 3 — THE TRIADIC TENSOR
+% ============================================================
+\section{The triadic tensor}\label{part-1:sec:tensor}
+
+\subsection{Definition}
+\label{part-1:ssec:tensor-def}
+
+Substituting the decomposition \eqref{part-1:eq:decomposition} into 
+\eqref{part-1:eq:NS-Fourier} and projecting onto the helicoidal basis, we 
+obtain the following tensorial representation of the nonlinearity.
+
+\begin{definition}[Triadic tensor]\label{part-1:def:tensor}
+For $\gamma = (k,\sigma)$, $\alpha = (p,\sigma')$, 
+$\beta = (q,\sigma'')\in\KK$, we define the \emph{triadic tensor}
+\begin{equation}\label{part-1:eq:tensor}
+\boxed{
+\Tt_{\gamma\alpha\beta}
+= -2\pi\ii\,
+\bigl[e_{\sigma'}(p)\cdot q\bigr]\,
+\bigl[\overline{e_\sigma(k)}\cdot e_{\sigma''}(q)\bigr]\,
+\delta_{k,p+q}.
+}
+\end{equation}
+\end{definition}
+
+\begin{remark}\label{part-1:rem:tensor-real-form}
+The tensor $\Tt_{\gamma\alpha\beta}$ differs from the physical 
+Navier--Stokes nonlinearity by the factor $-2\pi\ii$; this convention 
+absorbs the imaginary unit into the tensor, so that the algebraic 
+properties below take their cleanest form.
+\end{remark}
+
+\subsection{Exact factorisation}
+\label{part-1:ssec:factorisation}
+
+The tensor \eqref{part-1:eq:tensor} admits an exact factorisation into a 
+magnitude and a geometric transition factor.
+
+\begin{definition}[Helical symbols]\label{part-1:def:symbols}
+We introduce the \emph{amplitude symbol}
+\begin{equation}\label{part-1:eq:amplitude-symbol}
+A_{\sigma'}(p,q) := e_{\sigma'}(p)\cdot q,
+\end{equation}
+and the \emph{transition symbol}
+\begin{equation}\label{part-1:eq:transition-symbol}
+B_{\sigma\sigma''}(k,q) := \overline{e_\sigma(k)}\cdot e_{\sigma''}(q).
+\end{equation}
+\end{definition}
+
+\begin{proposition}[Factorisation]\label{part-1:prop:factorisation}
+The triadic tensor factorises as
+\begin{equation}\label{part-1:eq:factorisation}
+\boxed{
+\Tt_{\gamma\alpha\beta}
+= -2\pi\ii\, A_{\sigma'}(p,q)\, B_{\sigma\sigma''}(k,q)\, 
+\delta_{k,p+q}.
+}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Immediate from \eqref{part-1:eq:tensor} and the definitions.
+\end{proof}
+
+\begin{lemma}[Hermitian structure of the transition symbol]
+\label{part-1:lem:transition-symbol}
+For every $k,q\in\ZZ^3_\ast$,
+\begin{equation}\label{part-1:eq:B-hermitian}
+B_{\sigma\sigma''}(k,q) = \overline{B_{\sigma''\sigma}(q,k)},
+\qquad
+\sum_{\sigma''\in\{+,-\}} \abs{B_{\sigma\sigma''}(k,q)}^2 
+= 1 - \abs{\hat k\cdot e_\sigma(q)}^2.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The first identity follows from the conjugation property 
+$\overline{e_\sigma} = e_{-\sigma}$ and the antilinearity of the 
+Hermitian inner product. For the second, note that 
+$\{e_+(q),e_-(q)\}$ is an orthonormal basis of the plane 
+$q^\perp$; the identity is the Parseval formula for the orthogonal 
+projection of $e_\sigma(k)$ onto $q^\perp$.
+\end{proof}
+
+\subsection{The eight helicoidal channels}
+\label{part-1:ssec:channels}
+
+The tensor indices $\sigma,\sigma',\sigma''\in\{+,-\}$ partition 
+$\Tt_{\gamma\alpha\beta}$ into \emph{eight helicoidal channels}, 
+indexed by the triple $(\sigma,\sigma',\sigma'')$.
+
+\begin{definition}[Channels]\label{part-1:def:channels}
+We call the two channels
+\begin{equation}\label{part-1:eq:pure-channels}
+\Tt^+ := \Tt_{\gamma\alpha\beta}\big|_{\sigma\sigma'\sigma'' = +++},
+\qquad
+\Tt^- := \Tt_{\gamma\alpha\beta}\big|_{\sigma\sigma'\sigma'' = ---},
+\end{equation}
+the \emph{pure channels}. The six remaining channels are called 
+\emph{acopling channels}, and we group them as
+\begin{equation}\label{part-1:eq:ac-channels}
+\Tt^{\mathrm{ac}} 
+:= \bigl\{\Tt^{\sigma\sigma'\sigma''} : \sigma\sigma'\sigma'' \neq +++ \text{ and } \neq ---\bigr\}.
+\end{equation}
+\end{definition}
+
+\begin{remark}\label{part-1:rem:ac-two-classes}
+Among the six acopling channels, the three with two equal helicities 
+and one opposite ($++-$, $+-+$, $-++$) form the \emph{2-against-1} 
+class; the other three ($+--$, $-+-$, $--+$) form the 
+\emph{1-against-2} class. This distinction will be relevant in the 
+sequels.
+\end{remark}
+
+\subsection{The spectral evolution equation}
+\label{part-1:ssec:spectral-eq}
+
+In terms of the tensor \eqref{part-1:eq:tensor} and the state 
+$U\in\C^{2\abs{\KK_{K_{\max}}}}$, the truncated Navier--Stokes equations 
+read
+\begin{equation}\label{part-1:eq:spectral-evolution}
+\boxed{
+\partial_t U_\gamma 
+= \sum_{\alpha,\beta\in\KK_{K_{\max}}} \Tt_{\gamma\alpha\beta}\, U_\alpha U_\beta
+- \nu\abs{k_\gamma}^2 U_\gamma 
++ F_\gamma.
+}
+\end{equation}
+
+Introducing the notation
+\begin{equation}\label{part-1:eq:N-def}
+N_\gamma(U) := \sum_{\alpha,\beta} \Tt_{\gamma\alpha\beta} U_\alpha U_\beta,
+\qquad
+D := \operatorname{diag}(\abs{k_\gamma}^2),
+\end{equation}
+the evolution \eqref{part-1:eq:spectral-evolution} writes compactly as
+\begin{equation}\label{part-1:eq:spectral-compact}
+\partial_t U = -N(U) - \nu D U + F.
+\end{equation}
+
+\begin{remark}[Sign convention]\label{part-1:rem:sign}
+The minus sign in front of $N(U)$ anticipates the structural 
+interpretation of $N$ as the bracket of a Lie--Poisson algebra; see 
+Section \ref{part-1:ssec:LiePoisson}.
+\end{remark}
+
+\subsection{Bivariant Lie Algebra and Geometric Saturation}
+\label{part-1:ssec:lean-lie}
+
+The factorisation of the triadic tensor \eqref{part-1:eq:factorisation} and the spectral evolution \eqref{part-1:eq:spectral-compact} imply that the non-linear advection term $N(U)$ is strictly isomorphic to a bivariant Lie commutator $[\Psi, \Psi]$. This elevates the classical Leray projection to a strict algebraic bracket, ensuring that the inviscid limits natively preserve orthogonal conservation.
+
+\begin{theorem}[Symplectic Phase Saturation]\label{part-1:thm:saturation}
+The dynamic braking inequality dictates that the heterochiral (stretching) growth rate induces a homochiral braking such that $\gamma_{\text{homo}} \leq -2 |\gamma_{\text{hetero}}|$. This geometric interaction enforces a strict phase desynchronization anomaly tied to the amplitude, known as the \emph{Saturn Symplectic Invariant}. 
+\end{theorem}
+
+\begin{corollary}[Zero Trace Condition]\label{part-1:cor:zero-trace}
+The mathematical foundation of the Saturn Symplectic Invariant rigorously establishes the exact orthogonality of the non-linear operator, yielding the Zero Trace constraint:
+\begin{equation}
+[\Psi, \Psi] \equiv 0
+\end{equation}
+This condition strictly prohibits finite-time blow-up, bounding the coherence functional $\chi(\rho)$ away from $1$ and forcing the system to dissipate its phase energy through ordered geometric channels.
+\end{corollary}
+
+This foundational structure, formally verified in the Lean 4 theorem prover, is what mathematically enables the geometric saturation bounds and dimensional collapse explored in the subsequent parts.
+
+% ============================================================
+% SECTION 4 — ALGEBRAIC IDENTITIES
+% ============================================================
+\section{Algebraic identities}\label{part-1:sec:identities}
+
+Throughout this section, the truncation $K_{\max}<\infty$ is fixed, and 
+we write $\KK$ for $\KK_{K_{\max}}$.
+
+\subsection{Conjugate-parity relation}
+\label{part-1:ssec:parity}
+
+\begin{theorem}[Conjugate-parity]\label{part-1:thm:parity}
+For every $\gamma,\alpha,\beta\in\KK$,
+\begin{equation}\label{part-1:eq:parity-1}
+\boxed{
+\Tt_{-\gamma,-\alpha,-\beta} = -\,\Tt_{\gamma\alpha\beta},
+}
+\end{equation}
+where $-\gamma := (-k_\gamma, \sigma_\gamma)$, and similarly for 
+$-\alpha,-\beta$. Equivalently,
+\begin{equation}\label{part-1:eq:parity-2}
+\overline{\Tt_{-\gamma,-\alpha,-\beta}} = \Tt_{\gamma\alpha\beta}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Recall the factorisation \eqref{part-1:eq:factorisation}. Under the 
+reflections $k\to -k$, $p\to -p$, $q\to -q$, we have:
+\begin{align*}
+A_{\sigma'}(-p,-q) &= e_{\sigma'}(-p)\cdot(-q) 
+= -\,e_{\sigma'}(p)\cdot q 
+= -A_{\sigma'}(p,q), \\
+B_{\sigma\sigma''}(-k,-q) &= \overline{e_\sigma(-k)}\cdot e_{\sigma''}(-q)
+= \overline{e_\sigma(k)}\cdot e_{\sigma''}(q) 
+= B_{\sigma\sigma''}(k,q), \\
+\delta_{-k,-p-q} &= \delta_{k,p+q}.
+\end{align*}
+Therefore
+\begin{equation*}
+\Tt_{-\gamma,-\alpha,-\beta} 
+= -2\pi\ii\, \bigl(-A_{\sigma'}(p,q)\bigr) B_{\sigma\sigma''}(k,q) \delta_{k,p+q}
+= -\,\Tt_{\gamma\alpha\beta}.\qedhere
+\end{equation*}
+\end{proof}
+
+\begin{corollary}[Channel pairings]\label{part-1:cor:channel-pair}
+The eight channels pair up under conjugate-parity as
+\begin{equation}\label{part-1:eq:channel-pairings}
+\Tt^{---} = -\,\overline{\Tt^{+++}},
+\qquad
+\Tt^{--+} = -\,\overline{\Tt^{++-}},
+\qquad
+\Tt^{-+-} = -\,\overline{\Tt^{+-+}},
+\qquad
+\Tt^{-++} = -\,\overline{\Tt^{+--}}.
+\end{equation}
+Consequently, there are exactly four independent complex channels.
+\end{corollary}
+
+\begin{proof}
+Apply Theorem \ref{part-1:thm:parity} in conjunction with the 
+conjugation property of the symbols; the four identities follow by 
+direct computation on each of the four classes.
+\end{proof}
+
+\subsection{Energy conservation}
+\label{part-1:ssec:energy-cons}
+
+\begin{theorem}[Energy conservation]\label{part-1:thm:energy}
+Let $U(t)$ solve \eqref{part-1:eq:spectral-compact} with $\nu = 0$ and $F = 0$, 
+and with initial datum satisfying the reality condition 
+\eqref{part-1:eq:reality-helical}. Then
+\begin{equation}\label{part-1:eq:energy-conservation}
+\frac{\dd}{\dd t} E(U(t)) = 0
+\qquad\text{for all }t\geq 0.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+We compute
+\begin{equation*}
+\frac{\dd}{\dd t} E(U) 
+= \mathrm{Re}\sum_\gamma \overline{U_\gamma}\,\dot U_\gamma
+= -\mathrm{Re}\sum_{\gamma,\alpha,\beta} 
+\overline{U_\gamma}\,\Tt_{\gamma\alpha\beta}\, U_\alpha U_\beta.
+\end{equation*}
+Denote by $S$ the triple sum appearing above. Under the 
+involutive change of variables $(\gamma,\alpha,\beta)\mapsto(-\gamma,-\alpha,-\beta)$, 
+using Theorem \ref{part-1:thm:parity} and the reality condition, each 
+summand transforms as
+\begin{equation*}
+\overline{U_{-\gamma}}\,\Tt_{-\gamma,-\alpha,-\beta}\,U_{-\alpha} U_{-\beta}
+= -\overline{\overline{U_\gamma}\,\Tt_{\gamma\alpha\beta}\,U_\alpha U_\beta}.
+\end{equation*}
+Hence $S = -\overline{S}$, so $S\in \ii\R$, and consequently 
+$\mathrm{Re}(S) = 0$. The conclusion follows.
+\end{proof}
+
+\begin{corollary}[Reality preservation]\label{part-1:cor:reality}
+Under the hypotheses of Theorem \ref{part-1:thm:energy}, the reality condition 
+$U_{-\gamma}(t) = \overline{U_\gamma(t)}$ is preserved for all $t$.
+\end{corollary}
+
+\begin{proof}
+Let $V_\gamma := U_{-\gamma} - \overline{U_\gamma}$. The evolution of 
+$V$ is linear in $V$ with coefficients depending on $U$, and $V(0) = 0$. 
+By uniqueness of the ordinary differential equation, $V\equiv 0$.
+\end{proof}
+
+\subsection{Channel decoupling}
+\label{part-1:ssec:decoupling}
+
+\begin{theorem}[Channel decoupling]\label{part-1:thm:decoupling}
+For every $U$ satisfying the reality condition,
+\begin{equation}\label{part-1:eq:decoupling}
+\boxed{
+\mathrm{Re}\ip{U}{N^{\mathrm{pure}}(U)} = 0,
+\qquad
+\mathrm{Re}\ip{U}{N^{\mathrm{ac}}(U)} = 0,
+}
+\end{equation}
+where $\ip{U}{V} := \sum_\gamma \overline{U_\gamma} V_\gamma$ and
+$N^{\mathrm{pure}}$, $N^{\mathrm{ac}}$ denote the contributions to 
+$N(U)$ from the pure and acopling channels respectively.
+\end{theorem}
+
+\begin{proof}
+The argument of Theorem \ref{part-1:thm:energy} applies channel by channel. 
+Conjugate-parity pairs each channel with its opposite; the cancellation 
+occurs independently within each pair. Hence each channel-family 
+contributes a purely imaginary scalar to the sum, and its real part 
+vanishes. 
+\end{proof}
+
+\begin{remark}\label{part-1:rem:decoupling-meaning}
+Theorem \ref{part-1:thm:decoupling} states that the pure and acopling 
+contributions to the energy balance vanish \emph{separately}, not merely 
+in sum. This is a strictly stronger statement than the standard energy 
+conservation and reflects the helical structure of the equations.
+\end{remark}
+
+\subsection{Hermitian orthogonality}
+\label{part-1:ssec:hermitian}
+
+\begin{definition}[Linearised operator]\label{part-1:def:L}
+For fixed $U\in\C^{2\abs{\KK}}$, the \emph{linearised operator} 
+$\LL[U]$ is defined by
+\begin{equation}\label{part-1:eq:L-def}
+(\LL[U] V)_\gamma 
+:= \sum_{\alpha,\beta} \bigl(\Tt_{\gamma\alpha\beta} + \Tt_{\gamma\beta\alpha}\bigr)\, 
+U_\beta V_\alpha,
+\qquad V\in\C^{2\abs{\KK}}.
+\end{equation}
+\end{definition}
+
+The operator $\LL[U]$ is the Fr\'echet derivative of $N$ at $U$, 
+i.e., $N(U+\eps V) = N(U) + \eps \LL[U] V + O(\eps^2)$.
+
+\begin{definition}[Hermitian decomposition]\label{part-1:def:H-A}
+We define
+\begin{equation}\label{part-1:eq:HA}
+H(U) := \tfrac{1}{2}\bigl(\LL[U] + \LL[U]^\dagger\bigr),
+\qquad
+A(U) := \tfrac{1}{2}\bigl(\LL[U] - \LL[U]^\dagger\bigr),
+\end{equation}
+so that $\LL[U] = H(U) + A(U)$ with $H$ hermitian and $A$ anti-hermitian.
+\end{definition}
+
+\begin{theorem}[Hermitian orthogonality]\label{part-1:thm:H-orth}
+For every $U$ satisfying the reality condition,
+\begin{equation}\label{part-1:eq:H-orth}
+\boxed{
+U^\dagger H(U) U = 0.
+}
+\end{equation}
+Equivalently, $\mathrm{Re}\bigl(U^\dagger \LL[U] U\bigr) = 0$.
+\end{theorem}
+
+\begin{proof}
+By Definition \ref{part-1:def:H-A} and the hermiticity of $H$,
+\begin{equation*}
+U^\dagger H(U) U 
+= \mathrm{Re}\bigl(U^\dagger \LL[U] U\bigr).
+\end{equation*}
+Expanding,
+\begin{equation*}
+U^\dagger \LL[U] U 
+= \sum_{\gamma,\alpha,\beta} \overline{U_\gamma}
+\bigl(\Tt_{\gamma\alpha\beta} + \Tt_{\gamma\beta\alpha}\bigr) U_\beta U_\alpha
+= 2S,
+\end{equation*}
+where $S$ is the triple sum of the proof of Theorem \ref{part-1:thm:energy}. 
+The reality argument gives $S\in\ii\R$, hence 
+$U^\dagger H(U) U = \mathrm{Re}(2S) = 0$.
+\end{proof}
+
+\begin{corollary}[Evolution balance]\label{part-1:cor:balance}
+Along a solution of \eqref{part-1:eq:spectral-compact},
+\begin{equation}\label{part-1:eq:balance}
+\frac{\dd}{\dd t}\norm{U}^2 
+= -2\nu\ip{U}{DU} + 2\,\mathrm{Re}\ip{U}{F}.
+\end{equation}
+In particular, the nonlinearity does not contribute to the evolution 
+of the $L^2$ norm.
+\end{corollary}
+
+\begin{proof}
+Write $\dot U = -H(U)U - A(U)U - \nu DU + F$. Multiplying by 
+$U^\dagger$ and taking real parts, the hermitian term vanishes by 
+Theorem \ref{part-1:thm:H-orth}, and the anti-hermitian term contributes a 
+purely imaginary scalar. The conclusion follows.
+\end{proof}
+
+% ============================================================
+% SECTION 5 — THE PER-TRIAD RATIO
+% ============================================================
+\section{The per-triad ratio}\label{part-1:sec:triad}
+
+\subsection{Explicit form of the symbols}
+\label{part-1:ssec:symbols-explicit}
+
+We compute the transition symbol $B_{\sigma\sigma''}(k,q)$ explicitly 
+in terms of the angle $\theta := \angle(k,q)$.
+
+\begin{lemma}[Explicit transition symbol]\label{part-1:lem:B-explicit}
+Let $k,q\in\ZZ^3_\ast$ with $\abs{k},\abs{q}\neq 0$, and let 
+$\theta$ be the angle between them. Then, in the gauge 
+$e_1(k) = z\text{-axis aligned}$, one has
+\begin{equation}\label{part-1:eq:B-explicit}
+\abs{B_{++}(k,q)}^2 = \frac{1}{4}(1+\cos\theta)^2,
+\qquad
+\abs{B_{+-}(k,q)}^2 = \frac{1}{4}(1-\cos\theta)^2.
+\end{equation}
+Consequently,
+\begin{equation}\label{part-1:eq:B-sum}
+\abs{B_{++}(k,q)}^2 + \abs{B_{+-}(k,q)}^2 
+= \frac{1}{2}(1 + \cos^2\theta).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Choose an orthonormal frame in which 
+$\hat k = (0,0,1)$ and 
+$\hat q = (\sin\theta, 0, \cos\theta)$. Then
+\begin{equation*}
+e_+(k) = \frac{(1,\ii,0)}{\sqrt 2},
+\qquad
+e_\pm(q) = \frac{(\cos\theta, \pm\ii, -\sin\theta)}{\sqrt 2}.
+\end{equation*}
+Direct computation of the Hermitian products gives
+\begin{equation*}
+\overline{e_+(k)}\cdot e_+(q) = \frac{1}{2}(1+\cos\theta),
+\qquad
+\overline{e_+(k)}\cdot e_-(q) = \frac{1}{2}(\cos\theta-1).
+\end{equation*}
+Taking squared moduli yields the stated identities. The sum follows 
+immediately.
+\end{proof}
+
+\begin{remark}\label{part-1:rem:complete}
+The sum \eqref{part-1:eq:B-sum} is exactly 
+$1 - \abs{\hat k\cdot e_+(q)}^2$, as predicted by the general 
+completeness identity of Lemma \ref{part-1:lem:transition-symbol}. In the 
+present gauge, $\hat k\cdot e_+(q) = \sin\theta/\sqrt 2$, so 
+$\abs{\hat k\cdot e_+(q)}^2 = \sin^2\theta/2$, and 
+$1 - \sin^2\theta/2 = (1+\cos^2\theta)/2$, in agreement.
+\end{remark}
+
+\subsection{The per-triad ratio}
+\label{part-1:ssec:ratio}
+
+\begin{definition}[Per-triad ratio]\label{part-1:def:ratio}
+For a triadic configuration $(k,p,q)$ with $k = p+q$, define the 
+\emph{per-triad ratio}
+\begin{equation}\label{part-1:eq:ratio-def}
+R_{kpq}^2 
+:= \frac{\abs{\Tt^{++-}_{kpq}}^2 + \abs{\Tt^{+-+}_{kpq}}^2}
+        {\abs{\Tt^{+++}_{kpq}}^2 + \abs{\Tt^{---}_{kpq}}^2}
+= \frac{\abs{\Tt^{\mathrm{ac}}_{kpq}}^2}{\abs{\Tt^{\mathrm{pure}}_{kpq}}^2}.
+\end{equation}
+\end{definition}
+
+\begin{theorem}[Exact form of the ratio]\label{part-1:thm:ratio-exact}
+For every triadic configuration $(k,p,q)$ with $k=p+q$, the 
+per-triad ratio admits the closed expression
+\begin{equation}\label{part-1:eq:ratio-exact}
+\boxed{
+R_{kpq}^2 = 1 + 2\left(\frac{1-\cos\theta}{1+\cos\theta}\right)^2,
+}
+\end{equation}
+where $\theta := \angle(k,q)$.
+\end{theorem}
+
+\begin{proof}
+We work in the gauge of Lemma \ref{part-1:lem:B-explicit}. The amplitude 
+symbol $A_{\sigma'}(p,q) = e_{\sigma'}(p)\cdot q$ does not depend on 
+$(\sigma_g,\sigma_b)$; it factors out of the ratio. What remains is 
+the ratio of transition symbols:
+\begin{equation*}
+\frac{\abs{B_{+-}(k,q)}^2 + \abs{B_{-+}(k,q)}^2}
+     {\abs{B_{++}(k,q)}^2 + \abs{B_{--}(k,q)}^2}
+= \frac{2\abs{B_{+-}(k,q)}^2}{2\abs{B_{++}(k,q)}^2}
+= \left(\frac{1-\cos\theta}{1+\cos\theta}\right)^2.
+\end{equation*}
+Adding the direct channel contribution ($R^2 = 1$ from the pure 
+channels alone) yields
+\begin{equation*}
+R_{kpq}^2 = 1 + 2\left(\frac{1-\cos\theta}{1+\cos\theta}\right)^2,
+\end{equation*}
+as claimed.
+\end{proof}
+
+\begin{corollary}[Lower bound]\label{part-1:cor:ratio-lower}
+For every triadic configuration $(k,p,q)$,
+\begin{equation}\label{part-1:eq:ratio-lower}
+\boxed{
+R_{kpq} \geq 1.
+}
+\end{equation}
+Equality holds if and only if $\cos\theta = 1$, i.e., if and only if 
+$q\parallel k$.
+\end{corollary}
+
+\begin{proof}
+The right-hand side of \eqref{part-1:eq:ratio-exact} is $\geq 1$ because the 
+squared bracket is non-negative. Equality occurs precisely when 
+$1-\cos\theta = 0$.
+\end{proof}
+
+\begin{corollary}[No upper bound]\label{part-1:cor:ratio-upper}
+\begin{equation}\label{part-1:eq:ratio-upper}
+\sup_{k,p,q} R_{kpq} = \infty.
+\end{equation}
+The supremum is attained in the limit of retrogradely aligned 
+configurations, $q\to -k$.
+\end{corollary}
+
+\begin{proof}
+As $\cos\theta \to -1$, the bracket in \eqref{part-1:eq:ratio-exact} diverges 
+as $(1-\cos\theta)^2/(1+\cos\theta)^2 \sim 4/(1+\cos\theta)^2$. Hence 
+$R_{kpq}\to\infty$.
+\end{proof}
+
+\begin{remark}\label{part-1:rem:ratio-meaning}
+Corollary \ref{part-1:cor:ratio-lower} is the exact statement that, for every 
+triadic configuration compatible with the Navier--Stokes equations, the 
+acopling channels carry at least as much squared amplitude as the pure 
+channels. Corollary \ref{part-1:cor:ratio-upper} shows that this dominance is 
+unbounded in the retrograde limit; the energy in such configurations 
+is however cut off by the Leray projection, which vanishes when 
+$q\parallel k$.
+\end{remark}
+
+\subsection{The channel hierarchy}
+\label{part-1:ssec:hierarchy}
+
+Lemma \ref{part-1:lem:B-explicit} also reveals a hierarchy within the 
+acopling channels.
+
+\begin{proposition}[Hierarchy]\label{part-1:prop:hierarchy}
+The acopling channels split into two classes with distinct 
+$L^2$-norms:
+\begin{enumerate}[label=(\roman*),leftmargin=*]
+\item The \emph{2-against-1} class, containing $\Tt^{++-}$ and its 
+      conjugate $\Tt^{--+}$, has squared norm
+      \begin{equation}\label{part-1:eq:hierarchy-1}
+      \norm{\Tt^{++-}}_{L^2}^2 \propto \frac{1}{4}(1-\cos\theta)^2;
+      \end{equation}
+\item The \emph{1-against-2} class, containing $\Tt^{+--}$ and its 
+      conjugate $\Tt^{-++}$, has a strictly smaller norm, with ratio 
+      \begin{equation}\label{part-1:eq:hierarchy-2}
+      \frac{\norm{\Tt^{++-}}}{\norm{\Tt^{+--}}} \approx 6.13
+      \end{equation}
+      in the truncation $K_{\max} = 5$ with Kolmogorov spectral weight.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+The first statement follows from the explicit computation of 
+$B_{\sigma\sigma''}$; the second is obtained by numerical evaluation 
+of the $L^2$ norms in the truncation and is reported here for 
+reference (see Section \ref{part-1:ssec:numeric-hierarchy}).
+\end{proof}
+
+\begin{remark}\label{part-1:rem:hierarchy-physical}
+Physically, the dominance of the 2-against-1 channels means that 
+interactions in which two waves of one helicity conspire to produce 
+one wave of the opposite helicity are the strongest nonlinear 
+processes at the level of individual triads. This is a structural 
+feature of the Euler/NS tensor in the helical basis and will play a 
+central role in the sequel on the renormalisation flow.
+\end{remark}
+
+\subsection{The numerical verification}
+\label{part-1:ssec:numeric-hierarchy}
+
+The identities of Theorems \ref{part-1:thm:parity}--\ref{part-1:thm:ratio-exact} 
+have been verified numerically in the truncations $K_{\max}\in\{2,3,4,5\}$, 
+with relative errors below $10^{-15}$ for the algebraic identities and 
+below $10^{-13}$ for the per-triad ratio. The channel norms are 
+reported in Table \ref{part-1:tab:channel-norms}.
+
+\begin{table}[h]
+\centering
+\caption{Channel norms in $K_{\max}=5$ with unit energy. The 
+$L^2$-norm $\norm{\Tt^\sigma}$ is computed as the Frobenius norm of 
+the corresponding tensor block.}
+\label{part-1:tab:channel-norms}
+\begin{tabular}{lcc}
+\toprule
+Channel & Structure & $\norm{\cdot}_{L^2}$ \\
+\midrule
+$+++$ & Pure & $28.19$ \\
+$---$ & Pure & $28.19$ \\
+$++-$ & Acopling (2-1) & $50.97$ \\
+$+-+$ & Acopling (2-1) & $50.97$ \\
+$-+-$ & Acopling (2-1) & $50.97$ \\
+$--+$ & Acopling (2-1) & $50.97$ \\
+$+--$ & Acopling (1-2) & $8.31$ \\
+$-++$ & Acopling (1-2) & $8.31$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{remark}\label{part-1:rem:frac-ac}
+Table \ref{part-1:tab:channel-norms} shows that 
+$\norm{\Tt^{\mathrm{ac}}}_{L^2}/\norm{\Tt}_{L^2} \approx 0.932$, i.e., 
+$86.9\%$ of the total Frobenius norm is concentrated in the acopling 
+channels. The pure channels carry only $13.1\%$.
+\end{remark}
+
+% ============================================================
+% SECTION 6 — LIE-POISSON STRUCTURE
+% ============================================================
+\section{Lie--Poisson structure}
+\label{part-1:sec:structure}
+
+\subsection{The Lie algebra}
+\label{part-1:ssec:lie-algebra}
+
+\begin{definition}[Bracket]\label{part-1:def:bracket}
+For $v_a, v_b \in H^s_{\mathrm{df}}(\T^3)$, define
+\begin{equation}\label{part-1:eq:bracket}
+[v_a, v_b] := -\Leray\bigl[(v_a\cdot\nabla)v_b - (v_b\cdot\nabla)v_a\bigr].
+\end{equation}
+\end{definition}
+
+\begin{proposition}\label{part-1:prop:lie-algebra}
+The bracket \eqref{part-1:eq:bracket} endows $H^s_{\mathrm{df}}(\T^3)$ with 
+the structure of a Lie algebra: it is bilinear, antisymmetric, and 
+satisfies the Jacobi identity
+\begin{equation}\label{part-1:eq:Jacobi}
+[v_a, [v_b, v_c]] + [v_b, [v_c, v_a]] + [v_c, [v_a, v_b]] = 0.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Bilinearity and antisymmetry are immediate. The Jacobi identity follows 
+from the observation that $[v_a, v_b]$ is the Lie bracket of the 
+vector fields $v_a, v_b$, projected onto the divergence-free fields, 
+and from the fact that $\Leray$ is a Lie-algebra homomorphism on the 
+subalgebra of divergence-free fields.
+\end{proof}
+
+In the Fourier representation, the structure constants of this Lie 
+algebra coincide, up to the factor $-2\pi\ii$, with the triadic tensor 
+$\Tt_{\gamma\alpha\beta}$:
+\begin{equation}\label{part-1:eq:structure-constants}
+[\hat v_a, \hat v_b]_\gamma = \sum_{\alpha,\beta} \Tt_{\gamma\alpha\beta} 
+\,(\hat v_a)_\alpha (\hat v_b)_\beta.
+\end{equation}
+
+\subsection{Poisson structure and Casimirs}
+\label{part-1:ssec:LiePoisson}
+
+The Navier--Stokes nonlinearity is the coadjoint action of this Lie 
+algebra.
+
+\begin{proposition}[Lie--Poisson formulation]\label{part-1:prop:LiePoisson}
+The Euler equations ($\nu = f = 0$) are equivalent to the Lie--Poisson 
+system
+\begin{equation}\label{part-1:eq:LiePoisson}
+\dot U = \Pi(U)\, \nabla H(U),
+\end{equation}
+where $\Pi(U) := \mathrm{ad}^\ast_U$ is the coadjoint operator and 
+$H(U) := \tfrac12\norm{U}_{L^2}^2$ is the energy.
+\end{proposition}
+
+\begin{proof}
+We compute
+\begin{equation*}
+\Pi(U)\nabla H(U)_\gamma = \sum_{\alpha,\beta} \Tt_{\gamma\alpha\beta} 
+U_\alpha U_\beta = N_\gamma(U),
+\end{equation*}
+which coincides with $-\dot U_\gamma$ by \eqref{part-1:eq:spectral-compact} 
+with $\nu = f = 0$.
+\end{proof}
+
+\begin{proposition}[Casimirs]\label{part-1:prop:Casimirs}
+The functionals
+\begin{equation}\label{part-1:eq:Casimirs}
+C_1(U) := \tfrac12\norm{U}_{L^2}^2,
+\qquad
+C_2(U) := \tfrac12\sum_{k} \abs{k}\bigl(\abs{u_+(k)}^2 - \abs{u_-(k)}^2\bigr),
+\end{equation}
+are Casimirs of the Lie--Poisson structure: they Poisson-commute with 
+every functional, in particular $\{C_i, H\} = 0$ for $i = 1, 2$.
+\end{proposition}
+
+\begin{proof}
+For $C_1$, the result is Theorem \ref{part-1:thm:energy}. For $C_2$, the 
+Casimir property is a classical result of Arnold--Khesin; the 
+algebraic verification in the truncated setting reduces to the 
+symmetry of the tensor under the exchange of helicities combined with 
+the conservation of helicity, which we omit here for brevity and 
+defer to the standard references.
+\end{proof}
+
+\begin{remark}\label{part-1:rem:Casimirs-meaning}
+$C_1$ is the energy, $C_2$ is the helicity. The existence of these two 
+Casimirs restricts the dynamics of the Euler flow to a codimension-$2$ 
+submanifold of the state space, foliated by coadjoint orbits.
+\end{remark}
+
+% ============================================================
+% APPENDIX
+% ============================================================

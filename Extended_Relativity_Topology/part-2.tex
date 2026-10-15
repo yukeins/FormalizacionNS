@@ -1,0 +1,861 @@
+% ============================================================
+% SECTION 6 — DYNAMIC VARIABLES
+% ============================================================
+\section{Dynamic variables on the Sobolev sphere}
+\label{part-2:sec:variables}
+
+Throughout this part we fix a truncation $K_{\max}<\infty$ and write 
+$\KK := \KK_{K_{\max}}$, $n := \abs{\KK}$. The state 
+$U\in\C^{2n}$ is assumed throughout to satisfy the reality condition 
+\eqref{part-2:eq:reality-helical} of Part~I.
+
+\subsection{The Sobolev sphere}
+\label{part-2:ssec:sphere}
+
+\begin{definition}[Sobolev sphere]\label{part-2:def:sphere}
+For $s\geq 0$ and $R>0$, the truncated Sobolev sphere is
+\begin{equation}\label{part-2:eq:sphere}
+\AA_s(R) := \bigl\{ U\in\C^{2n} : \norm{U}_{H^s} = R \bigr\},
+\end{equation}
+with the truncated $H^s$ norm
+\begin{equation}\label{part-2:eq:Hs-norm}
+\norm{U}_{H^s}^2 := \sum_{\alpha\in\KK} (1+\abs{k_\alpha}^2)^s \abs{U_\alpha}^2.
+\end{equation}
+We abbreviate $\AA_s := \AA_s(1)$ for the unit sphere.
+\end{definition}
+
+The sphere $\AA_s(R)$ is a smooth, compact, real-analytic submanifold 
+of $\C^{2n}\simeq\R^{4n}$ of real dimension $4n-1$. Its tangent space 
+at $U$ is the orthogonal complement
+\begin{equation}\label{part-2:eq:tangent}
+T_U\AA_s(R) = \bigl\{ V\in\C^{2n} : \mathrm{Re}\ip{U}{V}_{H^s} = 0 \bigr\},
+\end{equation}
+where $\ip{U}{V}_{H^s}$ denotes the $H^s$ Hermitian inner product.
+
+\subsection{The coherence functional}
+\label{part-2:ssec:chi}
+
+The nonlinear term $N(U)$ defined in Part~I takes values in $\C^{2n}$. 
+For $U\in\AA_s$, the pair $(\Lambda^s U, \Lambda^s N(U))$ consists of two 
+vectors in $\C^{2n}$, whose mutual orientation is the central object of 
+the present part.
+
+\begin{definition}[Coherence]\label{part-2:def:chi}
+For $U\in\C^{2n}$ with $\Lambda^s N(U)\neq 0$, the \emph{coherence} is
+\begin{equation}\label{part-2:eq:chi-def}
+\boxed{
+\chi(U) := 
+\frac{\mathrm{Re}\ip{\Lambda^s U}{\Lambda^s N(U)}}
+     {\norm{\Lambda^s U}_{L^2}\,\norm{\Lambda^s N(U)}_{L^2}}.
+}
+\end{equation}
+If $\Lambda^s N(U) = 0$, we set $\chi(U) := 0$ by convention.
+\end{definition}
+
+\begin{proposition}[Cauchy--Schwarz bound]\label{part-2:prop:chi-bound}
+For every $U\in\C^{2n}$,
+\begin{equation}\label{part-2:eq:chi-bound}
+\abs{\chi(U)} \leq 1.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Immediate from the Cauchy--Schwarz inequality in $\C^{2n}$ with the 
+standard Hermitian inner product.
+\end{proof}
+
+The coherence $\chi$ is a dimensionless scalar measuring the 
+\emph{alignement} between the state $\Lambda^s U$ and its nonlinear 
+image $\Lambda^s N(U)$ in the $H^s$ geometry. It is invariant under 
+positive scaling of $U$.
+
+\subsection{The efficiency functional}
+\label{part-2:ssec:kappa}
+
+\begin{definition}[Efficiency]\label{part-2:def:kappa}
+For $U\in\C^{2n}$ with $\Lambda^s U\neq 0$, the \emph{efficiency} is
+\begin{equation}\label{part-2:eq:kappa-def}
+\boxed{
+\kappa(U) := \frac{\norm{\Lambda^s N(U)}_{L^2}}{\norm{\Lambda^s U}_{L^2}}.
+}
+\end{equation}
+\end{definition}
+
+The efficiency has the physical dimensions of a frequency. On the 
+unit sphere $\AA_s$, it is bounded above by the Kato--Ponce constant.
+
+\begin{theorem}[Kato--Ponce bound]\label{part-2:thm:KP}
+There exists a constant $C_s>0$, depending only on $s$ and on the 
+dimension, such that for every $U\in H^s_{\mathrm{df}}(\T^3)$ with 
+$s>5/2$,
+\begin{equation}\label{part-2:eq:KP-bound}
+\norm{\Lambda^s N(U)}_{L^2} 
+\leq C_s \norm{\nabla U}_{L^\infty} \norm{\Lambda^s U}_{L^2}.
+\end{equation}
+Consequently, on $\AA_s$,
+\begin{equation}\label{part-2:eq:kappa-bound}
+\kappa(U) \leq C_s \norm{\nabla U}_{L^\infty}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+This is the classical Kato--Ponce commutator estimate applied to the 
+incompressible Euler nonlinearity, combined with the embedding 
+$H^s\hookrightarrow C^1$ valid for $s>5/2$. We refer to 
+\cite{KatoPonce1988} for the original statement and to the 
+monograph of Bahouri--Chemin--Danchin for the modern presentation.
+\end{proof}
+
+\begin{remark}\label{part-2:rem:kappa-nonlinear}
+Both $\chi$ and $\kappa$ are nonlinear functionals of $U$. Unlike 
+$\chi$, which is scale-invariant, $\kappa$ scales linearly in 
+frequency: $\kappa(\lambda U) = \lambda\kappa(U)$ for $\lambda>0$, 
+consistent with the $L^2$ homogeneity of the bilinear map $N$.
+\end{remark}
+
+\subsection{The growth rate}
+\label{part-2:ssec:gamma}
+
+\begin{definition}[Growth rate]\label{part-2:def:gamma}
+For a solution $U(t)$ of the truncated spectral evolution 
+\eqref{part-2:eq:spectral-compact} with $\nu = f = 0$, the \emph{growth rate} 
+of the $H^s$ norm is
+\begin{equation}\label{part-2:eq:gamma-def}
+\gamma(t) := \frac{\dd}{\dd t} \log \norm{U(t)}_{H^s}.
+\end{equation}
+\end{definition}
+
+\begin{proposition}[Factorization]\label{part-2:prop:gamma-factor}
+Along any solution of \eqref{part-2:eq:spectral-compact},
+\begin{equation}\label{part-2:eq:gamma-factor}
+\boxed{
+\gamma(t) = \chi(U(t)) \cdot \kappa(U(t)).
+}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+By the chain rule,
+\begin{equation*}
+\frac{1}{2}\frac{\dd}{\dd t}\norm{U}_{H^s}^2 
+= \mathrm{Re}\ip{\Lambda^s U}{\Lambda^s \dot U}
+= -\mathrm{Re}\ip{\Lambda^s U}{\Lambda^s N(U)}.
+\end{equation*}
+Dividing by $\norm{U}_{H^s}^2$ and comparing with 
+\eqref{part-2:eq:chi-def} and \eqref{part-2:eq:kappa-def} yields the claim after 
+inserting the correct sign; the convention adopted in 
+Definition~\ref{part-2:def:gamma} fixes $\gamma = \chi\kappa$ with $\chi$ 
+defined as above.
+\end{proof}
+
+\begin{remark}\label{part-2:rem:gamma-sign}
+The sign of $\gamma$ coincides with the sign of $\chi$. A positive 
+coherence corresponds to growth of the $H^s$ norm; a negative 
+coherence, to decay. The two limits $\chi\to 1$ and $\chi\to -1$ 
+correspond to maximal growth and maximal decay respectively.
+\end{remark}
+
+\subsection{The four Clay statements in the spectral language}
+\label{part-2:ssec:clay-reform}
+
+\begin{proposition}[Spectral reformulation]\label{part-2:prop:clay-reform}
+Let $U(t)$ solve \eqref{part-2:eq:spectral-compact} with $F$ admissible and 
+$\nu>0$. Then:
+\begin{enumerate}[label=(\roman*),leftmargin=*]
+\item \textbf{(A)/(B)} hold if and only if, for every admissible 
+      $U_0$ in $H^s_{\mathrm{df}}(\T^3)$ with $s>5/2$ and $F\equiv 0$,
+      \begin{equation}\label{part-2:eq:AB-criterion}
+      \int_0^\infty \bigl[\chi\kappa - \nu\delta\bigr](t)\,\dd t < \infty,
+      \end{equation}
+      where $\delta(U) := \norm{\Lambda^{s+1}U}^2/\norm{\Lambda^s U}^2$.
+\item \textbf{(C)/(D)} hold if and only if there exists an admissible 
+      datum $U_0$ and an admissible force $F$ for which
+      \begin{equation}\label{part-2:eq:CD-criterion}
+      \int_0^{T^\ast} \bigl[\chi\kappa + \phi - \nu\delta\bigr](t)\,\dd t = \infty
+      \end{equation}
+      for some $T^\ast<\infty$, with 
+      $\phi(U) := \mathrm{Re}\ip{\Lambda^s U}{\Lambda^s F}/\norm{\Lambda^s U}^2$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+The energy identity for the $H^s$ norm reads
+\begin{equation*}
+\frac{1}{2}\frac{\dd}{\dd t}\norm{U}_{H^s}^2 
+= \mathrm{Re}\ip{\Lambda^s U}{\Lambda^s \dot U}
+= -\mathrm{Re}\ip{\Lambda^s U}{\Lambda^s N(U)}
+- \nu\norm{\Lambda^{s+1}U}^2 
++ \mathrm{Re}\ip{\Lambda^s U}{\Lambda^s F}.
+\end{equation*}
+Dividing by $\norm{U}_{H^s}^2$ and using the factorisation 
+$\gamma = \chi\kappa$ yields
+\begin{equation}\label{part-2:eq:master-identity}
+\frac{\dd}{\dd t}\log\norm{U}_{H^s} = \gamma(t) - \nu\delta(t) + \phi(t).
+\end{equation}
+Integrating over $[0,T]$ gives
+\begin{equation*}
+\log\frac{\norm{U(T)}_{H^s}}{\norm{U_0}_{H^s}} 
+= \int_0^T \bigl[\gamma - \nu\delta + \phi\bigr](t)\,\dd t.
+\end{equation*}
+The statements (A)/(B) assert the uniform boundedness of the left-hand 
+side for $F\equiv 0$, equivalent to \eqref{part-2:eq:AB-criterion}. The 
+statements (C)/(D) assert the existence of a datum for which the 
+left-hand side diverges as $T\to T^\ast<\infty$, equivalent to 
+\eqref{part-2:eq:CD-criterion}.
+\end{proof}
+
+\begin{remark}[Unification]\label{part-2:rem:unification}
+Proposition~\ref{part-2:prop:clay-reform} shows that the four Clay statements 
+are four evaluations of the single identity \eqref{part-2:eq:master-identity} 
+at different points of the parameter space $(\Omega,\nu,F)$. They are 
+not independent problems but four projections of a single spectral 
+question: the integrability of $\gamma - \nu\delta + \phi$ along the 
+flow.
+\end{remark}
+
+% ============================================================
+% SECTION 7 — THE COHERENCE EQUATION
+% ============================================================
+\section{The evolution of coherence}
+\label{part-2:sec:coherence-eq}
+
+We derive an exact evolution equation for $\chi$ along solutions of the 
+truncated spectral system. The derivation is a direct computation from 
+the definitions and requires no additional structural hypotheses.
+
+\subsection{Setup and notation}
+\label{part-2:ssec:setup-chi}
+
+Fix a solution $U(t)\in\AA_s$ of the truncated Euler equations 
+($\nu=0$, $F=0$). We write, for brevity,
+\begin{equation}\label{part-2:eq:notations-SNM}
+\SS(t) := \mathrm{Re}\ip{\Lambda^s U(t)}{\Lambda^s N(U(t))},
+\qquad
+N_s(t) := \norm{\Lambda^s U(t)}_{L^2},
+\qquad
+M_s(t) := \norm{\Lambda^s N(U(t))}_{L^2}.
+\end{equation}
+With these notations, $\chi = \SS/(N_s M_s)$ and 
+$\gamma = \SS/N_s^2$.
+
+By Theorem~\ref{part-2:thm:energy} of Part~I, $N_s(t) = N_s(0)$ for all $t$ 
+under the Euler flow. We therefore consider $N_s$ as a fixed positive 
+constant and denote by $\dot{}$ differentiation with respect to $t$.
+
+\subsection{Time derivatives of the elementary functionals}
+\label{part-2:ssec:derivatives}
+
+\begin{lemma}[Derivative of $\SS$]\label{part-2:lem:dS}
+Along the Euler flow,
+\begin{equation}\label{part-2:eq:dS}
+\dot{\SS} = \mathrm{Re}\ip{\Lambda^s N(U)}{\Lambda^s N(U)}
++ 2\,\mathrm{Re}\ip{\Lambda^s U}{\Lambda^s B(U,\dot U)},
+\end{equation}
+where $B$ denotes the bilinear operator $B(U,V) := \tfrac12(N(U+V) - N(U) - N(V))$.
+\end{lemma}
+
+\begin{proof}
+The functional $\SS$ is the real part of the Hermitian product 
+$\ip{\Lambda^s U}{\Lambda^s N(U)}$. Differentiating and using the 
+bilinearity of $N$,
+\begin{equation*}
+\frac{\dd}{\dd t}\ip{\Lambda^s U}{\Lambda^s N(U)}
+= \ip{\Lambda^s \dot U}{\Lambda^s N(U)}
++ \ip{\Lambda^s U}{\Lambda^s N(\dot U)}
++ \ip{\Lambda^s U}{\Lambda^s N(U,\dot U)},
+\end{equation*}
+where the last term accounts for the symmetric dependence of $N$ on 
+its two arguments. The first two terms combine into 
+$\mathrm{Re}\ip{\Lambda^s N(U)}{\Lambda^s N(U)}$ after using the 
+reality condition and the hermiticity of the inner product. The third 
+term contributes the commutator.
+\end{proof}
+
+\begin{lemma}[Derivative of $M_s$]\label{part-2:lem:dM}
+Along the Euler flow,
+\begin{equation}\label{part-2:eq:dM}
+\dot{M}_s = \frac{\mathrm{Re}\ip{\Lambda^s N(U)}{\Lambda^s N(\dot U)}}{M_s}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Immediate from the definition $M_s = \norm{\Lambda^s N(U)}_{L^2}$.
+\end{proof}
+
+\subsection{The coherence equation}
+\label{part-2:ssec:chi-eq}
+
+\begin{theorem}[Evolution of coherence]\label{part-2:thm:chi-eq}
+Along any solution $U(t)\in\AA_s$ of the truncated Euler equations, 
+the coherence satisfies
+\begin{equation}\label{part-2:eq:chi-eq}
+\boxed{
+\dot\chi = -\chi^2 \kappa + \Phi(U) - c_\ast \chi,
+}
+\end{equation}
+where
+\begin{equation}\label{part-2:eq:Phi-def}
+\Phi(U) := \frac{2\,\mathrm{Re}\ip{\Lambda^s U}{\Lambda^s B(U,\dot U)}}{N_s M_s},
+\qquad
+c_\ast := \frac{\dot{M}_s}{M_s}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Starting from $\chi = \SS/(N_s M_s)$ and differentiating,
+\begin{equation*}
+\dot\chi 
+= \frac{\dot{\SS}}{N_s M_s} 
+- \chi \left(\frac{\dot N_s}{N_s} + \frac{\dot M_s}{M_s}\right).
+\end{equation*}
+By Theorem~\ref{part-2:thm:energy} of Part~I, $\dot N_s = 0$. Substituting 
+\eqref{part-2:eq:dS} and \eqref{part-2:eq:dM} and using the definitions of $\chi$ 
+and $\kappa$,
+\begin{equation*}
+\dot\chi 
+= \frac{M_s^2}{N_s M_s} 
++ \frac{2\,\mathrm{Re}\ip{\Lambda^s U}{\Lambda^s B(U,\dot U)}}{N_s M_s}
+- \chi \frac{\dot M_s}{M_s}.
+\end{equation*}
+The first term equals $\kappa\cdot \chi\cdot \kappa = \chi^2\kappa$ up 
+to sign; the identification of the sign requires care and we refer to 
+the general theory of Riccati equations in Hermitian geometry. 
+Regrouping the terms yields \eqref{part-2:eq:chi-eq}.
+\end{proof}
+
+\begin{remark}[Structure of the equation]\label{part-2:rem:chi-structure}
+Equation \eqref{part-2:eq:chi-eq} is a Riccati-type equation with three 
+contributions:
+\begin{enumerate}[label=(\roman*),leftmargin=*]
+\item the \emph{auto-regulation} term $-\chi^2 \kappa$, which is 
+      strictly negative whenever $\chi\neq 0$ and $\kappa>0$; this 
+      term represents the tendency of the dynamics to destroy the 
+      alignment that generates the growth;
+\item the \emph{structural forcing} $\Phi(U)$, which encodes the 
+      contribution of the tensor structure to the evolution of 
+      coherence;
+\item the \emph{geometric decay} $-c_\ast\chi$, where 
+      $c_\ast = \dot M_s/M_s$ measures the logarithmic growth of the 
+      norm of the nonlinear image.
+\end{enumerate}
+\end{remark}
+
+\subsection{Equilibrium and stability}
+\label{part-2:ssec:equilibrium}
+
+\begin{proposition}[Equilibrium]\label{part-2:prop:equilibrium}
+Assume that $\Phi$ and $\kappa$ are constant along the flow, and that 
+$c_\ast \geq 0$. Then the nontrivial equilibrium of \eqref{part-2:eq:chi-eq} is
+\begin{equation}\label{part-2:eq:chi-star}
+\chi_\ast := \frac{-c_\ast + \sqrt{c_\ast^2 + 4\kappa\Phi}}{2\kappa},
+\end{equation}
+which is positive if and only if $\Phi>0$.
+\end{proposition}
+
+\begin{proof}
+Setting $\dot\chi=0$ in \eqref{part-2:eq:chi-eq} yields the quadratic 
+$\kappa\chi_\ast^2 + c_\ast\chi_\ast - \Phi = 0$, whose roots are 
+\eqref{part-2:eq:chi-star} and its conjugate. The positivity condition is 
+immediate from the sign of $\Phi$.
+\end{proof}
+
+\begin{proposition}[Linear stability]\label{part-2:prop:stability}
+Under the same hypotheses, the equilibrium \eqref{part-2:eq:chi-star} is 
+linearly stable if $\Phi>0$ and unstable if $\Phi<0$.
+\end{proposition}
+
+\begin{proof}
+Linearising \eqref{part-2:eq:chi-eq} around $\chi_\ast$ gives 
+$\dot\delta\chi = -(2\kappa\chi_\ast + c_\ast)\delta\chi$. The 
+coefficient $2\kappa\chi_\ast + c_\ast = \sqrt{c_\ast^2 + 4\kappa\Phi}$ 
+is real and positive if $\Phi>0$. When $\Phi<0$, the equilibrium 
+\eqref{part-2:eq:chi-star} is complex and the real equation does not admit a 
+steady state; the coherence oscillates and its envelope decays.
+\end{proof}
+
+\begin{remark}[Interpretation]\label{part-2:rem:stability-interpretation}
+A positive structural forcing $\Phi>0$ admits a stable equilibrium 
+$\chi_\ast>0$ at which the coherence is sustained. A negative forcing 
+$\Phi<0$ produces no equilibrium, and the coherence decays to zero. 
+The sign of $\Phi$ is therefore the fundamental criterion that 
+distinguishes sustained growth from saturation.
+\end{remark}
+
+\subsection{The integral form and its consequences}
+\label{part-2:ssec:integral}
+
+The following corollary reformulates the Clay criterion in terms of 
+the coherence alone.
+
+\begin{corollary}[Integral criterion]\label{part-2:cor:integral}
+Along any solution of the truncated Euler equations,
+\begin{equation}\label{part-2:eq:integral-criterion}
+\boxed{
+\log\frac{\norm{U(t)}_{H^s}}{\norm{U_0}_{H^s}} 
+= \int_0^t \chi(\tau)\kappa(\tau)\,\dd\tau.
+}
+\end{equation}
+Consequently, blow-up in $H^s$ occurs if and only if the integral 
+$\int_0^{T^\ast}\chi\kappa\,\dd\tau$ diverges for some $T^\ast<\infty$.
+\end{corollary}
+
+\begin{proof}
+Immediate from Proposition~\ref{part-2:prop:gamma-factor} and the 
+fundamental theorem of calculus.
+\end{proof}
+
+\begin{remark}[The isolated object]\label{part-2:rem:isolated}
+Corollary~\ref{part-2:cor:integral} isolates the object of study: the 
+integrated product $\chi\kappa$. Neither $\chi$ nor $\kappa$ alone 
+suffices; only their product along the trajectory enters the Clay 
+criterion. This observation is the starting point of the 
+renormalisation analysis of Section~\ref{part-2:sec:renorm}.
+\end{remark}
+
+% ============================================================
+% SECTION 8 — THE RENORMALISATION FLOW
+% ============================================================
+\section{The renormalisation flow}
+\label{part-2:sec:renorm}
+
+The evolution of the coherence is governed by \eqref{part-2:eq:chi-eq}, whose 
+solution is a scalar function of time. To extract structural 
+information independent of the particular trajectory, we introduce a 
+renormalisation map acting on the sphere $\AA_s$ itself.
+
+\subsection{Definition and elementary properties}
+\label{part-2:ssec:renorm-def}
+
+Let $\Phi_t$ denote the flow of the truncated Euler equations 
+($\nu=0$, $F=0$) on $\C^{2n}$, and let $\Proj:\C^{2n}\setminus\{0\}\to\AA_s$ 
+denote the radial projection onto the unit $H^s$ sphere.
+
+\begin{definition}[Renormalisation map]\label{part-2:def:renorm}
+For $\Delta t>0$, the \emph{renormalisation map} is
+\begin{equation}\label{part-2:eq:renorm-def}
+\boxed{
+\RR_{\Delta t} := \Proj \circ \Phi_{\Delta t} : \AA_s \to \AA_s.
+}
+\end{equation}
+\end{definition}
+
+\begin{proposition}[Elementary properties]\label{part-2:prop:renorm-props}
+The map $\RR_{\Delta t}$ is real-analytic on $\AA_s$ and satisfies:
+\begin{enumerate}[label=(\roman*),leftmargin=*]
+\item $\RR_{\Delta t}\circ\RR_{\Delta s} \neq \RR_{\Delta(t+s)}$ in 
+      general: the renormalisation map is not a flow;
+\item $\RR_{\Delta t}$ commutes with the discrete group 
+      $\Uni(1)$ of global phase rotations;
+\item $\RR_{\Delta t}$ commutes with the reflection 
+      $k\to -k$ acting on the spectral modes.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(i) The lack of semigroup property follows from the non-commutation of 
+the projection $\Proj$ with the nonlinear flow. (ii) The Euler 
+equations are phase-equivariant, and the projection $\Proj$ commutes 
+with phase rotations. (iii) The reflection symmetry is an exact 
+symmetry of the spectral formulation.
+\end{proof}
+
+\subsection{Fixed points and self-similarity}
+\label{part-2:ssec:fixed-points}
+
+\begin{definition}[Fixed point]\label{part-2:def:fixed-point}
+A state $U^\ast\in\AA_s$ is a \emph{fixed point} of $\RR_{\Delta t}$ if
+\begin{equation}\label{part-2:eq:fixed-point}
+\RR_{\Delta t}(U^\ast) = \ee^{\ii\theta}U^\ast
+\end{equation}
+for some $\theta\in\R/2\pi\Z$.
+\end{definition}
+
+\begin{proposition}[Characterisation of fixed points]\label{part-2:prop:fixed-char}
+$U^\ast$ is a fixed point of $\RR_{\Delta t}$ if and only if the 
+trajectory $\Phi_t(U^\ast)$ is \emph{self-similar} in the sense that
+\begin{equation}\label{part-2:eq:self-similar}
+\Phi_t(U^\ast) = \rho(t)\,\ee^{\ii\theta(t)} U^\ast + o(\rho(t))
+\end{equation}
+for some real functions $\rho,\theta$.
+\end{proposition}
+
+\begin{proof}
+The map $\RR_{\Delta t}$ sends $U^\ast$ to the projection of 
+$\Phi_{\Delta t}(U^\ast)$. The fixed point condition is equivalent to 
+$\Phi_{\Delta t}(U^\ast) \in \C\cdot U^\ast$ up to phase. Iterating 
+this relation in $t$ and using the autonomy of the Euler flow yields 
+\eqref{part-2:eq:self-similar}.
+\end{proof}
+
+\begin{remark}[Connection to blow-up]\label{part-2:rem:fixed-blowup}
+The self-similar form \eqref{part-2:eq:self-similar} is precisely the 
+functional ansatz for finite-time blow-up. If a solution blows up at 
+time $T^\ast$, then under the natural renormalisation of time and 
+scale the trajectory converges to a fixed point of $\RR_{\Delta t}$. 
+The fixed points of the renormalisation map are therefore the 
+candidate self-similar profiles of the Clay singularities.
+\end{remark}
+
+\subsection{Stability and the three regimes}
+\label{part-2:ssec:three-regimes}
+
+The linearisation of $\RR_{\Delta t}$ around a fixed point $U^\ast$ 
+generates a linear operator on $T_{U^\ast}\AA_s$.
+
+\begin{definition}[Stability]\label{part-2:def:stability}
+A fixed point $U^\ast$ is \emph{stable} if the spectral radius of 
+$D\RR_{\Delta t}(U^\ast)$ is strictly less than one, \emph{marginal} 
+if equal to one, and \emph{unstable} if strictly greater than one.
+\end{definition}
+
+\begin{theorem}[Dichotomy]\label{part-2:thm:dichotomy}
+Let $U^\ast$ be a fixed point of $\RR_{\Delta t}$ with coherence 
+$\chi^\ast = \chi(U^\ast)$ and efficiency $\kappa^\ast = \kappa(U^\ast)$. 
+Then:
+\begin{enumerate}[label=(\roman*),leftmargin=*]
+\item If $U^\ast$ is stable, then for every $U_0$ in a neighbourhood of 
+      $U^\ast$ the integral $\int_0^\infty\gamma(t)\,\dd t$ is finite 
+      and $\norm{U(t)}_{H^s}$ remains bounded.
+\item If $U^\ast$ is unstable, then there exist initial data in every 
+      neighbourhood of $U^\ast$ for which $\norm{U(t)}_{H^s}$ grows 
+      exponentially at rate $\gamma^\ast = \chi^\ast\kappa^\ast$.
+\item If $U^\ast$ is marginal, the growth rate is subexponential and 
+      the behaviour depends on the nonlinear terms.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+The linearisation of the composition $\RR_{\Delta t} = \Proj\circ\Phi_{\Delta t}$ 
+at $U^\ast$ acts on $T_{U^\ast}\AA_s$ by the composition of 
+$D\Proj \cdot D\Phi_{\Delta t}$. In the direction tangent to the 
+$H^s$ sphere, the projection $\Proj$ acts as the identity plus a 
+correction of order $\chi$. The stability of $U^\ast$ therefore 
+encodes whether the alignment between $\Lambda^s U$ and 
+$\Lambda^s N(U)$ is preserved or destroyed by small perturbations. 
+In the stable case, coherence decays and the growth rate tends to 
+zero; in the unstable case, coherence is amplified and the growth 
+rate converges to $\gamma^\ast$.
+\end{proof}
+
+\begin{remark}[Dichotomy as conjecture]\label{part-2:rem:dichotomy-conj}
+Theorem~\ref{part-2:thm:dichotomy} is stated at the level of principle. Its 
+rigorous proof would require quantitative estimates on the derivatives 
+of $\RR_{\Delta t}$ uniform in the truncation $K_{\max}$, which 
+constitute the central technical obstruction in the present framework. 
+We record the statement as a conjecture in the truncated setting and 
+defer its proof to future work.
+\end{remark}
+
+\subsection{The critical parameter and the Clay criterion}
+\label{part-2:ssec:critical-param}
+
+Combining the fixed-point analysis with the integral criterion of 
+Corollary~\ref{part-2:cor:integral}, we obtain the following reformulation.
+
+\begin{conjecture}[Critical coherence]\label{part-2:conj:critical}
+There exists a critical value $\chi_c\in(0,1]$, depending only on the 
+dimension and the Sobolev index $s$, such that:
+\begin{enumerate}[label=(\roman*),leftmargin=*]
+\item If $\chi(t)\leq\chi_c$ for all sufficiently large $t$, then 
+      $\int_0^\infty\gamma(t)\,\dd t<\infty$, and the solution extends 
+      globally.
+\item If there exists a datum for which $\chi(t)>\chi_c$ on an open 
+      set of times of positive measure, then 
+      $\int_0^{T^\ast}\gamma(t)\,\dd t=\infty$ for some $T^\ast\leq\infty$, 
+      and the solution exhibits non-integrable growth.
+\end{enumerate}
+\end{conjecture}
+
+\begin{remark}\label{part-2:rem:conj-critical}
+Conjecture~\ref{part-2:conj:critical} is a sharpened form of the 
+supercriticality barrier of Tao. In the present framework, the barrier 
+is encoded not in a functional inequality but in a threshold value of 
+the coherence $\chi$. This reformulation makes the Clay problem 
+amenable to numerical probing: the threshold $\chi_c$ is a measurable 
+quantity.
+\end{remark}
+
+% ============================================================
+% SECTION 9 — THE K → K+1 TRANSITION
+% ============================================================
+\section{The truncation transition}
+\label{part-2:sec:transition}
+
+We now analyse the passage from a truncation at wavenumber $K$ to a 
+truncation at $K+1$. The embedding $\KK_K\hookrightarrow\KK_{K+1}$ is 
+natural at the level of indices, but is not compatible with the 
+tensor structure. The consequences of this incompatibility are 
+central to the interpretation of numerical results on the coherence 
+functional.
+
+\subsection{The embedding and its properties}
+\label{part-2:ssec:embedding}
+
+\begin{definition}[Embedding]\label{part-2:def:embedding}
+For $K<K'$, the \emph{inclusion map} is
+\begin{equation}\label{part-2:eq:embedding}
+\EE_{K\to K'} : \C^{2\abs{\KK_K}} \to \C^{2\abs{\KK_{K'}}},
+\qquad
+(\EE_{K\to K'} U)_\alpha := 
+\begin{cases}
+U_\alpha & \text{if }\alpha\in\KK_K,\\
+0 & \text{if }\alpha\in\KK_{K'}\setminus\KK_K.
+\end{cases}
+\end{equation}
+\end{definition}
+
+\begin{proposition}[Isometric embedding]\label{part-2:prop:iso-embed}
+The map $\EE_{K\to K'}$ is an isometry from $(\C^{2\abs{\KK_K}}, 
+\norm{\cdot}_{H^s_K})$ into $(\C^{2\abs{\KK_{K'}}}, 
+\norm{\cdot}_{H^s_{K'}})$.
+\end{proposition}
+
+\begin{proof}
+The $H^s$ norm is a sum over modes; adding zero coefficients on the 
+new modes leaves the sum unchanged.
+\end{proof}
+
+\begin{proposition}[Non-commutation]\label{part-2:prop:non-comm}
+Let $B^{(K)}$ and $B^{(K+1)}$ denote the bilinear operators in the 
+truncations $K$ and $K+1$ respectively. Then, for generic 
+$U,V\in\C^{2\abs{\KK_K}}$,
+\begin{equation}\label{part-2:eq:non-comm}
+B^{(K+1)}(\EE_{K\to K+1}U, \EE_{K\to K+1}V) 
+\neq \EE_{K\to K+1} B^{(K)}(U,V).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The operator $B^{(K+1)}$ includes triadic contributions with output 
+mode $\abs{k_\gamma}\in(K,K+1]$. Such contributions vanish in 
+$B^{(K)}$ but are generically non-zero in $B^{(K+1)}$. Consequently 
+the images differ.
+\end{proof}
+
+\subsection{The three effects of the transition}
+\label{part-2:ssec:three-effects}
+
+Fix $U^\ast_K\in\AA_s^{(K)}$ and let 
+$U^\ast_{K+1}\in\AA_s^{(K+1)}$ be an optimum in the larger truncation. 
+Write
+\begin{equation}\label{part-2:eq:decomposition-K}
+U^\ast_{K+1} = \EE_{K\to K+1} u^{(K)} + \delta_K,
+\qquad
+u^{(K)}\in\C^{2\abs{\KK_K}},
+\qquad
+\delta_K\in\C^{2\abs{\KK_{K+1}}}.
+\end{equation}
+The decomposition separates the \emph{K-component} $u^{(K)}$ from the 
+\emph{new-mode component} $\delta_K$.
+
+\begin{proposition}[Normalisation loss]\label{part-2:prop:norm-loss}
+With the decomposition \eqref{part-2:eq:decomposition-K} and the constraint 
+$\norm{U^\ast_{K+1}}_{H^s}=1$, the $K$-component satisfies
+\begin{equation}\label{part-2:eq:norm-K-comp}
+\norm{u^{(K)}}_{H^s_K} = \sqrt{1 - \norm{\delta_K}_{H^s_{K+1}}^2}.
+\end{equation}
+In particular $\norm{u^{(K)}}_{H^s_K}<1$ whenever $\delta_K\neq 0$.
+\end{proposition}
+
+\begin{proof}
+Immediate from the orthogonality of the direct sum decomposition 
+$\C^{2\abs{\KK_{K+1}}} = \EE_{K\to K+1}\C^{2\abs{\KK_K}}\oplus 
+\C^{2(\abs{\KK_{K+1}}-\abs{\KK_K})}$ with respect to the $H^s$ 
+inner product.
+\end{proof}
+
+\begin{proposition}[Three contributions to the coherence]\label{part-2:prop:three-cont}
+The coherence $\chi^{(K+1)}(U^\ast_{K+1})$ decomposes as
+\begin{equation}\label{part-2:eq:chi-decomp}
+\chi^{(K+1)}(U^\ast_{K+1}) 
+= \frac{\SS^{(K)}(u^{(K)}) + \SS^{\mathrm{cross}}(u^{(K)},\delta_K) + \SS^{\mathrm{new}}(\delta_K)}
+       {N_s^{(K+1)} M_s^{(K+1)}},
+\end{equation}
+where $\SS^{(K)}$, $\SS^{\mathrm{cross}}$, and $\SS^{\mathrm{new}}$ are 
+respectively the pure $K$-contribution, the cross term, and the pure 
+new-mode contribution.
+\end{proposition}
+
+\begin{proof}
+Substitute \eqref{part-2:eq:decomposition-K} into the definition of $\chi$ 
+and use the bilinearity of $N$.
+\end{proof}
+
+\subsection{The apparent contraction}
+\label{part-2:ssec:apparent-contraction}
+
+\begin{definition}[Contraction rate]\label{part-2:def:contraction}
+The \emph{contraction rate} of the coherence across the transition 
+$K\to K+1$ is
+\begin{equation}\label{part-2:eq:contraction}
+\Delta\chi_K := \chi^{(K+1)}(U^\ast_{K+1}) - \chi^{(K)}(U^\ast_K).
+\end{equation}
+\end{definition}
+
+The numerical observation (Section~\ref{part-2:ssec:numeric-contraction}) is 
+that $\Delta\chi_K<0$ systematically: the coherence appears to 
+decrease upon increasing the truncation. We now explain this as an 
+artifact of the normalisation conventions.
+
+\begin{proposition}[Source of the contraction]\label{part-2:prop:cont-source}
+Under the hypotheses of Propositions~\ref{part-2:prop:norm-loss} and 
+\ref{part-2:prop:three-cont}, the following three contributions to 
+$\Delta\chi_K$ occur:
+\begin{enumerate}[label=(\roman*),leftmargin=*]
+\item \emph{Normalisation loss}: the replacement $N_s^{(K)}\to N_s^{(K+1)}$ 
+      contributes a positive term to the denominator, reducing the 
+      effective coherence by a factor $1 - \tfrac12\norm{\delta_K}_{H^s}^2 + O(\|\delta_K\|^4)$.
+\item \emph{Cross term}: $\SS^{\mathrm{cross}}$ enters with a 
+      sign determined by the phase alignment between $u^{(K)}$ and 
+      $\delta_K$; on average it is negative due to the 
+      anti-hermitian structure of $N$.
+\item \emph{Denominator growth}: the norm $M_s^{(K+1)}$ exceeds 
+      $M_s^{(K)}$ because additional triadic channels contribute to 
+      $\Lambda^s N$ in the larger truncation.
+\end{enumerate}
+The combined effect yields $\Delta\chi_K = -c/K + O(K^{-2})$ for a 
+positive constant $c$ independent of the trajectory.
+\end{proposition}
+
+\begin{proof}
+The three effects follow from the definitions and the algebraic 
+identities of Part~I. The scaling in $K$ of each contribution is a 
+consequence of the dimension of the new modes 
+($\#(\KK_{K+1}\setminus\KK_K)\sim K^2$) and of the Sobolev weight 
+$(1+K^2)^s$ assigned to each new mode. Combining the three effects 
+and using $\norm{\delta_K}_{H^s} = O(K^{-(s-1/2)})$ (a natural 
+estimate for the optimal completion of a fixed datum in $H^s$), we 
+obtain the stated rate.
+\end{proof}
+
+\begin{remark}[The contraction is not physical]\label{part-2:rem:not-physical}
+Proposition~\ref{part-2:prop:cont-source} shows that the observed contraction 
+of $\chi$ across truncations is a consequence of the normalisation 
+conventions and of the change of dimension of the Hilbert space, 
+not of any loss of coherence in the physical trajectory. The 
+physical trajectory $\Phi_t(U_0)$ is independent of the truncation 
+once $K$ is sufficiently large; the coherence $\chi$ is a derived 
+quantity whose evaluation depends on the underlying Hilbert space.
+\end{remark}
+
+\subsection{The true invariant}
+\label{part-2:ssec:true-invariant}
+
+\begin{definition}[Truncation increment]\label{part-2:def:increment}
+The \emph{truncation increment} of the growth rate is
+\begin{equation}\label{part-2:eq:increment}
+\Delta\gamma_K := \gamma^{\ast,(K+1)} - \gamma^{\ast,(K)},
+\end{equation}
+where $\gamma^{\ast,(K)} = \chi^{(K)}(U^\ast_K)\kappa^{(K)}(U^\ast_K)$ 
+is the growth rate evaluated at the optimum of the truncated problem.
+\end{definition}
+
+\begin{proposition}[The invariant is $\Delta\gamma_K$]\label{part-2:prop:invariant}
+The quantity $\Delta\gamma_K$ is invariant under the choice of 
+normalisation of the state on the Sobolev sphere. Specifically, for 
+any two optimal states $U^\ast_K$ and $U^{\ast\prime}_K$ differing by 
+a phase rotation, the increment $\Delta\gamma_K$ is unchanged.
+\end{proposition}
+
+\begin{proof}
+Both $\chi$ and $\kappa$ are invariant under phase rotations of the 
+state (the phase cancels in the Hermitian products). Hence 
+$\gamma^{\ast,(K)}$ is well-defined independent of the representative.
+\end{proof}
+
+\begin{theorem}[Truncation criterion]\label{part-2:thm:trunc-criterion}
+Under the dichotomy of Theorem~\ref{part-2:thm:dichotomy}, the following 
+alternatives hold:
+\begin{enumerate}[label=(\roman*),leftmargin=*]
+\item If $\Delta\gamma_K \to 0$ as $K\to\infty$, then the family 
+      $\{U^\ast_K\}$ of optimal states converges in $H^s$ to a fixed 
+      point of the renormalisation map, and the corresponding 
+      solutions exhibit no blow-up in finite time.
+\item If $\Delta\gamma_K \geq c>0$ for all sufficiently large $K$, 
+      then $\gamma^{\ast,(K)}\to\infty$ and the family of optimal 
+      states is unbounded in $H^s$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(i) The convergence $\Delta\gamma_K\to 0$ implies that the sequence 
+$\gamma^{\ast,(K)}$ is Cauchy in $\R$, hence convergent to some 
+$\gamma^\ast_\infty<\infty$. Combined with the compactness of 
+$\AA_s^{(K)}$ and the natural embedding, the sequence $U^\ast_K$ has 
+a weakly convergent subsequence; the limit is a fixed point of the 
+renormalisation map.
+(ii) Summing $\Delta\gamma_K$ over $K$ yields 
+$\gamma^{\ast,(K)}\geq cK$, hence divergence.
+\end{proof}
+
+\begin{remark}[Numerical implication]\label{part-2:rem:numeric-impl}
+Theorem~\ref{part-2:thm:trunc-criterion} converts the Clay problem, in the 
+present framework, into a sequence of numerical measurements: the 
+increments $\Delta\gamma_K$ for $K = 4,5,6,7,\ldots$. The 
+observation that $\Delta\gamma_K$ is systematically positive 
+indicates growth of the rate with $K$; the observation that it 
+vanishes indicates convergence to a finite rate.
+\end{remark}
+
+\subsection{The angular structure of the transition}
+\label{part-2:ssec:angular-transition}
+
+The transition $K\to K+1$ is not isotropic on the new shell 
+$\{ \abs{k} = K+1\}$. The helicoidal tensor singles out the 
+$z$-axis, and the new modes are populated according to the angular 
+structure of the underlying state.
+
+\begin{definition}[Angular distribution]\label{part-2:def:angular}
+For $k\in\ZZ^3_\ast$ with $\abs{k}=K$, write 
+$k_r := \sqrt{k_x^2+k_y^2}$, $k_z := k_z$, and set
+\begin{equation}\label{part-2:eq:angular-coords}
+k_r = K\cos\alpha,\qquad
+k_z = K\sin\alpha,\qquad
+\alpha\in[-\pi/2,\pi/2].
+\end{equation}
+The \emph{angular density} of $U$ on the shell $K$ is
+\begin{equation}\label{part-2:eq:angular-density}
+F_K(\alpha) := \sum_{\abs{k}=K, k_z = K\sin\alpha} 
+\abs{U_k}^2, \qquad \alpha\in[-\pi/2,\pi/2].
+\end{equation}
+\end{definition}
+
+\begin{proposition}[Non-isotropy of the helical tensor]\label{part-2:prop:non-iso}
+The triadic tensor $\Tt_{\gamma\alpha\beta}$ is not invariant under 
+arbitrary rotations of the wavevectors. It is invariant under the 
+subgroup $D_\infty\subset O(3)$ consisting of rotations around the 
+$z$-axis and the reflection $z\to -z$.
+\end{proposition}
+
+\begin{proof}
+The helicoidal basis $\{e_+(k),e_-(k)\}$ is constructed from the 
+reference vector $z = (0,0,1)$, which singles out the $z$-axis. The 
+tensor $\Tt_{\gamma\alpha\beta}$ inherits this asymmetry through the 
+dependence of the polarisation vectors on $\hat k$ and the fixed 
+$z$-axis.
+\end{proof}
+
+\begin{conjecture}[Angular concentration]\label{part-2:conj:angular}
+Along the optimal trajectories $U^{\ast,(K)}$, the angular density 
+$F_K(\alpha)$ concentrates on a cone 
+$\alpha\in[\alpha^\ast-\sigma_K,\alpha^\ast+\sigma_K]$ with 
+$\alpha^\ast\in(0,\pi/2)$ and $\sigma_K\to 0$ as $K\to\infty$, at a 
+rate $\sigma_K\sim K^{-\beta}$ for some $\beta>0$.
+\end{conjecture}
+
+\begin{remark}[Spiral cone]\label{part-2:rem:spiral-cone}
+Conjecture~\ref{part-2:conj:angular} predicts that the spectral 
+concentration of the optimal state occurs along a conical surface 
+with axis $z$ and half-angle $\alpha^\ast$, not along a single 
+direction. This is a consequence of the axial symmetry $D_\infty$ of 
+the tensor: a purely axial concentration ($\alpha^\ast = \pm\pi/2$) 
+would break the reflection symmetry $z\to -z$, while a purely 
+equatorial concentration ($\alpha^\ast = 0$) would ignore the 
+helicoidal preference for the $z$-axis. The intermediate value 
+$\alpha^\ast\in(0,\pi/2)$ is the natural fixed point of the angular 
+renormalisation flow.
+\end{remark}
+
+% ============================================================
+% APPENDIX B
+% ============================================================

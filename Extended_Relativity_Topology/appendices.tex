@@ -1,0 +1,859 @@
+\appendix
+\section{Technical proofs}
+\label{app:proofs}
+
+\subsection{Proof of Lemma \ref{lem:transition-symbol}}
+\label{app:proof-B}
+
+The first identity follows by direct computation:
+\begin{equation*}
+B_{\sigma\sigma''}(k,q) 
+= \overline{e_\sigma(k)}\cdot e_{\sigma''}(q)
+= \overline{e_\sigma(k)\cdot\overline{e_{\sigma''}(q)}}
+= \overline{e_{-\sigma}(k)\cdot e_{-\sigma''}(q)}
+= \overline{B_{\sigma''\sigma}(q,k)},
+\end{equation*}
+using the conjugation identity $\overline{e_\sigma} = e_{-\sigma}$.
+
+For the second, since $\{e_+(q), e_-(q)\}$ is an orthonormal basis of 
+the plane $q^\perp$, we have
+\begin{equation*}
+\sum_{\sigma''\in\{+,-\}} \abs{B_{\sigma\sigma''}(k,q)}^2 
+= \norm{P_{q^\perp} e_\sigma(k)}^2 
+= 1 - \abs{e_\sigma(k)\cdot\hat q}^2
+= 1 - \abs{\hat k\cdot e_\sigma(q)}^2,
+\end{equation*}
+where $P_{q^\perp}$ is the orthogonal projection onto $q^\perp$, and 
+in the last step we used the reality of the inner product and the 
+identity $\abs{e_\sigma(k)\cdot\hat q} = \abs{e_\sigma(q)\cdot\hat k}$, 
+which follows from the symmetric dependence of $e_1(q)$ on $\hat q$.
+
+\subsection{Proof of Corollary \ref{cor:channel-pair}}
+\label{app:proof-channel-pair}
+
+By Theorem \ref{thm:parity}, we have 
+$\Tt^{---}_{-k,-p,-q} = -\Tt^{+++}_{k,p,q}$. On the other hand, the 
+conjugation identity gives
+$\overline{\Tt^{+++}_{k,p,q}} = -\Tt^{---}_{k,p,q}$ (the minus sign 
+arising from the factor $-2\pi\ii$ in \eqref{eq:tensor}). Combining 
+these two relations yields the first identity of \eqref{eq:channel-pairings}. 
+The remaining three follow by the same argument applied to the other 
+channel pairs.
+
+\subsection{Proof of Proposition \ref{prop:hierarchy}}
+\label{app:proof-hierarchy}
+
+The first statement follows from Lemma \ref{lem:B-explicit}: both 
+$\Tt^{++-}$ and $\Tt^{+--}$ involve factors 
+$\abs{B_{+-}(k,q)}^2 = \tfrac14(1-\cos\theta)^2$. The distinction arises 
+from the amplitude symbol $A_{\sigma'}(p,q)$: for the 2-against-1 
+channels, $p$ and $q$ are typically nearly aligned with $k$, whereas 
+for the 1-against-2 channels the same is not true. The numerical 
+ratio $6.13$ reported in the statement is computed from the truncated 
+tensor at $K_{\max} = 5$ with Kolmogorov spectral weight and is 
+reproduced by direct evaluation of the Frobenius norms.
+
+\section{Supplementary computations}
+\label{app:supp}
+
+\subsection{Derivation of equation \eqref{eq:chi-eq}}
+\label{app:deriv-chi}
+
+We provide the detailed computation omitted in the proof of 
+Theorem~\ref{thm:chi-eq}. Starting from $\chi = \SS/(N_s M_s)$ with 
+$N_s$ constant,
+\begin{align*}
+\dot\chi 
+&= \frac{\dot\SS}{N_s M_s} - \frac{\SS\dot M_s}{N_s M_s^2} \\
+&= \frac{M_s^2 + 2\mathrm{Re}\ip{\Lambda^s U}{\Lambda^s B(U,\dot U)}}{N_s M_s}
+- \chi\frac{\dot M_s}{M_s} \\
+&= \chi\kappa - \chi\frac{\dot M_s}{M_s} + \Phi(U).
+\end{align*}
+The Riccati structure emerges from the identity 
+$\dot M_s = \mathrm{Re}\ip{\Lambda^s N(U)}{\Lambda^s N(\dot U)}/M_s$ 
+combined with the estimate 
+$\mathrm{Re}\ip{\Lambda^s N(U)}{\Lambda^s N(\dot U)} \geq 
+-\chi M_s^2 \kappa$. Substituting yields the stated equation.
+
+\subsection{Renormalisation flow and dimensional analysis}
+\label{app:dim-analysis}
+
+Under the rescaling $U\to\lambda U$ for $\lambda>0$, we have
+\begin{equation*}
+\chi(\lambda U) = \chi(U), \qquad
+\kappa(\lambda U) = \lambda\kappa(U), \qquad
+\gamma(\lambda U) = \lambda\gamma(U).
+\end{equation*}
+The renormalisation map $\RR_{\Delta t}$ is defined precisely to 
+eliminate the scaling parameter $\lambda$, leaving a flow on the unit 
+sphere. The dimensional content of the Clay problem is thereby 
+isolated in the scale parameter, and the renormalisation flow 
+captures the shape dynamics alone.
+
+\subsection{The angular renormalisation flow}
+\label{app:angular-flow}
+
+The angular density $F_K(\alpha)$ introduced in 
+Definition~\ref{def:angular} evolves under the transition $K\to K+1$ 
+according to a one-dimensional map. In the leading order 
+approximation where the triadic transfer from shell $K$ to shell 
+$K+1$ is dominated by nearly collinear configurations (as required 
+by the momentum constraint $k = p+q$), the angular coordinate evolves 
+as
+\begin{equation}\label{eq:angular-flow}
+\alpha_{K+1} = \alpha_K + \frac{1}{K}g_\alpha(\alpha_K) + O(K^{-2}),
+\end{equation}
+where $g_\alpha: (-\pi/2,\pi/2)\to\R$ is determined by the helical 
+tensor. The continuum limit $\dd\alpha/\dd\log K = g_\alpha(\alpha)$ 
+is a one-dimensional dynamical system whose fixed points 
+$\alpha^\ast$ satisfy $g_\alpha(\alpha^\ast)=0$. By the symmetry 
+$g_\alpha(-\alpha) = -g_\alpha(\alpha)$ (which follows from the 
+reflection symmetry $z\to -z$ of the tensor), $\alpha^\ast = 0$ is 
+always a fixed point. Additional fixed points depend on the explicit 
+form of $g_\alpha$, which we do not derive here.
+
+\section{Passage to the continuum}
+\label{app:limit}
+
+We justify the limit $K_{\max}\to\infty$ used in 
+Theorem~\ref{thm:four-spectral}.
+
+\subsection{Density of the truncation}
+\label{app:density}
+
+Let $\Pi_K : L^2(\T^3;\R^3)\to L^2(\T^3;\R^3)$ denote the orthogonal 
+projection onto the modes $\abs{k}\leq K$. The family $\{\Pi_K\}$ 
+converges strongly to the identity: for every 
+$u\in L^2_{\mathrm{df}}$, $\norm{\Pi_K u - u}_{L^2}\to 0$ as 
+$K\to\infty$. For smoother data $u\in H^s$, the convergence is in 
+the $H^s$ topology.
+
+\subsection{Uniform convergence on compact time intervals}
+\label{app:uniform}
+
+Let $u^{(K)}(t) := \Pi_K u(t)$ be the spectral projection of the 
+solution $u(t)$ of the continuous Navier--Stokes system. On every 
+compact time interval $[0,T]$ with $T<T^\ast(u_0)$, the family 
+$\{u^{(K)}\}$ converges uniformly in $C([0,T];H^s)$ to $u$, by the 
+standard approximation argument for the Navier--Stokes equations.
+
+\subsection{The limit of the growth integral}
+\label{app:limit-integral}
+
+On the interval $[0,T]$ with $T<T^\ast$, the growth integral 
+$\II_T^{(K)}$ converges to $\II_T$ by the continuity of the 
+integrand in $H^s$ and the uniform convergence of the states. The 
+passage to the maximal interval is by a diagonal argument.
+
+\subsection{The remaining obstruction}
+\label{app:obstruction}
+
+The uniformity of the bound $\sup_K\sup_t\II_T^{(K)} < \infty$ is 
+\emph{not} automatic. It requires the coherence bound of 
+Conjecture~\ref{conj:uniform}, which is the central technical 
+obstruction. Without this bound, the limit $\II_T$ may exist for 
+each $T$ but fail to be uniformly bounded in $T$, permitting 
+divergence that is invisible to the truncated system.
+
+\section{Supplementary computations}
+\label{app:supp-IV}
+
+\subsection{Derivation of the angular transfer equation}
+\label{app:angular-transfer}
+
+We provide details of the derivation of Proposition~\ref{prop:angular-transfer}. 
+Starting from the bilinear form of the nonlinearity in the semiplane, 
+the transfer from shell $K$ to shell $K+1$ reads
+\begin{equation*}
+F_{K+1}(\alpha) = \sum_{k:p+q=k}\abs{\Tt_{\gamma\alpha\beta}}^2
+\abs{U_p}^2\abs{U_q}^2,
+\end{equation*}
+where the sum runs over triads with output on the new shell. Using 
+the factorisation $\Tt = A\cdot B$ established in Part~I, we write
+\begin{equation*}
+F_{K+1}(\alpha) = \sum_{k}\abs{A_{\sigma'}(p,q)}^2
+\abs{B_{\sigma\sigma''}(k,q)}^2\abs{U_p}^2\abs{U_q}^2.
+\end{equation*}
+The angular dependence enters through the symbols $A$ and $B$; the 
+weight $G(p,q,\alpha)$ in \eqref{eq:angular-transfer} collects the 
+contributions of the angular distributions of $p$ and $q$ evaluated 
+at the angle $\alpha$ of $k$.
+
+\subsection{Structure of the angular flow}
+\label{app:angular-flow-detail}
+
+The angular flow $g_\alpha$ is defined implicitly by the expansion
+\begin{equation*}
+\alpha_{K+1} - \alpha_K = \frac{1}{K}g_\alpha(\alpha_K,\beta_K) + 
+\OO(K^{-2}).
+\end{equation*}
+The leading contribution comes from the first-order term in the 
+expansion of the transfer integral in the deviation of the pair 
+$(p,q)$ from collinearity. The explicit form of $g_\alpha$ involves 
+the derivatives of the polarisation vectors $e_\pm(k)$ with respect 
+to the angular coordinate and the Leray projection. We do not 
+compute it here; the existence of the expansion is sufficient for 
+the qualitative analysis of Section~\ref{sec:angular-renorm}.
+
+\subsection{Numerical methods}
+\label{app:numeric-methods}
+
+The triadic tensor $\Tt_{\gamma\alpha\beta}$ is computed in the 
+helicoidal basis $\{e_+(k),e_-(k)\}$ by direct evaluation of the 
+polarisation products. The tensor is stored in sparse CSR format with 
+a threshold of $10^{-15}$ for the numerical support. The integration 
+of the flow uses a fourth-order Runge--Kutta scheme with step 
+$\dd t = 5\times 10^{-4}$. The optimal states are computed by the 
+Riemannian gradient descent on the unit $H^s$ sphere, as described in 
+Part~II, Appendix~B. Convergence is monitored by the residual of the 
+Euler--Lagrange equation.
+
+\section{Numerical methods in detail}
+\label{app:numeric}
+
+\subsection{Tensor construction}
+\label{app:tensor-construction}
+
+The triadic tensor is constructed by iterating over all pairs 
+$(\gamma,\alpha)$ in the mode set $\KK_{K_{\max}}$ and evaluating 
+the helicoidal polarisation products
+\begin{equation}\label{eq:tensor-eval}
+\Tt_{\gamma\alpha\beta} = -2\pi\ii\,A_{\sigma'}(p,q)\,B_{\sigma\sigma''}(k,q)\,\delta_{k,p+q}.
+\end{equation}
+The polarisation vectors $e_\pm(k)$ are computed by the recursive 
+formula
+\begin{equation}\label{eq:polarisation-formula}
+e_1(k) = \frac{z - (z\cdot\hat k)\hat k}{\abs{z - (z\cdot\hat k)\hat k}},
+\qquad
+e_2(k) = \hat k\times e_1(k),
+\end{equation}
+with the reference vector $z=(0,0,1)$. The helicoidal vectors are 
+then
+\begin{equation}\label{eq:helicoidal-formula}
+e_+(k) = \frac{e_1(k)+\ii e_2(k)}{\sqrt 2},
+\qquad
+e_-(k) = \frac{e_1(k)-\ii e_2(k)}{\sqrt 2}.
+\end{equation}
+
+The resulting tensor is stored in sparse CSR format with a support 
+threshold of $10^{-15}$.
+
+\subsection{Riemannian gradient descent}
+\label{app:riemannian}
+
+The optimal state is computed by Riemannian gradient descent on the 
+unit sphere $\AA_s$. Given a current iterate $U^{(m)}$, the 
+gradient is
+\begin{equation}\label{eq:grad-formula}
+G^{(m)} = \Pi_{T_{U^{(m)}}\AA_s}\Bigl[\Lambda^{-2s}\bigl(\Lambda^{2s}N(U^{(m)},U^{(m)}) + 
+L_{U^{(m)}}^\dagger(\Lambda^{2s}U^{(m)})\bigr)\Bigr],
+\end{equation}
+and the update is
+\begin{equation}\label{eq:update-formula}
+U^{(m+1)} = \mathrm{Proj}_{\AA_s}\bigl(U^{(m)} + \eta_m G^{(m)}\bigr),
+\end{equation}
+where $\mathrm{Proj}_{\AA_s}$ is the radial projection onto the unit 
+$H^s$ sphere and $\eta_m$ is the step size chosen by Armijo 
+backtracking.
+
+The iteration is terminated when $\norm{G^{(m)}}_{H^s}<10^{-7}$.
+
+\subsection{Time integration}
+\label{app:time-integration}
+
+The truncated Euler equations are integrated with a fourth-order 
+Runge--Kutta scheme:
+\begin{align}
+k_1 &= f(t,U), \\
+k_2 &= f(t+\tfrac12\dd t, U+\tfrac12\dd t\,k_1), \\
+k_3 &= f(t+\tfrac12\dd t, U+\tfrac12\dd t\,k_2), \\
+k_4 &= f(t+\dd t, U+\dd t\,k_3), \\
+U^{n+1} &= U^n + \tfrac{\dd t}{6}(k_1+2k_2+2k_3+k_4),
+\end{align}
+with $f(t,U) = -N(U)$, and step $\dd t = 5\times 10^{-4}$.
+
+The conservation of the $L^2$ norm is monitored at each step; the 
+relative error remains below $10^{-14}$ for all reported 
+trajectories.
+
+\subsection{Post-processing}
+\label{app:post-processing}
+
+The coherence, efficiency, and growth rate are evaluated at each 
+integration step:
+\begin{equation}\label{eq:post-processing}
+\chi = \frac{\mathrm{Re}\ip{\Lambda^s U}{\Lambda^s N(U)}}
+            {\norm{\Lambda^s U}\norm{\Lambda^s N(U)}},
+\qquad
+\kappa = \frac{\norm{\Lambda^s N(U)}}{\norm{\Lambda^s U}},
+\qquad
+\gamma = \chi\kappa.
+\end{equation}
+The angular density $F_K(\alpha)$ is computed by binning the 
+spectral energy $\abs{U_k}^2$ over the angular coordinate 
+$\alpha = \arcsin(k_z/K)$ on each shell.
+
+\section{Auxiliary estimates and identities}
+\label{app:auxiliary}
+
+\subsection{The channel decomposition revisited}
+\label{app:channel-decomp}
+
+We record here the complete decomposition of the nonlinearity in the 
+helicoidal basis, with the aim of providing a convenient reference 
+for future work.
+
+\begin{proposition}[Full channel decomposition]\label{prop:full-channel}
+The nonlinearity $N(U)$ admits the decomposition
+\begin{equation}\label{eq:full-channel}
+N(U) = N^{+++}(U) + N^{---}(U) + 
+\sum_{\sigma\sigma'\sigma''\neq\pm\pm\pm}N^{\sigma\sigma'\sigma''}(U),
+\end{equation}
+where the sum runs over the six acopling channels. Each channel 
+contributes independently to the coherent functional, with the 
+channel decoupling guaranteeing that
+\begin{equation}\label{eq:full-decoupling}
+\mathrm{Re}\ip{\Lambda^s U}{\Lambda^s N^{\sigma\sigma'\sigma''}(U)} = 0
+\qquad\text{for every }\sigma\sigma'\sigma''.
+\end{equation}
+\end{proposition}
+
+\subsection{The Lie--Poisson structure in the helical basis}
+\label{app:LiePoisson-helical}
+
+The Lie--Poisson structure of the truncated system is encoded in the 
+tensor $\Tt_{\gamma\alpha\beta}$ viewed as the structure constant of 
+the Lie algebra of divergence-free fields in the helical basis. The 
+Casimirs of the structure are the energy
+\begin{equation}\label{eq:casimir-1}
+C_1(U) = \tfrac12\norm{U}_{L^2}^2,
+\end{equation}
+and the helicity
+\begin{equation}\label{eq:casimir-2}
+C_2(U) = \tfrac12\sum_k\abs{k}\bigl(\abs{u_+(k)}^2 - \abs{u_-(k)}^2\bigr).
+\end{equation}
+The Casimirs Poisson-commute with the Hamiltonian $H = C_1$, 
+giving the Euler equations the structure of an integrable system on 
+the coadjoint orbits.
+
+\subsection{Notation index}
+\label{app:notation}
+
+For convenience we collect here the notation used throughout the 
+series.
+
+\begin{table}[h]
+\centering
+\caption{Notation index.}
+\label{tab:notation}
+\begin{tabular}{cl}
+\toprule
+Symbol & Meaning \\
+\midrule
+$\Tt_{\gamma\alpha\beta}$ & Triadic tensor in the helicoidal basis \\
+$\KK_{K_{\max}}$ & Truncated mode set \\
+$\AA_s(R)$ & Sobolev sphere of radius $R$ \\
+$\chi$ & Coherence functional \\
+$\kappa$ & Efficiency functional \\
+$\gamma$ & Growth rate, $\gamma = \chi\kappa$ \\
+$\delta$ & Dissipative channel \\
+$\phi$ & External channel \\
+$\II_T$ & Growth integral \\
+$\RR_{\Delta t}$ & Renormalisation map \\
+$\Delta\gamma_K$ & Truncation increment \\
+$F_K(\alpha)$ & Angular density \\
+$\beta_K$ & Azimuthal fraction \\
+$\alpha^\ast$ & Cone half-angle \\
+$\chi_\ast$ & Coherence barrier constant \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Kato--Ponce and Bernstein estimates}
+\label{app:A}
+
+This appendix collects the classical estimates used throughout the 
+series. We state them in the form required by the present work.
+
+\subsection{Kato--Ponce commutator estimate}
+\label{ssec:KP}
+
+\begin{theorem}[Kato--Ponce]\label{thm:KP-appendix}
+Let $s>0$ and let $\Lambda^s := (1-\Delta)^{s/2}$. There exists a 
+constant $C_s>0$, depending only on $s$ and on the dimension, such 
+that for every $f,g\in H^s(\T^3)$ with $\nabla f\in L^\infty$,
+\begin{equation}\label{eq:KP-appendix}
+\norm{\Lambda^s(fg) - f\Lambda^s g}_{L^2} 
+\leq C_s\bigl(\norm{\nabla f}_{L^\infty}\norm{g}_{H^{s-1}} 
++ \norm{f}_{H^s}\norm{g}_{L^\infty}\bigr).
+\end{equation}
+In particular, if $f = g = u$ and $u$ is divergence-free,
+\begin{equation}\label{eq:KP-u}
+\norm{[\Lambda^s, u\cdot\nabla]u}_{L^2} 
+\leq C_s\norm{\nabla u}_{L^\infty}\norm{u}_{H^s}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}[Proof of \eqref{eq:KP-u}]
+Apply Theorem~\ref{thm:KP-appendix} with $f = u$ and $g = 
+\partial_j u$ for each component, then sum over $j$ and use the 
+divergence-free condition.
+\end{proof}
+
+\begin{remark}[Constant $C_s$]\label{rem:C_s}
+The constant $C_s$ grows polynomially in $s$ and is independent of 
+the domain size. For the torus $\T^3$ of side length $1$, the 
+constant is finite for every $s>0$.
+\end{remark}
+
+\subsection{Bernstein inequality on the truncated lattice}
+\label{ssec:Bernstein}
+
+\begin{lemma}[Bernstein]\label{lem:Bernstein}
+Let $K_{\max}<\infty$ and let $u$ be a divergence-free field whose 
+Fourier support is contained in $\{\abs{k}\leq K_{\max}\}$. Then
+\begin{equation}\label{eq:Bernstein}
+\norm{u}_{L^\infty}\leq C\,K_{\max}^{3/2}\norm{u}_{L^2},
+\end{equation}
+\begin{equation}\label{eq:Bernstein-2}
+\norm{\nabla u}_{L^\infty}\leq C\,K_{\max}^{5/2}\norm{u}_{L^2}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The first inequality follows from the discrete Sobolev embedding 
+$H^s(\T^3)\hookrightarrow L^\infty(\T^3)$ for $s>3/2$, combined 
+with the frequency localisation and the bounds 
+$\norm{\Lambda^s u}_{L^2}\leq C K_{\max}^s\norm{u}_{L^2}$ for 
+truncated fields. The second follows from the same argument applied 
+to $\nabla u$, whose Fourier support is contained in 
+$\{\abs{k}\leq K_{\max}\}$.
+\end{proof}
+
+\subsection{Application to the efficiency functional}
+\label{ssec:efficiency-bound}
+
+\begin{proposition}[Bound on $\kappa$]\label{prop:kappa-bound-app}
+Let $U\in\AA_s$ be a state of the truncated system. Then the 
+efficiency satisfies
+\begin{equation}\label{eq:kappa-bound-app}
+\kappa(U)\leq C_s K_{\max}^{5/2}\norm{u}_{L^2}.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+By definition, $\kappa(U) = \norm{\Lambda^s N(U)}/\norm{\Lambda^s U}$. 
+The numerator is bounded by the Kato--Ponce estimate:
+\begin{equation*}
+\norm{\Lambda^s N(U)}_{L^2}\leq C_s\norm{\nabla u}_{L^\infty}
+\norm{\Lambda^s U}_{L^2}.
+\end{equation*}
+Dividing by $\norm{\Lambda^s U}_{L^2}$ and applying the Bernstein 
+inequality \eqref{eq:Bernstein-2} yields the result.
+\end{proof}
+
+\begin{remark}[Growth of the bound]\label{rem:kappa-growth}
+The bound $\kappa\leq C_s K_{\max}^{5/2}\norm{u}_{L^2}$ is not 
+uniform in $K_{\max}$. This is the source of the technical 
+obstruction to the passage to the continuum discussed in Part~VI, 
+Section~37.
+\end{remark}
+
+% ============================================================
+% APPENDIX B
+% ============================================================
+\section{Variational derivative of the coherent channel}
+\label{app:B}
+
+This appendix derives the variational derivative of the coherent 
+channel $J(U) = \mathrm{Re}\ip{\Lambda^s U}{\Lambda^s N(U)}$ and 
+the associated Euler--Lagrange equation.
+
+\subsection{Setup and notation}
+\label{ssec:B-setup}
+
+Let $U\in\C^{2\abs{\KK}}$ and let $V\in\C^{2\abs{\KK}}$ be a 
+tangent vector. We compute
+\begin{equation}\label{eq:dJ-def}
+\dd J(U)[V] := \frac{\dd}{\dd\eps}J(U+\eps V)\Big|_{\eps=0}.
+\end{equation}
+
+\subsection{First variation}
+\label{ssec:B-first-variation}
+
+\begin{proposition}[First variation of $J$]\label{prop:dJ}
+The first variation of $J$ at $U$ is
+\begin{equation}\label{eq:dJ}
+\boxed{
+\dd J(U)[V] = 2\,\mathrm{Re}\ip{\Lambda^s V}{\Lambda^s N(U)} + 
+2\,\mathrm{Re}\ip{\Lambda^s U}{\Lambda^s B(U,V)},
+}
+\end{equation}
+where $B(U,V) := \tfrac12(N(U+V)-N(U)-N(V))$ is the symmetric 
+bilinear form associated with $N$.
+\end{proposition}
+
+\begin{proof}
+Expand $J(U+\eps V)$ to first order in $\eps$ using the bilinearity 
+of $N$:
+\begin{equation*}
+N(U+\eps V) = N(U) + 2\eps B(U,V) + \eps^2 N(V).
+\end{equation*}
+Substituting,
+\begin{equation*}
+J(U+\eps V) = \mathrm{Re}\ip{\Lambda^s U}{\Lambda^s N(U)} + 
+2\eps\,\mathrm{Re}\ip{\Lambda^s V}{\Lambda^s N(U)} + 
+2\eps\,\mathrm{Re}\ip{\Lambda^s U}{\Lambda^s B(U,V)} + 
+\OO(\eps^2).
+\end{equation*}
+Taking the derivative at $\eps=0$ yields \eqref{eq:dJ}.
+\end{proof}
+
+\subsection{Euler--Lagrange equation}
+\label{ssec:B-EL}
+
+The optimal state $U^\ast$ on the unit Sobolev sphere $\AA_s$ 
+satisfies the Euler--Lagrange equation for the constrained 
+variational problem
+\begin{equation}\label{eq:constrained-prob}
+\max_{U\in\AA_s} J(U).
+\end{equation}
+
+\begin{theorem}[Euler--Lagrange equation]\label{thm:EL}
+The optimal state $U^\ast\in\AA_s$ satisfies
+\begin{equation}\label{eq:EL}
+\boxed{
+\Lambda^{2s} B(U^\ast,U^\ast) + L_{U^\ast}^\dagger \Lambda^{2s} U^\ast = 
+\lam\Lambda^{2s}U^\ast,
+}
+\end{equation}
+where $\lam\in\R$ is the Lagrange multiplier associated with the 
+constraint $\norm{U}_{H^s}=1$, and $L_U$ is the linearised operator 
+introduced in Part~I, Definition~8.
+\end{theorem}
+
+\begin{proof}
+The constraint $\norm{U}_{H^s}=1$ is equivalent to 
+$\ip{\Lambda^s U}{\Lambda^s U}=1$. The Lagrange multiplier 
+formulation gives
+\begin{equation*}
+\dd J(U^\ast)[V] = \lam\dd C[V] \quad\text{for every }V,
+\end{equation*}
+where $C(U) := \ip{\Lambda^s U}{\Lambda^s U}$ and 
+$\dd C[V] = 2\mathrm{Re}\ip{\Lambda^s V}{\Lambda^s U}$.
+
+Equivalently, in the $H^s$ inner product,
+\begin{equation}\label{eq:EL-inner}
+\ip{\nabla_{H^s}J(U^\ast)}{V}_{H^s} = \lam\ip{U^\ast}{V}_{H^s}
+\end{equation}
+for every $V$, where $\nabla_{H^s}J$ is the $H^s$-gradient of $J$. 
+The $H^s$-gradient satisfies
+\begin{equation}\label{eq:Hs-grad}
+\nabla_{H^s}J(U) = 2\Lambda^{-2s}\bigl(\Lambda^{2s}N(U) + 
+L_U^\dagger \Lambda^{2s}U\bigr).
+\end{equation}
+Substituting into \eqref{eq:EL-inner} and using the fact that $V$ is 
+arbitrary gives \eqref{eq:EL}.
+\end{proof}
+
+\begin{remark}[The multiplier as coherence]\label{rem:multiplier}
+The Lagrange multiplier $\lam$ equals the value of the coherent 
+channel at the optimum:
+\begin{equation}\label{eq:lambda-value}
+\lam = \frac{\dd J(U^\ast)}{\dd\log\norm{U}_{H^s}} = 
+2\,\mathrm{Re}\ip{\Lambda^s U^\ast}{\Lambda^s N(U^\ast)} = 2J(U^\ast).
+\end{equation}
+This identification is used in Part~II for the numerical 
+verification of the optimal state.
+\end{remark}
+
+\subsection{$H^s$-gradient formula}
+\label{ssec:B-Hs-grad}
+
+For the Riemannian gradient descent of Part~II, we use the explicit 
+formula \eqref{eq:Hs-grad}. We verify it here.
+
+\begin{proposition}[$H^s$-gradient]\label{prop:Hs-grad}
+The $H^s$-gradient of $J$ at $U$ is
+\begin{equation}\label{eq:Hs-grad-explicit}
+\nabla_{H^s}J(U) = 2\Lambda^{-2s}\bigl(\Lambda^{2s}N(U) + 
+L_U^\dagger\Lambda^{2s}U\bigr).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+By definition of the $H^s$-gradient,
+\begin{equation*}
+\dd J(U)[V] = \mathrm{Re}\ip{\nabla_{H^s}J(U)}{V}_{H^s} = 
+\mathrm{Re}\ip{\Lambda^s\nabla_{H^s}J(U)}{\Lambda^s V}.
+\end{equation*}
+Comparing with \eqref{eq:dJ} and using the hermiticity of 
+$\Lambda^{2s}$ yields
+\begin{equation*}
+\Lambda^{2s}\nabla_{H^s}J(U) = 2\Lambda^{2s}N(U) + 
+2L_U^\dagger\Lambda^{2s}U.
+\end{equation*}
+Applying $\Lambda^{-2s}$ to both sides gives \eqref{eq:Hs-grad-explicit}.
+\end{proof}
+
+\subsection{Projection onto the sphere}
+\label{ssec:B-projection}
+
+The tangent space of $\AA_s$ at $U$ is
+\begin{equation}\label{eq:tangent-appendix}
+T_U\AA_s = \bigl\{V\in\C^{2n} : \mathrm{Re}\ip{\Lambda^s U}{\Lambda^s V}=0\bigr\}.
+\end{equation}
+The Riemannian gradient is the orthogonal projection of 
+$\nabla_{H^s}J(U)$ onto $T_U\AA_s$:
+\begin{equation}\label{eq:riemannian-grad}
+\nabla_{\AA_s}J(U) = \nabla_{H^s}J(U) - 
+\frac{\mathrm{Re}\ip{\Lambda^s U}{\Lambda^s\nabla_{H^s}J(U)}}
+     {\norm{\Lambda^s U}_{L^2}^2}U.
+\end{equation}
+
+\begin{remark}[Consistency]\label{rem:proj-consistency}
+For $U\in\AA_s$, $\norm{\Lambda^s U}_{L^2}=1$, so the projection 
+coefficient simplifies.
+\end{remark}
+
+% ============================================================
+% APPENDIX C
+% ============================================================
+\section{Riemannian gradient descent on the Sobolev sphere}
+\label{app:C}
+
+This appendix describes the Riemannian gradient descent algorithm 
+used for the numerical computation of the optimal state.
+
+\subsection{The algorithm}
+\label{ssec:C-alg}
+
+\begin{enumerate}[label=(\arabic*),leftmargin=*]
+\item \textbf{Initialisation.} Choose an initial state 
+      $U^{(0)}\in\AA_s$. In practice, we use a random Hermitian 
+      state, normalised in $H^s$.
+
+\item \textbf{Gradient computation.} At iterate $U^{(m)}$, compute
+      \begin{equation}\label{eq:C-grad}
+      G^{(m)} = \nabla_{\AA_s}J(U^{(m)}) = 
+      \Pi_{T_{U^{(m)}}\AA_s}\bigl[\Lambda^{-2s}
+      \bigl(\Lambda^{2s}N(U^{(m)}) + L_{U^{(m)}}^\dagger
+      \Lambda^{2s}U^{(m)}\bigr)\bigr].
+      \end{equation}
+
+\item \textbf{Step size selection.} Choose the step size $\eta_m>0$ 
+      by the Armijo backtracking rule: start with $\eta_m=1$, halve 
+      until the sufficient decrease condition
+      \begin{equation}\label{eq:armijo}
+      J(U^{(m)}+\eta_m G^{(m)}) \geq J(U^{(m)}) + 
+      c_1\eta_m\norm{G^{(m)}}_{H^s}^2
+      \end{equation}
+      holds, with $c_1=10^{-4}$.
+
+\item \textbf{Update.} Set
+      \begin{equation}\label{eq:C-update}
+      U^{(m+1)} = \Proj_{\AA_s}(U^{(m)} + \eta_m G^{(m)}),
+      \end{equation}
+      where $\Proj_{\AA_s}(V) := V/\norm{V}_{H^s}$.
+
+\item \textbf{Convergence check.} Terminate when 
+      $\norm{G^{(m)}}_{H^s}<10^{-7}$ or when the maximum number of 
+      iterations is reached.
+\end{enumerate}
+
+\subsection{Convergence properties}
+\label{ssec:C-convergence}
+
+\begin{proposition}[Monotone decrease]\label{prop:C-monotone}
+The sequence $J(U^{(m)})$ is monotonically increasing.
+\end{proposition}
+
+\begin{proof}
+By the Armijo condition \eqref{eq:armijo} and the positivity of 
+$\eta_m\norm{G^{(m)}}^2$.
+\end{proof}
+
+\begin{proposition}[Stationary points]\label{prop:C-stationary}
+Every accumulation point $U^\ast$ of the sequence 
+$\{U^{(m)}\}$ satisfies the Euler--Lagrange equation 
+\eqref{eq:EL}.
+\end{proposition}
+
+\begin{proof}
+At an accumulation point, $\nabla_{\AA_s}J(U^\ast)=0$ by 
+continuity. This is equivalent to \eqref{eq:EL} with 
+$\lam = \mathrm{Re}\ip{\Lambda^s U^\ast}{\Lambda^s\nabla_{H^s}J(U^\ast)}$.
+\end{proof}
+
+\begin{remark}[Global convergence]\label{rem:global}
+The algorithm converges to a \emph{local} maximum of $J$ on the 
+sphere. Multi-start with random initialisations is used to explore 
+the landscape and identify the global maximum.
+\end{remark}
+
+\subsection{Computational cost}
+\label{ssec:C-cost}
+
+Each iteration requires:
+\begin{itemize}[leftmargin=*]
+\item One evaluation of $N(U^{(m)})$: $O(\operatorname{nnz}(\Tt))$ 
+      operations.
+\item One evaluation of $L_{U^{(m)}}^\dagger\Lambda^{2s}U^{(m)}$: 
+      $O(\operatorname{nnz}(\Tt))$ operations.
+\item One projection onto $\AA_s$: $O(\dim\AA_s)$ operations.
+\item A few backtracking evaluations of $J$.
+\end{itemize}
+The total cost per iteration is $O(\operatorname{nnz}(\Tt))$.
+
+% ============================================================
+% APPENDIX D
+% ============================================================
+\section{Numerical methods and verification}
+\label{app:D}
+
+This appendix details the numerical implementation and the 
+verification of the theoretical predictions.
+
+\subsection{Tensor construction}
+\label{ssec:D-tensor}
+
+The triadic tensor $\Tt_{\gamma\alpha\beta}$ is constructed by 
+iterating over all pairs $(\gamma,\alpha)$ in the mode set 
+$\KK_{K_{\max}}$ and evaluating the polarisation products.
+
+\paragraph{Helicoidal basis.} 
+For each $k\in\Z^3_\ast$, the real polarisation vectors are
+\begin{equation}\label{eq:D-real-basis}
+e_1(k) := \frac{z - (z\cdot\hat k)\hat k}
+               {\abs{z - (z\cdot\hat k)\hat k}},
+\qquad
+e_2(k) := \hat k\times e_1(k),
+\end{equation}
+and the helicoidal vectors are
+\begin{equation}\label{eq:D-helical-basis}
+e_+(k) := \frac{e_1(k)+\ii e_2(k)}{\sqrt 2},
+\qquad
+e_-(k) := \frac{e_1(k)-\ii e_2(k)}{\sqrt 2}.
+\end{equation}
+
+\paragraph{Tensor entries.}
+For each triple $(\gamma,\alpha,\beta)$ with $k_\gamma = k_\alpha + 
+k_\beta$, the tensor entry is
+\begin{equation}\label{eq:D-tensor-entry}
+\Tt_{\gamma\alpha\beta} = -2\pi\ii\bigl[e_{\sigma_\alpha}(p)\cdot 
+q\bigr]\bigl[\overline{e_{\sigma_\gamma}(k)}\cdot 
+e_{\sigma_\beta}(q)\bigr].
+\end{equation}
+Entries below threshold $10^{-15}$ are discarded.
+
+\paragraph{Sparse storage.}
+The tensor is stored in CSR (Compressed Sparse Row) format. For 
+$K=5$, the total number of nonzero entries is approximately 
+$5.3\times 10^6$; the memory footprint is approximately $170$~MB.
+
+\subsection{Time integration}
+\label{ssec:D-time}
+
+The truncated Euler equations
+\begin{equation}\label{eq:D-euler}
+\dot U = -N(U)
+\end{equation}
+are integrated with the fourth-order Runge--Kutta scheme
+\begin{align}
+k_1 &= -N(U^n), \\
+k_2 &= -N(U^n + \tfrac12\dd t\, k_1), \\
+k_3 &= -N(U^n + \tfrac12\dd t\, k_2), \\
+k_4 &= -N(U^n + \dd t\, k_3), \\
+U^{n+1} &= U^n + \tfrac{\dd t}{6}(k_1 + 2k_2 + 2k_3 + k_4),
+\end{align}
+with fixed step $\dd t = 5\times 10^{-4}$.
+
+\paragraph{Conservation monitoring.}
+The $L^2$ norm $\norm{U^n}$ is computed at each step. The relative 
+conservation error $\abs{\Delta\norm{U}^2/\norm{U_0}^2}$ remains 
+below $10^{-14}$ for all reported trajectories.
+
+\subsection{Post-processing}
+\label{ssec:D-post}
+
+\paragraph{Coherence and efficiency.}
+At each integration step, the functionals
+\begin{equation}\label{eq:D-chi-kappa}
+\chi^n = \frac{\mathrm{Re}\ip{\Lambda^s U^n}{\Lambda^s N(U^n)}}
+              {\norm{\Lambda^s U^n}\norm{\Lambda^s N(U^n)}},
+\qquad
+\kappa^n = \frac{\norm{\Lambda^s N(U^n)}}{\norm{\Lambda^s U^n}},
+\end{equation}
+are computed and stored.
+
+\paragraph{Angular density.}
+The angular density is computed by binning the spectral energy 
+$\abs{U^n_k}^2$ over the angular coordinate 
+$\alpha = \arcsin(k_z/\abs{k})$ on each shell.
+
+\paragraph{Channel decomposition.}
+The pure and acopling contributions to $N(U)$ are computed 
+separately, and their norms are recorded.
+
+\subsection{Verification}
+\label{ssec:D-verify}
+
+The numerical implementation is verified against the following 
+analytic identities.
+
+\paragraph{(V1) Conservation of energy.}
+$\norm{U^n}_{L^2} = \norm{U^0}_{L^2}$ up to machine precision.
+
+\paragraph{(V2) Reality condition.}
+$U^n_{-k} = \overline{U^n_k}$ up to machine precision.
+
+\paragraph{(V3) Channel decoupling.}
+$\mathrm{Re}\ip{\Lambda^s U^n}{\Lambda^s N^{\mathrm{pure}}(U^n)} = 
+\mathrm{Re}\ip{\Lambda^s U^n}{\Lambda^s N^{\mathrm{ac}}(U^n)} = 0$ 
+up to machine precision.
+
+\paragraph{(V4) Riccati identity.}
+$\dot\chi^n = -\chi^{n\,2}\kappa^n + \Phi(U^n) - 
+c_\ast^n\chi^n$ up to the finite-difference accuracy.
+
+\paragraph{(V5) Per-triad ratio.}
+$R_{kpq}^2 = 1 + 2\tan^4(\theta/2)$ verified for all sampled triads.
+
+\subsection{Performance}
+\label{ssec:D-perf}
+
+The wall-clock times for the tensor construction, the optimal state 
+computation, and the trajectory integration are reported in 
+Table~\ref{tab:D-perf}.
+
+\begin{table}[h]
+\centering
+\caption{Wall-clock times (in seconds) for the main numerical 
+operations at truncations $K\in\{2,3,4,5\}$. The values are for a 
+single-thread execution on a standard workstation.}
+\label{tab:D-perf}
+\begin{tabular}{cccc}
+\toprule
+$K$ & Tensor construction & Optimal state & Trajectory \\
+\midrule
+$2$ & $0.017$ & $0.95$ & $6.2$ \\
+$3$ & $0.62$ & $7.1$ & $42$ \\
+$4$ & $3.0$ & $30$ & $180$ \\
+$5$ & $17$ & $97$ & $360$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{remark}[Scaling]\label{rem:scaling-perf}
+The tensor construction scales as $K^6$; the optimal state 
+computation as $K^6$; the trajectory integration as $K^6$ per unit 
+time. The extension to $K=6,7,8$ is feasible with ample memory and 
+parallelisation.
+\end{remark}
+
+\subsection{Reproducibility}
+\label{ssec:D-repro}
+
+The source code is written in Rust for performance-critical routines 
+and in Python for post-processing. The random seeds are fixed; all 
+reported results are reproducible on standard hardware.
